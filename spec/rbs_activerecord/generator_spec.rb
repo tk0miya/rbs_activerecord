@@ -9,14 +9,20 @@ RSpec.describe RbsActiverecord::Generator do
 
     before do
       stub_const("Foo", klass)
+      stub_const "Bar", Class.new(::ActiveRecord::Base)
 
       ActiveRecord::Base.establish_connection(adapter: "sqlite3", database: ":memory:")
       ActiveRecord::Base.connection.create_table :foos do |t|
         t.string :name
       end
+      ActiveRecord::Base.connection.create_table :bars, id: :string
     end
 
-    let(:klass) { Class.new(ActiveRecord::Base) }
+    let(:klass) do
+      Class.new(ActiveRecord::Base) do
+        has_many :bars
+      end
+    end
 
     it "generates RBS" do
       expect(subject).to eq <<~RBS
@@ -95,6 +101,16 @@ RSpec.describe RbsActiverecord::Generator do
             def clear_name_change: () -> void
           end
 
+          module GeneratedAssociationMethods
+            def bars: () -> Bar::ActiveRecord_Associations_CollectionProxy
+
+            def bars=: (Bar::ActiveRecord_Associations_CollectionProxy | Array[::Bar]) -> (Bar::ActiveRecord_Associations_CollectionProxy | Array[::Bar])
+
+            def bar_ids: () -> Array[::String]
+
+            def bar_ids=: (Array[::String]) -> Array[::String]
+          end
+
           class ActiveRecord_Relation < ::ActiveRecord::Relation
             include ::ActiveRecord::Relation::Methods[Foo, ::Integer]
             include ::Enumerable[Foo]
@@ -106,6 +122,7 @@ RSpec.describe RbsActiverecord::Generator do
           end
 
           include GeneratedAttributeMethods
+          include GeneratedAssociationMethods
         end
       RBS
     end

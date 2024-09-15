@@ -19,6 +19,7 @@ module RbsActiverecord
       format <<~RBS
         #{header}
           #{Attributes.new(model).generate}
+          #{Associations.new(model).generate}
 
           class ActiveRecord_Relation < ::ActiveRecord::Relation
             include ::ActiveRecord::Relation::Methods[#{klass_name}, #{primary_key_type}]
@@ -31,6 +32,7 @@ module RbsActiverecord
           end
 
           include GeneratedAttributeMethods
+          include GeneratedAssociationMethods
         #{footer}
       RBS
     end

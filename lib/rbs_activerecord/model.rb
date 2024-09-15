@@ -10,7 +10,8 @@ module RbsActiverecord
 
     # @rbs!
     #   def columns: () -> Array[untyped]
-    def_delegator :klass, :columns
+    #   def reflect_on_all_associations: (Symbol) -> Array[untyped]
+    def_delegators :klass, :columns, :reflect_on_all_associations
 
     # @rbs klass: singleton(ActiveRecord::Base)
     def initialize(klass) #: void

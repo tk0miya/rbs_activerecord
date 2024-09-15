@@ -8,6 +8,8 @@ module RbsActiverecord
 
     def columns: () -> Array[untyped]
 
+    def reflect_on_all_associations: (Symbol) -> Array[untyped]
+
     # @rbs klass: singleton(ActiveRecord::Base)
     def initialize: (singleton(ActiveRecord::Base) klass) -> void
   end
