@@ -1,6 +1,10 @@
 AllCops:
   TargetRubyVersion: 3.0
 
+Layout/LeadingCommentSpace:
+  AllowRBSInlineAnnotation: true
+  AllowSteepAnnotation: true
+
 Style/StringLiterals:
   EnforcedStyle: double_quotes
 
