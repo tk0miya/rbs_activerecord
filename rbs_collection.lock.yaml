@@ -145,6 +145,10 @@ gems:
   version: '0'
   source:
     type: stdlib
+- name: prism
+  version: 0.30.0
+  source:
+    type: rubygems
 - name: rainbow
   version: '3.0'
   source:
