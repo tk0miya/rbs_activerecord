@@ -1,4 +1,6 @@
+# Generated from lib/rbs_activerecord.rb with RBS::Inline
+
 module RbsActiverecord
-  VERSION: String
-  # See the writing guide of rbs: https://github.com/ruby/rbs#guides
+  class Error < StandardError
+  end
 end
