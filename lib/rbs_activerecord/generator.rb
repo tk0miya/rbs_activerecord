@@ -15,11 +15,12 @@ module RbsActiverecord
       @model = Model.new(klass)
     end
 
-    def generate #: String
+    def generate #: String  # rubocop:disable Metrics/AbcSize
       format <<~RBS
         #{header}
           #{Attributes.new(model).generate}
           #{Associations.new(model).generate}
+          #{SecurePassword.new(model).generate}
 
           class ActiveRecord_Relation < ::ActiveRecord::Relation
             include ::ActiveRecord::Relation::Methods[#{klass_name}, #{primary_key_type}]
@@ -33,6 +34,7 @@ module RbsActiverecord
 
           include GeneratedAttributeMethods
           include GeneratedAssociationMethods
+          include GeneratedSecurePasswordMethods
         #{footer}
       RBS
     end
