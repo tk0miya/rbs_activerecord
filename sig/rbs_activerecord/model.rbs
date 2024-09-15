@@ -14,5 +14,7 @@ module RbsActiverecord
 
     # @rbs klass: singleton(ActiveRecord::Base)
     def initialize: (singleton(ActiveRecord::Base) klass) -> void
+
+    def filename: () -> String
   end
 end
