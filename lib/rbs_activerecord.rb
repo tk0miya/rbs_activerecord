@@ -10,6 +10,7 @@ require_relative "rbs_activerecord/generator/secure_password"
 require_relative "rbs_activerecord/model"
 require_relative "rbs_activerecord/parser"
 require_relative "rbs_activerecord/parser/visitor"
+require_relative "rbs_activerecord/unparser"
 require_relative "rbs_activerecord/version"
 
 module RbsActiverecord

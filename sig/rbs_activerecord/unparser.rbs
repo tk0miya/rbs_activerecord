@@ -1,0 +1,10 @@
+# Generated from lib/rbs_activerecord/unparser.rb with RBS::Inline
+
+module RbsActiverecord
+  module Unparser
+    def self.unparse: (Prism::Node | Array[Prism::Node] | nil node) -> untyped
+
+    # @rbs node: Prism::Node
+    def unparse: (Prism::Node node) -> untyped
+  end
+end
