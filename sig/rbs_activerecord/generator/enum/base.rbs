@@ -1,0 +1,19 @@
+# Generated from lib/rbs_activerecord/generator/enum/base.rb with RBS::Inline
+
+module RbsActiverecord
+  class Generator
+    module Enum
+      class Base
+        private
+
+        # @rbs node: Prism::CallNode
+        def parse_arguments: (Prism::CallNode node) -> [ String?, Array[String | Symbol], Hash[Symbol, untyped] ]
+
+        # @rbs name: String
+        # @rbs value: untyped
+        # @rbs options: Hash[Symbol, untyped]
+        def enum_method_name: (String name, untyped value, Hash[Symbol, untyped] options) -> String
+      end
+    end
+  end
+end
