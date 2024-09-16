@@ -143,6 +143,23 @@ RSpec.describe RbsActiverecord::Generator do
             alias authenticate authenticate_password
           end
 
+          module GeneratedDelegatedTypeInstanceMethods
+            def entryable_class: () -> (Message | Comment)
+
+            def entryable_name: () -> String
+
+            def message?: () -> bool
+
+            def message: () -> Message?
+
+            def message_id: () -> ::Integer?
+
+            def comment?: () -> bool
+
+            def comment: () -> Comment?
+
+            def comment_id: () -> ::Integer?
+          end
           module GeneratedDelegatedTypeScopeMethods[Relation]
             def messages: () -> Relation
 
@@ -192,6 +209,7 @@ RSpec.describe RbsActiverecord::Generator do
 
           include GeneratedAttributeMethods
           include GeneratedAssociationMethods
+          include GeneratedDelegatedTypeInstanceMethods
           include GeneratedEnumInstanceMethods
           include GeneratedSecurePasswordMethods
         end

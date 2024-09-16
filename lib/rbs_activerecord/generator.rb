@@ -24,6 +24,7 @@ module RbsActiverecord
           #{Associations.new(model).generate}
           #{SecurePassword.new(model).generate}
 
+          #{DelegatedType::InstanceMethods.new(model, declarations).generate}
           #{DelegatedType::Scopes.new(model, declarations).generate}
           #{Enum::InstanceMethods.new(model, declarations).generate}
           #{Enum::Scopes.new(model, declarations).generate}
@@ -51,6 +52,7 @@ module RbsActiverecord
 
           include GeneratedAttributeMethods
           include GeneratedAssociationMethods
+          include GeneratedDelegatedTypeInstanceMethods
           include GeneratedEnumInstanceMethods
           include GeneratedSecurePasswordMethods
         #{footer}
