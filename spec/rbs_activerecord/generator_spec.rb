@@ -131,6 +131,15 @@ RSpec.describe RbsActiverecord::Generator do
             alias authenticate authenticate_password
           end
 
+          module GeneratedEnumInstanceMethods
+            def active!: () -> void
+
+            def active?: () -> bool
+
+            def archived!: () -> void
+
+            def archived?: () -> bool
+          end
           module GeneratedEnumScopeMethods[Relation]
             def active: () -> Relation
 
@@ -159,6 +168,7 @@ RSpec.describe RbsActiverecord::Generator do
 
           include GeneratedAttributeMethods
           include GeneratedAssociationMethods
+          include GeneratedEnumInstanceMethods
           include GeneratedSecurePasswordMethods
         end
       RBS
