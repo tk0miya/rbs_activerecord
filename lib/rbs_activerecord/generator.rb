@@ -23,6 +23,7 @@ module RbsActiverecord
           #{Attributes.new(model).generate}
           #{Associations.new(model).generate}
 
+          #{ActiveStorage::InstanceMethods.new(model).generate}
           #{ActiveStorage::Scopes.new(model).generate}
           #{SecurePassword.new(model).generate}
 
@@ -55,6 +56,7 @@ module RbsActiverecord
           extend GeneratedEnumScopeMethods[ActiveRecord_Relation]
           extend GeneratedScopeMethods[ActiveRecord_Relation]
 
+          include GeneratedActiveStorageInstanceMethods
           include GeneratedAttributeMethods
           include GeneratedAssociationMethods
           include GeneratedDelegatedTypeInstanceMethods
