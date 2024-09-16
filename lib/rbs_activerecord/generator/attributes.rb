@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RbsActiverecord
-  module Generator
+  class Generator
     class Attributes
       include Utils
 

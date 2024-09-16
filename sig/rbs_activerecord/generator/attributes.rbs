@@ -1,7 +1,7 @@
 # Generated from lib/rbs_activerecord/generator/attributes.rb with RBS::Inline
 
 module RbsActiverecord
-  module Generator
+  class Generator
     class Attributes
       include Utils
 
