@@ -4,7 +4,12 @@ module RbsActiverecord
   module Parser
     def self.parse: (String filename) -> Hash[String, Array[Prism::CallNode]]
 
+    def self.eval_node: (Prism::Node node) -> untyped
+
     # @rbs filename: String
     def parse: (String filename) -> Hash[String, Array[Prism::CallNode]]
+
+    # @rbs node: Prism::Node
+    def eval_node: (Prism::Node node) -> untyped
   end
 end

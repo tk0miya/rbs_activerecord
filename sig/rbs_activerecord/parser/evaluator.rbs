@@ -1,0 +1,12 @@
+# Generated from lib/rbs_activerecord/parser/evaluator.rb with RBS::Inline
+
+module RbsActiverecord
+  module Parser
+    module Evaluator
+      def self.eval_node: (Prism::Node node) -> untyped
+
+      # @rbs node: Prism::Node
+      def eval_node: (Prism::Node node) -> untyped
+    end
+  end
+end
