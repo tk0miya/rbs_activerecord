@@ -114,6 +114,18 @@ RSpec.describe RbsActiverecord::Generator do
             def bar_ids: () -> Array[::String]
 
             def bar_ids=: (Array[::String]) -> Array[::String]
+
+            def entryable: () -> untyped
+
+            def entryable=: (untyped?) -> untyped?
+
+            def reload_entryable: () -> untyped?
+
+            def build_entryable: (untyped) -> untyped
+
+            def create_entryable: (untyped) -> untyped
+
+            def create_entryable!: (untyped) -> untyped
           end
           module GeneratedSecurePasswordMethods
             attr_reader password: String?
@@ -131,6 +143,11 @@ RSpec.describe RbsActiverecord::Generator do
             alias authenticate authenticate_password
           end
 
+          module GeneratedDelegatedTypeScopeMethods[Relation]
+            def messages: () -> Relation
+
+            def comments: () -> Relation
+          end
           module GeneratedEnumInstanceMethods
             def active!: () -> void
 
@@ -155,6 +172,7 @@ RSpec.describe RbsActiverecord::Generator do
 
           class ActiveRecord_Relation < ::ActiveRecord::Relation
             include ::ActiveRecord::Relation::Methods[Foo, ::Integer]
+            include GeneratedDelegatedTypeScopeMethods[ActiveRecord_Relation]
             include GeneratedEnumScopeMethods[ActiveRecord_Relation]
             include GeneratedScopeMethods[ActiveRecord_Relation]
             include ::Enumerable[Foo]
@@ -162,11 +180,13 @@ RSpec.describe RbsActiverecord::Generator do
 
           class ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
             include ::ActiveRecord::Relation::Methods[Foo, ::Integer]
+            include GeneratedDelegatedTypeScopeMethods[ActiveRecord_Relation]
             include GeneratedEnumScopeMethods[ActiveRecord_Relation]
             include GeneratedScopeMethods[ActiveRecord_Relation]
             include ::Enumerable[Foo]
           end
 
+          extend GeneratedDelegatedTypeScopeMethods[ActiveRecord_Relation]
           extend GeneratedEnumScopeMethods[ActiveRecord_Relation]
           extend GeneratedScopeMethods[ActiveRecord_Relation]
 

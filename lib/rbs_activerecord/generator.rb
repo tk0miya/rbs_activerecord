@@ -24,12 +24,14 @@ module RbsActiverecord
           #{Associations.new(model).generate}
           #{SecurePassword.new(model).generate}
 
+          #{DelegatedType::Scopes.new(model, declarations).generate}
           #{Enum::InstanceMethods.new(model, declarations).generate}
           #{Enum::Scopes.new(model, declarations).generate}
           #{Scopes.new(model, declarations).generate}
 
           class ActiveRecord_Relation < ::ActiveRecord::Relation
             include ::ActiveRecord::Relation::Methods[#{klass_name}, #{primary_key_type}]
+            include GeneratedDelegatedTypeScopeMethods[ActiveRecord_Relation]
             include GeneratedEnumScopeMethods[ActiveRecord_Relation]
             include GeneratedScopeMethods[ActiveRecord_Relation]
             include ::Enumerable[#{klass_name}]
@@ -37,11 +39,13 @@ module RbsActiverecord
 
           class ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
             include ::ActiveRecord::Relation::Methods[#{klass_name}, #{primary_key_type}]
+            include GeneratedDelegatedTypeScopeMethods[ActiveRecord_Relation]
             include GeneratedEnumScopeMethods[ActiveRecord_Relation]
             include GeneratedScopeMethods[ActiveRecord_Relation]
             include ::Enumerable[#{klass_name}]
           end
 
+          extend GeneratedDelegatedTypeScopeMethods[ActiveRecord_Relation]
           extend GeneratedEnumScopeMethods[ActiveRecord_Relation]
           extend GeneratedScopeMethods[ActiveRecord_Relation]
 
