@@ -5,6 +5,13 @@ Layout/LeadingCommentSpace:
   AllowRBSInlineAnnotation: true
   AllowSteepAnnotation: true
 
+Metrics/BlockLength:
+  Exclude:
+    - "spec/**/*.rb"
+
+Metrics/MethodLength:
+  Max: 30
+
 Style/Documentation:
   Enabled: false
 

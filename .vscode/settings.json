@@ -3,5 +3,8 @@
         "editor.defaultFormatter": "Shopify.ruby-lsp"
     },
     "rbs-helper.rbs-inline-signature-directory": "sig/",
-    "rbs-helper.rbs-inline-on-save": true
+    "rbs-helper.rbs-inline-on-save": true,
+    "cSpell.words": [
+        "Cyclomatic"
+    ]
 }

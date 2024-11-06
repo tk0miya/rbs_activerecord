@@ -1,0 +1,8 @@
+# Generated from lib/rbs_activerecord/utils.rb with RBS::Inline
+
+module RbsActiverecord
+  module Utils
+    # @rbs str: String
+    def format: (String str) -> String
+  end
+end

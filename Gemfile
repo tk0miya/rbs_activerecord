@@ -15,3 +15,7 @@ group :development do
   gem "ruby-lsp-rspec", require: false
   gem "steep", require: false
 end
+
+group :test do
+  gem "sqlite3"
+end

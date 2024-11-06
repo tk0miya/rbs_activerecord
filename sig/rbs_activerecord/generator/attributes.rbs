@@ -1,0 +1,23 @@
+# Generated from lib/rbs_activerecord/generator/attributes.rb with RBS::Inline
+
+module RbsActiverecord
+  class Generator
+    class Attributes
+      include Utils
+
+      attr_reader model: RbsActiverecord::Model
+
+      # @rbs model: RbsActiverecord::Model
+      def initialize: (RbsActiverecord::Model model) -> void
+
+      def generate: () -> String
+
+      private
+
+      def column: (untyped col) -> String
+
+      # @rbs type: Symbol
+      def sql_type_to_class: (Symbol type) -> String
+    end
+  end
+end

@@ -1,0 +1,14 @@
+# Generated from lib/rbs_activerecord/model.rb with RBS::Inline
+
+module RbsActiverecord
+  class Model
+    extend Forwardable
+
+    attr_reader klass: singleton(ActiveRecord::Base)
+
+    def columns: () -> Array[untyped]
+
+    # @rbs klass: singleton(ActiveRecord::Base)
+    def initialize: (singleton(ActiveRecord::Base) klass) -> void
+  end
+end
