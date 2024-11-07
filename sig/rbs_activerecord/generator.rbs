@@ -17,6 +17,8 @@ module RbsActiverecord
 
     private
 
+    def primary_key_type: () -> String
+
     def header: () -> String
 
     def footer: () -> String

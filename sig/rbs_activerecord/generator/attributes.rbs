@@ -15,9 +15,6 @@ module RbsActiverecord
       private
 
       def column: (untyped col) -> String
-
-      # @rbs type: Symbol
-      def sql_type_to_class: (Symbol type) -> String
     end
   end
 end

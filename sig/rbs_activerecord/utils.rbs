@@ -4,5 +4,11 @@ module RbsActiverecord
   module Utils
     # @rbs str: String
     def format: (String str) -> String
+
+    # @rbs klass: singleton(ActiveRecord::Base)
+    def primary_key_type_for: (singleton(ActiveRecord::Base) klass) -> String
+
+    # @rbs type: Symbol
+    def sql_type_to_class: (Symbol type) -> String
   end
 end

@@ -95,6 +95,16 @@ RSpec.describe RbsActiverecord::Generator do
             def clear_name_change: () -> void
           end
 
+          class ActiveRecord_Relation < ::ActiveRecord::Relation
+            include ::ActiveRecord::Relation::Methods[Foo, ::Integer]
+            include ::Enumerable[Foo]
+          end
+
+          class ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+            include ::ActiveRecord::Relation::Methods[Foo, ::Integer]
+            include ::Enumerable[Foo]
+          end
+
           include GeneratedAttributeMethods
         end
       RBS
