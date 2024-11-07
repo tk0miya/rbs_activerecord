@@ -1,0 +1,24 @@
+# Generated from lib/rbs_activerecord/generator/associations.rb with RBS::Inline
+
+module RbsActiverecord
+  class Generator
+    class Associations
+      include Utils
+
+      attr_reader model: RbsActiverecord::Model
+
+      # @rbs model: RbsActiverecord::Model
+      def initialize: (RbsActiverecord::Model model) -> void
+
+      def generate: () -> String
+
+      private
+
+      def has_many: () -> String
+
+      def has_one: () -> String
+
+      def belongs_to: () -> String
+    end
+  end
+end
