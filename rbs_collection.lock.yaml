@@ -37,6 +37,14 @@ gems:
   version: '0'
   source:
     type: stdlib
+- name: bcrypt
+  version: '3.1'
+  source:
+    type: git
+    name: ruby/gem_rbs_collection
+    revision: 9b07b7bde4c9f656f3f6d785bd676320032cecb4
+    remote: https://github.com/ruby/gem_rbs_collection.git
+    repo_dir: gems
 - name: benchmark
   version: '0'
   source:

@@ -21,6 +21,8 @@ RSpec.describe RbsActiverecord::Generator do
     let(:klass) do
       Class.new(ActiveRecord::Base) do
         has_many :bars
+
+        has_secure_password
       end
     end
 
@@ -111,6 +113,22 @@ RSpec.describe RbsActiverecord::Generator do
             def bar_ids=: (Array[::String]) -> Array[::String]
           end
 
+          module GeneratedSecurePasswordMethods
+            attr_reader password: String?
+
+            attr_accessor password_confirmation: String
+
+            attr_accessor password_challenge: String
+
+            def password=: (String) -> String
+
+            def password_salt: () -> String
+
+            def authenticate_password: (String) -> (instance | false)
+
+            alias authenticate authenticate_password
+          end
+
           class ActiveRecord_Relation < ::ActiveRecord::Relation
             include ::ActiveRecord::Relation::Methods[Foo, ::Integer]
             include ::Enumerable[Foo]
@@ -123,6 +141,7 @@ RSpec.describe RbsActiverecord::Generator do
 
           include GeneratedAttributeMethods
           include GeneratedAssociationMethods
+          include GeneratedSecurePasswordMethods
         end
       RBS
     end
