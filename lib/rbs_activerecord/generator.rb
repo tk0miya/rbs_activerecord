@@ -20,12 +20,26 @@ module RbsActiverecord
         #{header}
           #{Attributes.new(model).generate}
 
+          class ActiveRecord_Relation < ::ActiveRecord::Relation
+            include ::ActiveRecord::Relation::Methods[#{klass_name}, #{primary_key_type}]
+            include ::Enumerable[#{klass_name}]
+          end
+
+          class ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+            include ::ActiveRecord::Relation::Methods[#{klass_name}, #{primary_key_type}]
+            include ::Enumerable[#{klass_name}]
+          end
+
           include GeneratedAttributeMethods
         #{footer}
       RBS
     end
 
     private
+
+    def primary_key_type #: String
+      primary_key_type_for(klass)
+    end
 
     def header #: String
       namespace = +""

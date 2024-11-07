@@ -48,34 +48,6 @@ module RbsActiverecord
           def clear_#{col.name}_change: () -> void
         RBS
       end
-
-      # @rbs type: Symbol
-      def sql_type_to_class(type) #: String  # rubocop:disable Metris/CyclomaticComplexity
-        case type
-        when :integer
-          "::Integer"
-        when :float
-          "::Float"
-        when :decimal
-          "::BigDecimal"
-        when :string, :text, :citext, :uuid, :binary
-          "::String"
-        when :datetime
-          "::ActiveSupport::TimeWithZone"
-        when :date
-          "::Date"
-        when :time
-          "::Time"
-        when :boolean
-          "bool"
-        when :jsonb, :json
-          "untyped"
-        when :inet
-          "::IPAddr"
-        else
-          "untyped"
-        end
-      end
     end
   end
 end
