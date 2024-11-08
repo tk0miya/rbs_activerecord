@@ -56,7 +56,11 @@ RSpec.describe RbsActiverecord::Generator::Enum::Scopes do
             module GeneratedEnumScopeMethods[Relation]
               def active: () -> Relation
 
+              def not_active: () -> Relation
+
               def archived: () -> Relation
+
+              def not_archived: () -> Relation
             end
           RBS
         end
@@ -94,7 +98,11 @@ RSpec.describe RbsActiverecord::Generator::Enum::Scopes do
               module GeneratedEnumScopeMethods[Relation]
                 def active: () -> Relation
 
+                def not_active: () -> Relation
+
                 def archived: () -> Relation
+
+                def not_archived: () -> Relation
               end
             RBS
           end
@@ -116,7 +124,11 @@ RSpec.describe RbsActiverecord::Generator::Enum::Scopes do
               module GeneratedEnumScopeMethods[Relation]
                 def status_active: () -> Relation
 
+                def not_status_active: () -> Relation
+
                 def status_archived: () -> Relation
+
+                def not_status_archived: () -> Relation
               end
             RBS
           end
@@ -136,7 +148,11 @@ RSpec.describe RbsActiverecord::Generator::Enum::Scopes do
               module GeneratedEnumScopeMethods[Relation]
                 def prefix_active: () -> Relation
 
+                def not_prefix_active: () -> Relation
+
                 def prefix_archived: () -> Relation
+
+                def not_prefix_archived: () -> Relation
               end
             RBS
           end
@@ -156,7 +172,11 @@ RSpec.describe RbsActiverecord::Generator::Enum::Scopes do
               module GeneratedEnumScopeMethods[Relation]
                 def prefix_active: () -> Relation
 
+                def not_prefix_active: () -> Relation
+
                 def prefix_archived: () -> Relation
+
+                def not_prefix_archived: () -> Relation
               end
             RBS
           end
@@ -178,7 +198,11 @@ RSpec.describe RbsActiverecord::Generator::Enum::Scopes do
               module GeneratedEnumScopeMethods[Relation]
                 def active_status: () -> Relation
 
+                def not_active_status: () -> Relation
+
                 def archived_status: () -> Relation
+
+                def not_archived_status: () -> Relation
               end
             RBS
           end
@@ -198,7 +222,11 @@ RSpec.describe RbsActiverecord::Generator::Enum::Scopes do
               module GeneratedEnumScopeMethods[Relation]
                 def active_suffix: () -> Relation
 
+                def not_active_suffix: () -> Relation
+
                 def archived_suffix: () -> Relation
+
+                def not_archived_suffix: () -> Relation
               end
             RBS
           end
@@ -218,7 +246,11 @@ RSpec.describe RbsActiverecord::Generator::Enum::Scopes do
               module GeneratedEnumScopeMethods[Relation]
                 def active_suffix: () -> Relation
 
+                def not_active_suffix: () -> Relation
+
                 def archived_suffix: () -> Relation
+
+                def not_archived_suffix: () -> Relation
               end
             RBS
           end

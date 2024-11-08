@@ -39,7 +39,10 @@ module RbsActiverecord
 
           values.map do |value|
             method_name = enum_method_name(name, value, options)
-            "def #{method_name}: () -> Relation"
+            <<~RBS
+              def #{method_name}: () -> Relation
+              def not_#{method_name}: () -> Relation
+            RBS
           end.join("\n")
         end
       end
