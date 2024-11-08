@@ -35,7 +35,7 @@ module RbsActiverecord
           name, values, options = parse_arguments(node)
 
           return "" unless name
-          return "" unless options.fetch(:scope, true)
+          return "" unless options.fetch(:scopes, true)
 
           values.map do |value|
             method_name = enum_method_name(name, value, options)
