@@ -3,13 +3,17 @@
 require "active_record"
 require "rbs_activerecord"
 
+require_relative "../fixtures/app/models/foo"
+
 RSpec.describe RbsActiverecord::Generator do
   describe "#generate" do
     subject { described_class.new(klass).generate }
 
+    attr_reader :tempdir
+
     before do
-      stub_const("Foo", klass)
       stub_const "Bar", Class.new(::ActiveRecord::Base)
+      allow(Rails).to receive(:root).and_return(Pathname.new("spec/fixtures/"))
 
       ActiveRecord::Base.establish_connection(adapter: "sqlite3", database: ":memory:")
       ActiveRecord::Base.connection.create_table :foos do |t|
@@ -18,13 +22,7 @@ RSpec.describe RbsActiverecord::Generator do
       ActiveRecord::Base.connection.create_table :bars, id: :string
     end
 
-    let(:klass) do
-      Class.new(ActiveRecord::Base) do
-        has_many :bars
-
-        has_secure_password
-      end
-    end
+    let(:klass) { Foo } # see ../fixtures/app/models/foo.rb
 
     it "generates RBS" do
       expect(subject).to eq <<~RBS
@@ -128,15 +126,23 @@ RSpec.describe RbsActiverecord::Generator do
             alias authenticate authenticate_password
           end
 
+          module GeneratedScopeMethods[Relation]
+            def active: () -> Relation
+          end
+
           class ActiveRecord_Relation < ::ActiveRecord::Relation
             include ::ActiveRecord::Relation::Methods[Foo, ::Integer]
+            include GeneratedScopeMethods[ActiveRecord_Relation]
             include ::Enumerable[Foo]
           end
 
           class ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
             include ::ActiveRecord::Relation::Methods[Foo, ::Integer]
+            include GeneratedScopeMethods[ActiveRecord_Relation]
             include ::Enumerable[Foo]
           end
+
+          extend GeneratedScopeMethods[ActiveRecord_Relation]
 
           include GeneratedAttributeMethods
           include GeneratedAssociationMethods

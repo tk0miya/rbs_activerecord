@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "rails"
+
 module RbsActiverecord
   class Generator
     include Utils
@@ -22,15 +24,21 @@ module RbsActiverecord
           #{Associations.new(model).generate}
           #{SecurePassword.new(model).generate}
 
+          #{Scopes.new(model, declarations).generate}
+
           class ActiveRecord_Relation < ::ActiveRecord::Relation
             include ::ActiveRecord::Relation::Methods[#{klass_name}, #{primary_key_type}]
+            include GeneratedScopeMethods[ActiveRecord_Relation]
             include ::Enumerable[#{klass_name}]
           end
 
           class ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
             include ::ActiveRecord::Relation::Methods[#{klass_name}, #{primary_key_type}]
+            include GeneratedScopeMethods[ActiveRecord_Relation]
             include ::Enumerable[#{klass_name}]
           end
+
+          extend GeneratedScopeMethods[ActiveRecord_Relation]
 
           include GeneratedAttributeMethods
           include GeneratedAssociationMethods
@@ -43,6 +51,19 @@ module RbsActiverecord
 
     def primary_key_type #: String
       primary_key_type_for(klass)
+    end
+
+    # @rbs @declarations: Hash[String, Array[Prism::Node]]
+
+    def declarations #: Hash[String, Array[Prism::Node]]
+      @declarations ||= begin
+        filename = Rails.root.join(model.filename)
+        if filename.exist?
+          Parser.parse(filename.to_s)
+        else
+          {}
+        end
+      end
     end
 
     def header #: String

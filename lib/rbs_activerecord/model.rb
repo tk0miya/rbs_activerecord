@@ -18,5 +18,9 @@ module RbsActiverecord
     def initialize(klass) #: void
       @klass = klass
     end
+
+    def filename #: String
+      "app/models/#{klass.name.to_s.underscore}.rb"
+    end
   end
 end

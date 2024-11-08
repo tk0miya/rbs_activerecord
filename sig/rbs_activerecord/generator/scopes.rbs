@@ -1,0 +1,27 @@
+# Generated from lib/rbs_activerecord/generator/scopes.rb with RBS::Inline
+
+module RbsActiverecord
+  class Generator
+    class Scopes
+      attr_reader model: RbsActiverecord::Model
+
+      attr_reader declarations: Array[Prism::CallNode]
+
+      # @rbs model: RbsActiverecord::Model
+      # @rbs delarations: Hash[String, Array[Prism::CallNode]]
+      def initialize: (RbsActiverecord::Model model, untyped declarations) -> void
+
+      def generate: () -> String
+
+      private
+
+      def scopes: () -> Array[Prism::CallNode]
+
+      # @rbs node: Prism::CallNode
+      def scope: (Prism::CallNode node) -> String
+
+      # @rbs node: Prism::LambdaNode
+      def lambda_params: (Prism::LambdaNode node) -> String
+    end
+  end
+end

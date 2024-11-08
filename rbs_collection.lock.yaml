@@ -1,6 +1,22 @@
 ---
 path: ".gem_rbs_collection"
 gems:
+- name: actionpack
+  version: '7.2'
+  source:
+    type: git
+    name: ruby/gem_rbs_collection
+    revision: 9b07b7bde4c9f656f3f6d785bd676320032cecb4
+    remote: https://github.com/ruby/gem_rbs_collection.git
+    repo_dir: gems
+- name: actionview
+  version: '6.0'
+  source:
+    type: git
+    name: ruby/gem_rbs_collection
+    revision: 9b07b7bde4c9f656f3f6d785bd676320032cecb4
+    remote: https://github.com/ruby/gem_rbs_collection.git
+    repo_dir: gems
 - name: activemodel
   version: '7.0'
   source:
@@ -53,6 +69,10 @@ gems:
   version: '0'
   source:
     type: stdlib
+- name: cgi
+  version: '0'
+  source:
+    type: stdlib
 - name: concurrent-ruby
   version: '1.1'
   source:
@@ -97,6 +117,10 @@ gems:
     revision: 9b07b7bde4c9f656f3f6d785bd676320032cecb4
     remote: https://github.com/ruby/gem_rbs_collection.git
     repo_dir: gems
+- name: io-console
+  version: '0'
+  source:
+    type: stdlib
 - name: json
   version: '0'
   source:
@@ -117,6 +141,14 @@ gems:
   version: '0'
   source:
     type: stdlib
+- name: nokogiri
+  version: '1.11'
+  source:
+    type: git
+    name: ruby/gem_rbs_collection
+    revision: 9b07b7bde4c9f656f3f6d785bd676320032cecb4
+    remote: https://github.com/ruby/gem_rbs_collection.git
+    repo_dir: gems
 - name: openssl
   version: '0'
   source:
@@ -149,6 +181,38 @@ gems:
   version: 0.30.0
   source:
     type: rubygems
+- name: rack
+  version: '2.2'
+  source:
+    type: git
+    name: ruby/gem_rbs_collection
+    revision: 9b07b7bde4c9f656f3f6d785bd676320032cecb4
+    remote: https://github.com/ruby/gem_rbs_collection.git
+    repo_dir: gems
+- name: rails-dom-testing
+  version: '2.0'
+  source:
+    type: git
+    name: ruby/gem_rbs_collection
+    revision: 9b07b7bde4c9f656f3f6d785bd676320032cecb4
+    remote: https://github.com/ruby/gem_rbs_collection.git
+    repo_dir: gems
+- name: rails-html-sanitizer
+  version: '1.6'
+  source:
+    type: git
+    name: ruby/gem_rbs_collection
+    revision: 9b07b7bde4c9f656f3f6d785bd676320032cecb4
+    remote: https://github.com/ruby/gem_rbs_collection.git
+    repo_dir: gems
+- name: railties
+  version: '6.0'
+  source:
+    type: git
+    name: ruby/gem_rbs_collection
+    revision: 9b07b7bde4c9f656f3f6d785bd676320032cecb4
+    remote: https://github.com/ruby/gem_rbs_collection.git
+    repo_dir: gems
 - name: rainbow
   version: '3.0'
   source:
@@ -217,6 +281,18 @@ gems:
     revision: 9b07b7bde4c9f656f3f6d785bd676320032cecb4
     remote: https://github.com/ruby/gem_rbs_collection.git
     repo_dir: gems
+- name: tempfile
+  version: '0'
+  source:
+    type: stdlib
+- name: thor
+  version: '1.2'
+  source:
+    type: git
+    name: ruby/gem_rbs_collection
+    revision: 9b07b7bde4c9f656f3f6d785bd676320032cecb4
+    remote: https://github.com/ruby/gem_rbs_collection.git
+    repo_dir: gems
 - name: time
   version: '0'
   source:
@@ -237,4 +313,8 @@ gems:
     revision: 9b07b7bde4c9f656f3f6d785bd676320032cecb4
     remote: https://github.com/ruby/gem_rbs_collection.git
     repo_dir: gems
+- name: uri
+  version: '0'
+  source:
+    type: stdlib
 gemfile_lock_path: Gemfile.lock
