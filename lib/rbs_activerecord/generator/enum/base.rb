@@ -19,7 +19,7 @@ module RbsActiverecord
             values = args[1]
             options = args[2] || {}
           when Hash
-            values = args[1]
+            values = args[1].keys
             options = {}
           else
             values = []

@@ -256,6 +256,30 @@ RSpec.describe RbsActiverecord::Generator::Enum::InstanceMethods do
           end
         end
       end
+
+      context "When the enum is defined via keyword args" do
+        let(:content) do
+          <<~RUBY
+            class User < ActiveRecord::Base
+              enum :status, active: 0, archived: 1
+            end
+          RUBY
+        end
+
+        it "generates RBS" do
+          expect(subject).to eq <<~RBS
+            module GeneratedEnumInstanceMethods
+              def active!: () -> void
+
+              def active?: () -> bool
+
+              def archived!: () -> void
+
+              def archived?: () -> bool
+            end
+          RBS
+        end
+      end
     end
   end
 end
