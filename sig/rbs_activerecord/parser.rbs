@@ -2,6 +2,8 @@
 
 module RbsActiverecord
   module Parser
+    def self.parse: (String filename) -> Hash[String, Array[Prism::CallNode]]
+
     # @rbs filename: String
     def parse: (String filename) -> Hash[String, Array[Prism::CallNode]]
   end
