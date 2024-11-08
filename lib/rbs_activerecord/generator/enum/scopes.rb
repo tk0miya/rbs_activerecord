@@ -8,10 +8,10 @@ module RbsActiverecord
         attr_reader :declarations #: Array[Prism::CallNode]
 
         # @rbs model: RbsActiverecord::Model
-        # @rbs delarations: Hash[String, Array[Prism::CallNode]]
+        # @rbs declarations: Hash[String, Array[Prism::CallNode]]
         def initialize(model, declarations) #: void
           @model = model
-          @declarations = declarations.fetch(model.klass.name, [])
+          @declarations = declarations.fetch(model.klass.name.to_s, [])
 
           super()
         end

@@ -59,9 +59,9 @@ module RbsActiverecord
       primary_key_type_for(klass)
     end
 
-    # @rbs @declarations: Hash[String, Array[Prism::Node]]
+    # @rbs @declarations: Hash[String, Array[Prism::CallNode]]
 
-    def declarations #: Hash[String, Array[Prism::Node]]
+    def declarations #: Hash[String, Array[Prism::CallNode]]
       @declarations ||= begin
         filename = Rails.root.join(model.filename)
         if filename.exist?

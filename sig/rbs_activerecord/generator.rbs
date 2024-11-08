@@ -19,9 +19,9 @@ module RbsActiverecord
 
     def primary_key_type: () -> String
 
-    @declarations: Hash[String, Array[Prism::Node]]
+    @declarations: Hash[String, Array[Prism::CallNode]]
 
-    def declarations: () -> Hash[String, Array[Prism::Node]]
+    def declarations: () -> Hash[String, Array[Prism::CallNode]]
 
     def header: () -> String
 
