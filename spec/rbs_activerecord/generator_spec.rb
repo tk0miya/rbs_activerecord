@@ -3,8 +3,6 @@
 require "active_record"
 require "rbs_activerecord"
 
-require_relative "../fixtures/app/models/foo"
-
 RSpec.describe RbsActiverecord::Generator do
   describe "#generate" do
     subject { described_class.new(klass).generate }
@@ -20,6 +18,9 @@ RSpec.describe RbsActiverecord::Generator do
         t.string :name
       end
       ActiveRecord::Base.connection.create_table :bars, id: :string
+
+      # Load the model after the database initialization
+      require_relative "../fixtures/app/models/foo"
     end
 
     let(:klass) { Foo } # see ../fixtures/app/models/foo.rb
@@ -99,6 +100,10 @@ RSpec.describe RbsActiverecord::Generator do
             def restore_name!: () -> void
 
             def clear_name_change: () -> void
+
+            def status: () -> ::Integer
+
+            def status=: (::Integer) -> ::Integer
           end
 
           module GeneratedAssociationMethods
@@ -126,22 +131,30 @@ RSpec.describe RbsActiverecord::Generator do
             alias authenticate authenticate_password
           end
 
+          module GeneratedEnumScopeMethods[Relation]
+            def active: () -> Relation
+
+            def archived: () -> Relation
+          end
           module GeneratedScopeMethods[Relation]
             def active: () -> Relation
           end
 
           class ActiveRecord_Relation < ::ActiveRecord::Relation
             include ::ActiveRecord::Relation::Methods[Foo, ::Integer]
+            include GeneratedEnumScopeMethods[ActiveRecord_Relation]
             include GeneratedScopeMethods[ActiveRecord_Relation]
             include ::Enumerable[Foo]
           end
 
           class ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
             include ::ActiveRecord::Relation::Methods[Foo, ::Integer]
+            include GeneratedEnumScopeMethods[ActiveRecord_Relation]
             include GeneratedScopeMethods[ActiveRecord_Relation]
             include ::Enumerable[Foo]
           end
 
+          extend GeneratedEnumScopeMethods[ActiveRecord_Relation]
           extend GeneratedScopeMethods[ActiveRecord_Relation]
 
           include GeneratedAttributeMethods
