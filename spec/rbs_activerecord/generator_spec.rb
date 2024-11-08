@@ -134,7 +134,11 @@ RSpec.describe RbsActiverecord::Generator do
           module GeneratedEnumScopeMethods[Relation]
             def active: () -> Relation
 
+            def not_active: () -> Relation
+
             def archived: () -> Relation
+
+            def not_archived: () -> Relation
           end
           module GeneratedScopeMethods[Relation]
             def active: () -> Relation
