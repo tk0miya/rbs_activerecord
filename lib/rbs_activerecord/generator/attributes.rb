@@ -16,6 +16,7 @@ module RbsActiverecord
         <<~RBS
           module GeneratedAttributeMethods
             #{model.columns.map { |c| column(c) }.join("\n")}
+            #{attributes.map { |name, type| attribute(name, type) }.join("\n")}
           end
         RBS
       end
@@ -46,6 +47,23 @@ module RbsActiverecord
           def will_save_change_to_#{col.name}?: () -> bool
           def restore_#{col.name}!: () -> void
           def clear_#{col.name}_change: () -> void
+        RBS
+      end
+
+      def attributes #: Hash[String, untyped]
+        model.attribute_types.filter_map do |name, type|
+          [name, type] if model.columns.none? { |col| col.name == name }
+        end.to_h
+      end
+
+      # @rbs name: String
+      # @rbs type: untyped
+      def attribute(name, type) #: String
+        column_type = sql_type_to_class(type.type)
+
+        <<~RBS
+          def #{name}: () -> #{column_type}
+          def #{name}=: (#{column_type}) -> #{column_type}
         RBS
       end
     end

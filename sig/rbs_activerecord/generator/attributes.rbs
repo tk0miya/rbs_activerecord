@@ -15,6 +15,12 @@ module RbsActiverecord
       private
 
       def column: (untyped col) -> String
+
+      def attributes: () -> Hash[String, untyped]
+
+      # @rbs name: String
+      # @rbs type: untyped
+      def attribute: (String name, untyped type) -> String
     end
   end
 end

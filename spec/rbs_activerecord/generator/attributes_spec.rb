@@ -147,5 +147,67 @@ RSpec.describe RbsActiverecord::Generator::Attributes do
         expect(subject).to include("def attr10: () -> bool")
       end
     end
+
+    context "with a model having attributes via ActiveRecord::Attributes " do
+      before do
+        ActiveRecord::Base.connection.create_table :foos do |t|
+        end
+
+        klass.instance_eval do
+          attribute :name, :string
+          attribute :age, :integer
+        end
+      end
+
+      it "generates RBS" do
+        expect(subject).to eq(<<~RBS)
+          module GeneratedAttributeMethods
+            def id: () -> ::Integer
+
+            def id=: (::Integer) -> ::Integer
+
+            def id?: () -> bool
+
+            def id_changed?: () -> bool
+
+            def id_change: () -> [ ::Integer?, ::Integer? ]
+
+            def id_will_change!: () -> void
+
+            def id_was: () -> ::Integer?
+
+            def id_previously_changed?: () -> bool
+
+            def id_previous_change: () -> ::Array[::Integer?]?
+
+            def id_previously_was: () -> ::Integer?
+
+            def id_before_last_save: () -> ::Integer?
+
+            def id_change_to_be_saved: () -> ::Array[::Integer?]?
+
+            def id_in_database: () -> ::Integer?
+
+            def saved_change_to_id: () -> ::Array[::Integer?]?
+
+            def saved_change_to_id?: () -> bool
+
+            def will_save_change_to_id?: () -> bool
+
+            def restore_id!: () -> void
+
+            def clear_id_change: () -> void
+
+            def name: () -> ::String
+
+            def name=: (::String) -> ::String
+
+            def age: () -> ::Integer
+
+            def age=: (::Integer) -> ::Integer
+          end
+        RBS
+      end
+    end
   end
 end
