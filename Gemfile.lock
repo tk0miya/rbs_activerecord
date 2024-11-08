@@ -3,6 +3,7 @@ PATH
   specs:
     rbs_activerecord (0.1.0)
       activerecord
+      prism
 
 GEM
   remote: https://rubygems.org/

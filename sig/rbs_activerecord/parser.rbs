@@ -1,0 +1,8 @@
+# Generated from lib/rbs_activerecord/parser.rb with RBS::Inline
+
+module RbsActiverecord
+  module Parser
+    # @rbs filename: String
+    def parse: (String filename) -> Hash[String, Array[Prism::CallNode]]
+  end
+end

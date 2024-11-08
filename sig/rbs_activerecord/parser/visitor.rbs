@@ -1,0 +1,27 @@
+# Generated from lib/rbs_activerecord/parser/visitor.rb with RBS::Inline
+
+module RbsActiverecord
+  module Parser
+    class Visitor < Prism::Visitor
+      attr_reader context: Array[Prism::ClassNode | Prism::ModuleNode]
+
+      attr_reader decls: Hash[String, Array[Prism::CallNode]]
+
+      def initialize: () -> void
+
+      def current_namespace: () -> String
+
+      # @rbs override
+      def visit_module_node: ...
+
+      # @rbs override
+      def visit_class_node: ...
+
+      # @rbs override
+      def visit_call_node: ...
+
+      # @rbs override
+      def visit_def_node: ...
+    end
+  end
+end
