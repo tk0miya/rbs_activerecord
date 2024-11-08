@@ -3,8 +3,6 @@
 module RbsActiverecord
   class Generator
     class SecurePassword
-      include Utils
-
       attr_reader :model #: RbsActiverecord::Model
 
       # @rbs model: RbsActiverecord::Model
@@ -13,7 +11,7 @@ module RbsActiverecord
       end
 
       def generate #: String
-        format <<~RBS
+        <<~RBS
           module GeneratedSecurePasswordMethods
             #{methods}
           end

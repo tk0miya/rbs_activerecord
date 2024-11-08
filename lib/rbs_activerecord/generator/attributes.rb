@@ -13,7 +13,7 @@ module RbsActiverecord
       end
 
       def generate #: String
-        format <<~RBS
+        <<~RBS
           module GeneratedAttributeMethods
             #{model.columns.map { |c| column(c) }.join("\n")}
           end

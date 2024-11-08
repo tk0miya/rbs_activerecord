@@ -4,8 +4,10 @@ require "active_record"
 require "rbs_activerecord"
 
 RSpec.describe RbsActiverecord::Generator::Associations do
+  include RbsActiverecord::Utils
+
   describe "#generate" do
-    subject { described_class.new(model).generate }
+    subject { format described_class.new(model).generate }
 
     before do
       stub_const "Foo", klass
