@@ -1,0 +1,26 @@
+# Generated from lib/rbs_activerecord/generator/enum/instance_methods.rb with RBS::Inline
+
+module RbsActiverecord
+  class Generator
+    module Enum
+      class InstanceMethods < Base
+        attr_reader model: RbsActiverecord::Model
+
+        attr_reader declarations: Array[Prism::CallNode]
+
+        # @rbs model: RbsActiverecord::Model
+        # @rbs delarations: Hash[String, Array[Prism::CallNode]]
+        def initialize: (RbsActiverecord::Model model, untyped declarations) -> void
+
+        def generate: () -> String
+
+        private
+
+        def enums: () -> Array[Prism::CallNode]
+
+        # @rbs node: Prism::CallNode
+        def enum: (Prism::CallNode node) -> String
+      end
+    end
+  end
+end

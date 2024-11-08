@@ -24,6 +24,7 @@ module RbsActiverecord
           #{Associations.new(model).generate}
           #{SecurePassword.new(model).generate}
 
+          #{Enum::InstanceMethods.new(model, declarations).generate}
           #{Enum::Scopes.new(model, declarations).generate}
           #{Scopes.new(model, declarations).generate}
 
@@ -46,6 +47,7 @@ module RbsActiverecord
 
           include GeneratedAttributeMethods
           include GeneratedAssociationMethods
+          include GeneratedEnumInstanceMethods
           include GeneratedSecurePasswordMethods
         #{footer}
       RBS
