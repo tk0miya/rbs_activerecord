@@ -62,12 +62,12 @@ RSpec.describe RbsActiverecord::Generator::Enum::Scopes do
         end
       end
 
-      context "When the enum has scope option" do
-        context "When the value of scope option is false" do
+      context "When the enum has scopes option" do
+        context "When the value of scopes option is false" do
           let(:content) do
             <<~RUBY
               class User < ActiveRecord::Base
-                enum :status, [:active, :archived], scope: false
+                enum :status, [:active, :archived], scopes: false
               end
             RUBY
           end
@@ -80,11 +80,11 @@ RSpec.describe RbsActiverecord::Generator::Enum::Scopes do
           end
         end
 
-        context "When the value of scope option is true" do
+        context "When the value of scopes option is true" do
           let(:content) do
             <<~RUBY
               class User < ActiveRecord::Base
-                enum :status, [:active, :archived], scope: true
+                enum :status, [:active, :archived], scopes: true
               end
             RUBY
           end
