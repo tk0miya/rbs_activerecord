@@ -112,7 +112,6 @@ RSpec.describe RbsActiverecord::Generator do
 
             def bar_ids=: (Array[::String]) -> Array[::String]
           end
-
           module GeneratedSecurePasswordMethods
             attr_reader password: String?
 

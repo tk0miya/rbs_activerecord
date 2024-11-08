@@ -13,7 +13,7 @@ module RbsActiverecord
       end
 
       def generate #: String
-        format <<~RBS.strip
+        <<~RBS.strip
           module GeneratedAssociationMethods
             #{has_many}
             #{has_one}
