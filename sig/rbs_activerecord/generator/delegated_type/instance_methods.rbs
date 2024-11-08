@@ -1,0 +1,31 @@
+# Generated from lib/rbs_activerecord/generator/delegated_type/instance_methods.rb with RBS::Inline
+
+module RbsActiverecord
+  class Generator
+    module DelegatedType
+      class InstanceMethods
+        include Utils
+
+        attr_reader model: RbsActiverecord::Model
+
+        attr_reader declarations: Array[Prism::CallNode]
+
+        # @rbs model: RbsActiverecord::Model
+        # @rbs declarations: Hash[String, Array[Prism::CallNode]]
+        def initialize: (RbsActiverecord::Model model, Hash[String, Array[Prism::CallNode]] declarations) -> void
+
+        def generate: () -> String
+
+        private
+
+        def delegated_types: () -> Array[Prism::CallNode]
+
+        # @rbs node: Prism::CallNode
+        def delegated_type: (Prism::CallNode node) -> String
+
+        # @rbs klass_name: String
+        def primary_key_type_for: (String klass_name) -> String
+      end
+    end
+  end
+end
