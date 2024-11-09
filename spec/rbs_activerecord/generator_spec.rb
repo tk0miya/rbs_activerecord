@@ -244,6 +244,7 @@ RSpec.describe RbsActiverecord::Generator do
             include ::Enumerable[Foo]
           end
 
+          extend ::ActiveRecord::Base::ClassMethods[Foo, Foo::ActiveRecord_Relation, ::Integer]
           extend GeneratedActiveStorageScopeMethods[ActiveRecord_Relation]
           extend GeneratedDelegatedTypeScopeMethods[ActiveRecord_Relation]
           extend GeneratedEnumScopeMethods[ActiveRecord_Relation]

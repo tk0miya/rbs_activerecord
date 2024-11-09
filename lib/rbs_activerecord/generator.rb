@@ -51,6 +51,7 @@ module RbsActiverecord
             include ::Enumerable[#{klass_name}]
           end
 
+          extend ::ActiveRecord::Base::ClassMethods[#{klass_name}, #{klass_name}::ActiveRecord_Relation, #{primary_key_type}]
           extend GeneratedActiveStorageScopeMethods[ActiveRecord_Relation]
           extend GeneratedDelegatedTypeScopeMethods[ActiveRecord_Relation]
           extend GeneratedEnumScopeMethods[ActiveRecord_Relation]
