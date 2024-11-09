@@ -18,6 +18,7 @@ group :development do
 end
 
 group :test do
+  gem "activestorage"
   gem "bcrypt"
   gem "sqlite3"
 end

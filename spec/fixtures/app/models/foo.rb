@@ -11,5 +11,7 @@ class Foo < ActiveRecord::Base
 
   has_many :bars
 
+  has_one_attached :avatar
+
   has_secure_password
 end

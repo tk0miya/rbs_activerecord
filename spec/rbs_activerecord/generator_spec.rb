@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require "spec_helper"
 require "active_record"
 require "rbs_activerecord"
 
@@ -115,6 +116,30 @@ RSpec.describe RbsActiverecord::Generator do
 
             def bar_ids=: (Array[::String]) -> Array[::String]
 
+            def avatar_attachment: () -> ActiveStorage::Attachment?
+
+            def avatar_attachment=: (ActiveStorage::Attachment?) -> ActiveStorage::Attachment?
+
+            def build_avatar_attachment: (?untyped) -> ActiveStorage::Attachment
+
+            def create_avatar_attachment: (untyped) -> ActiveStorage::Attachment
+
+            def create_avatar_attachment!: (untyped) -> ActiveStorage::Attachment
+
+            def reload_avatar_attachment: () -> ActiveStorage::Attachment?
+
+            def avatar_blob: () -> ActiveStorage::Blob?
+
+            def avatar_blob=: (ActiveStorage::Blob?) -> ActiveStorage::Blob?
+
+            def build_avatar_blob: (?untyped) -> ActiveStorage::Blob
+
+            def create_avatar_blob: (untyped) -> ActiveStorage::Blob
+
+            def create_avatar_blob!: (untyped) -> ActiveStorage::Blob
+
+            def reload_avatar_blob: () -> ActiveStorage::Blob?
+
             def entryable: () -> untyped
 
             def entryable=: (untyped?) -> untyped?
@@ -126,6 +151,10 @@ RSpec.describe RbsActiverecord::Generator do
             def create_entryable: (untyped) -> untyped
 
             def create_entryable!: (untyped) -> untyped
+          end
+
+          module GeneratedActiveStorageScopeMethods[Relation]
+            def with_attached_avatar: () -> Relation
           end
           module GeneratedSecurePasswordMethods
             attr_reader password: String?
@@ -189,6 +218,7 @@ RSpec.describe RbsActiverecord::Generator do
 
           class ActiveRecord_Relation < ::ActiveRecord::Relation
             include ::ActiveRecord::Relation::Methods[Foo, ::Integer]
+            include GeneratedActiveStorageScopeMethods[ActiveRecord_Relation]
             include GeneratedDelegatedTypeScopeMethods[ActiveRecord_Relation]
             include GeneratedEnumScopeMethods[ActiveRecord_Relation]
             include GeneratedScopeMethods[ActiveRecord_Relation]
@@ -197,12 +227,14 @@ RSpec.describe RbsActiverecord::Generator do
 
           class ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
             include ::ActiveRecord::Relation::Methods[Foo, ::Integer]
+            include GeneratedActiveStorageScopeMethods[ActiveRecord_Relation]
             include GeneratedDelegatedTypeScopeMethods[ActiveRecord_Relation]
             include GeneratedEnumScopeMethods[ActiveRecord_Relation]
             include GeneratedScopeMethods[ActiveRecord_Relation]
             include ::Enumerable[Foo]
           end
 
+          extend GeneratedActiveStorageScopeMethods[ActiveRecord_Relation]
           extend GeneratedDelegatedTypeScopeMethods[ActiveRecord_Relation]
           extend GeneratedEnumScopeMethods[ActiveRecord_Relation]
           extend GeneratedScopeMethods[ActiveRecord_Relation]
