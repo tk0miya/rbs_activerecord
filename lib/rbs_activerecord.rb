@@ -3,6 +3,7 @@
 require_relative "rbs_activerecord/utils"
 
 require_relative "rbs_activerecord/generator"
+require_relative "rbs_activerecord/generator/active_storage/instance_methods"
 require_relative "rbs_activerecord/generator/active_storage/scopes"
 require_relative "rbs_activerecord/generator/associations"
 require_relative "rbs_activerecord/generator/attributes"

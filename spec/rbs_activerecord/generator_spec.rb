@@ -153,6 +153,16 @@ RSpec.describe RbsActiverecord::Generator do
             def create_entryable!: (untyped) -> untyped
           end
 
+          module GeneratedActiveStorageInstanceMethods
+            def avatar: () -> ::ActiveStorage::Attached::One
+
+            def avatar=: (::ActionDispatch::Http::UploadedFile) -> ::ActionDispatch::Http::UploadedFile
+                       | (::Rack::Test::UploadedFile) -> ::Rack::Test::UploadedFile
+                       | (::ActiveStorage::Blob) -> ::ActiveStorage::Blob
+                       | (::String) -> ::String
+                       | ({ io: ::IO, filename: ::String, content_type: ::String? }) -> { io: ::IO, filename: ::String, content_type: ::String? }
+                       | (nil) -> nil
+          end
           module GeneratedActiveStorageScopeMethods[Relation]
             def with_attached_avatar: () -> Relation
           end
@@ -239,6 +249,7 @@ RSpec.describe RbsActiverecord::Generator do
           extend GeneratedEnumScopeMethods[ActiveRecord_Relation]
           extend GeneratedScopeMethods[ActiveRecord_Relation]
 
+          include GeneratedActiveStorageInstanceMethods
           include GeneratedAttributeMethods
           include GeneratedAssociationMethods
           include GeneratedDelegatedTypeInstanceMethods
