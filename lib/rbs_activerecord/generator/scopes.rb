@@ -28,7 +28,7 @@ module RbsActiverecord
       end
 
       # @rbs node: Prism::CallNode
-      def scope(node) #: String
+      def scope(node) #: String # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity
         args = node.arguments&.arguments
         return "" unless args
 
@@ -39,12 +39,20 @@ module RbsActiverecord
         when Prism::LambdaNode
           params = lambda_params(body)
           "def #{name.value}: (#{params}) -> Relation"
+        when Prism::CallNode
+          if (body.name == :lambda || body.name == :proc) && body.block
+            block = body.block #: Prism::BlockNode
+            params = lambda_params(block)
+            "def #{name.value}: (#{params}) -> Relation"
+          else
+            "def #{name.value}: (?) -> Relation"
+          end
         else
           "def #{name.value}: (?) -> Relation"
         end
       end
 
-      # @rbs node: Prism::LambdaNode
+      # @rbs node: Prism::LambdaNode | Prism::BlockNode
       def lambda_params(node) #: String  # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/MethodLength, Metrics/PerceivedComplexity
         # @type var params: Prism::ParametersNode?
         params = node.parameters&.parameters # steep:ignore

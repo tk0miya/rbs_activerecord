@@ -31,6 +31,8 @@ RSpec.describe RbsActiverecord::Generator::Scopes do
           scope :noargs, -> { all }
           scope :posargs, ->(user, age = 18, *attrs) { all }
           scope :kwargs, -> (user:, age: 18, **attrs) { all }
+          scope :proc, proc { |user, *attrs, age:, **kwargs| all}
+          scope :lambda, lambda { |user, *attrs, age:, **kwargs| all}
         end
       RUBY
     end
@@ -45,6 +47,10 @@ RSpec.describe RbsActiverecord::Generator::Scopes do
           def posargs: (untyped user, ?untyped age, *untyped attrs) -> Relation
 
           def kwargs: (user: untyped, ?age: untyped, **untyped attrs) -> Relation
+
+          def proc: (untyped user, *untyped attrs, age: untyped, **untyped kwargs) -> Relation
+
+          def lambda: (untyped user, *untyped attrs, age: untyped, **untyped kwargs) -> Relation
         end
       RBS
     end
