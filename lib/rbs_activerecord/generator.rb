@@ -34,21 +34,21 @@ module RbsActiverecord
           #{Scopes.new(model, declarations).generate}
 
           class ActiveRecord_Relation < ::ActiveRecord::Relation
+            include ::Enumerable[#{klass_name}]
             include ::ActiveRecord::Relation::Methods[#{klass_name}, #{primary_key_type}]
             include GeneratedActiveStorageScopeMethods[ActiveRecord_Relation]
             include GeneratedDelegatedTypeScopeMethods[ActiveRecord_Relation]
             include GeneratedEnumScopeMethods[ActiveRecord_Relation]
             include GeneratedScopeMethods[ActiveRecord_Relation]
-            include ::Enumerable[#{klass_name}]
           end
 
           class ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+            include ::Enumerable[#{klass_name}]
             include ::ActiveRecord::Relation::Methods[#{klass_name}, #{primary_key_type}]
             include GeneratedActiveStorageScopeMethods[ActiveRecord_Relation]
             include GeneratedDelegatedTypeScopeMethods[ActiveRecord_Relation]
             include GeneratedEnumScopeMethods[ActiveRecord_Relation]
             include GeneratedScopeMethods[ActiveRecord_Relation]
-            include ::Enumerable[#{klass_name}]
           end
 
           extend ::ActiveRecord::Base::ClassMethods[#{klass_name}, #{klass_name}::ActiveRecord_Relation, #{primary_key_type}]
