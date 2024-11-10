@@ -20,8 +20,8 @@ module RbsActiverecord
       # @rbs node: Prism::CallNode
       def scope: (Prism::CallNode node) -> String
 
-      # @rbs node: Prism::LambdaNode
-      def lambda_params: (Prism::LambdaNode node) -> String
+      # @rbs node: Prism::LambdaNode | Prism::BlockNode
+      def lambda_params: (Prism::LambdaNode | Prism::BlockNode node) -> String
     end
   end
 end
