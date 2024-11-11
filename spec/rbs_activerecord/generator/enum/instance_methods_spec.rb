@@ -280,6 +280,38 @@ RSpec.describe RbsActiverecord::Generator::Enum::InstanceMethods do
           RBS
         end
       end
+
+      context "When the enum contains special characters" do
+        let(:content) do
+          <<~RUBY
+            class User < ActiveRecord::Base
+              enum :timezone, ["America/Los_Angels", "America/Denver", "America/Chicago", "America/New_York"]
+            end
+          RUBY
+        end
+
+        it "generates RBS" do
+          expect(subject).to eq <<~RBS
+            module GeneratedEnumInstanceMethods
+              def America_Los_Angels!: () -> void
+
+              def America_Los_Angels?: () -> bool
+
+              def America_Denver!: () -> void
+
+              def America_Denver?: () -> bool
+
+              def America_Chicago!: () -> void
+
+              def America_Chicago?: () -> bool
+
+              def America_New_York!: () -> void
+
+              def America_New_York?: () -> bool
+            end
+          RBS
+        end
+      end
     end
   end
 end
