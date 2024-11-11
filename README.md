@@ -1,38 +1,43 @@
-# RbsActiverecord
+# rbs_activerecord
 
-TODO: Delete this and the text below, and describe your gem
-
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/rbs_activerecord`. To experiment with that code, run `bin/console` for an interactive prompt.
+rbs_activerecord is a RBSGenerator for models built with ActiveRecord.
 
 ## Installation
 
-TODO: Replace `UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG` with your gem name right after releasing it to RubyGems.org. Please do not do it earlier due to security reasons. Alternatively, replace this section with instructions to install your gem from git if you don't plan to release to RubyGems.org.
+Add a new entry to your Gemfile and run `bundle install`:
 
-Install the gem and add to the application's Gemfile by executing:
+  group :development do
+    gem 'rbs_activerecord', require: false
+  end
 
-```bash
-bundle add UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG
-```
+After the installation, please run rake task generator:
 
-If bundler is not being used to manage dependencies, install the gem by executing:
-
-```bash
-gem install UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG
-```
+  bundle exec rails g rbs_activerecord:install
 
 ## Usage
 
-TODO: Write usage instructions here
+Run `rbs:activerecord:setup` task:
+
+  bundle exec rake rbs:activerecord:setup
+
+Then rbs_activerecord will scan your code and generate RBS files into
+`sig/activerecord` directory.
 
 ## Development
 
-After checking out the repo, run `bin/setup` to install dependencies. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+After checking out the repo, run `bin/setup` to install dependencies. You can also
+run `bin/console` for an interactive prompt that will allow you to experiment.
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+To install this gem onto your local machine, run `bundle exec rake install`.
+To release a new version, update the version number in `version.rb`, and then put
+a git tag (ex. `git tag v1.0.0`) and push it to the GitHub. Then GitHub Actions
+will release a new package to [rubygems.org](https://rubygems.org) automatically.
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/rbs_activerecord. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/[USERNAME]/rbs_activerecord/blob/main/CODE_OF_CONDUCT.md).
+Bug reports and pull requests are welcome on GitHub at https://github.com/tk0miya/rbs_activerecord.
+This project is intended to be a safe, welcoming space for collaboration, and contributors are
+expected to adhere to the [code of conduct](https://github.com/tk0miya/rbs_activerecord/blob/main/CODE_OF_CONDUCT.md).
 
 ## License
 
@@ -40,4 +45,5 @@ The gem is available as open source under the terms of the [MIT License](https:/
 
 ## Code of Conduct
 
-Everyone interacting in the RbsActiverecord project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/rbs_activerecord/blob/main/CODE_OF_CONDUCT.md).
+Everyone interacting in the rbs_activerecord project's codebases, issue trackers is expected to
+follow the [code of conduct](https://github.com/tk0miya/rbs_activerecord/blob/main/CODE_OF_CONDUCT.md).
