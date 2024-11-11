@@ -21,6 +21,8 @@ module RbsActiverecord
       # @rbs name: String
       # @rbs type: untyped
       def attribute: (String name, untyped type) -> String
+
+      def alias_method: (untyped from, untyped to) -> String
     end
   end
 end
