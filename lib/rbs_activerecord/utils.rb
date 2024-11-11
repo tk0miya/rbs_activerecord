@@ -13,10 +13,18 @@ module RbsActiverecord
     end
 
     # @rbs klass: singleton(ActiveRecord::Base)
-    def primary_key_type_for(klass) #: String
-      primary_key = klass.columns.find { |column| column.name == klass.primary_key }
-
-      sql_type_to_class(primary_key.type)
+    def primary_key_type_for(klass) #: String  # rubocop:disable Metrics/AbcSize
+      case klass.primary_key
+      when Array
+        primary_keys = klass.primary_key.map(&:to_s)
+        types = klass.columns
+                     .select { |column| primary_keys.include?(column.name) }
+                     .map { |pk| sql_type_to_class(pk.type) }
+        "[#{types.join(" | ")}]"
+      else
+        primary_key = klass.columns.find { |column| column.name == klass.primary_key }
+        sql_type_to_class(primary_key.type)
+      end
     end
 
     # @rbs type: Symbol
