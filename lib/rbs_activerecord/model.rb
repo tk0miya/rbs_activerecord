@@ -12,8 +12,9 @@ module RbsActiverecord
     #   def attribute_types: () -> Hash[String, untyped]
     #   def attribute_aliases: () -> Hash[String, String]
     #   def columns: () -> Array[untyped]
+    #   def defined_enums: () -> Hash[String, untyped]
     #   def reflect_on_all_associations: (Symbol) -> Array[untyped]
-    def_delegators :klass, :attribute_aliases, :attribute_types, :columns, :reflect_on_all_associations
+    def_delegators :klass, :attribute_aliases, :attribute_types, :columns, :defined_enums, :reflect_on_all_associations
 
     # @rbs klass: singleton(ActiveRecord::Base)
     def initialize(klass) #: void

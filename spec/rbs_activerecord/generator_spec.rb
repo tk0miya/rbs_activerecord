@@ -179,6 +179,11 @@ RSpec.describe RbsActiverecord::Generator do
             module GeneratedActiveStorageScopeMethods[Relation]
               def with_attached_avatar: () -> Relation
             end
+            module GeneratedPluckOverloads
+              def pluck: (:id | "id") -> ::Array[::Integer]
+                       | (:name | "name") -> ::Array[::String?]
+                       | ...
+            end
             module GeneratedSecurePasswordMethods
               attr_reader password: String?
 
@@ -250,6 +255,7 @@ RSpec.describe RbsActiverecord::Generator do
               include ::Parent::GeneratedDelegatedTypeScopeMethods[ActiveRecord_Relation]
               include ::Parent::GeneratedEnumScopeMethods[ActiveRecord_Relation]
               include ::Parent::GeneratedScopeMethods[ActiveRecord_Relation]
+              include GeneratedPluckOverloads
             end
 
             class ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
@@ -263,6 +269,7 @@ RSpec.describe RbsActiverecord::Generator do
               include ::Parent::GeneratedDelegatedTypeScopeMethods[ActiveRecord_Relation]
               include ::Parent::GeneratedEnumScopeMethods[ActiveRecord_Relation]
               include ::Parent::GeneratedScopeMethods[ActiveRecord_Relation]
+              include GeneratedPluckOverloads
             end
 
             extend ::ActiveRecord::Base::ClassMethods[Foo, Foo::ActiveRecord_Relation, ::Integer]
@@ -274,6 +281,7 @@ RSpec.describe RbsActiverecord::Generator do
             extend ::Parent::GeneratedDelegatedTypeScopeMethods[ActiveRecord_Relation]
             extend ::Parent::GeneratedEnumScopeMethods[ActiveRecord_Relation]
             extend ::Parent::GeneratedScopeMethods[ActiveRecord_Relation]
+            extend GeneratedPluckOverloads
 
             include GeneratedActiveStorageInstanceMethods
             include GeneratedAttributeMethods
