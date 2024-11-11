@@ -21,7 +21,7 @@ module RbsActiverecord
 
         private
 
-        def attachments #: Hash[Symbol, untyped]
+        def attachments #: Hash[String, untyped]
           if model.klass.respond_to?(:attachment_reflections)
             model.klass.attachment_reflections # steep:ignore
           else
@@ -29,7 +29,7 @@ module RbsActiverecord
           end
         end
 
-        # @rbs name: Symbol
+        # @rbs name: String
         def attachment(name) #: String
           "def with_attached_#{name}: () -> Relation"
         end
