@@ -51,7 +51,11 @@ module RbsActiverecord
             components << options[:suffix]
           end
 
-          components.join("_")
+          enum_method_name = components.join("_")
+
+          # Make enum methods friendly
+          # refs: https://github.com/rails/rails/blob/v8.0.0/activerecord/lib/active_record/enum.rb#L270
+          enum_method_name.gsub(/[\W&&[:ascii:]]+/, "_")
         end
       end
     end

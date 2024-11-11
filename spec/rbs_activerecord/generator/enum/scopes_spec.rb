@@ -330,6 +330,38 @@ RSpec.describe RbsActiverecord::Generator::Enum::Scopes do
           RBS
         end
       end
+
+      context "When the enum contains special characters" do
+        let(:content) do
+          <<~RUBY
+            class User < ActiveRecord::Base
+              enum :timezone, ["America/Los_Angels", "America/Denver", "America/Chicago", "America/New_York"]
+            end
+          RUBY
+        end
+
+        it "generates RBS" do
+          expect(subject).to eq <<~RBS
+            module GeneratedEnumScopeMethods[Relation]
+              def America_Los_Angels: () -> Relation
+
+              def not_America_Los_Angels: () -> Relation
+
+              def America_Denver: () -> Relation
+
+              def not_America_Denver: () -> Relation
+
+              def America_Chicago: () -> Relation
+
+              def not_America_Chicago: () -> Relation
+
+              def America_New_York: () -> Relation
+
+              def not_America_New_York: () -> Relation
+            end
+          RBS
+        end
+      end
     end
   end
 end
