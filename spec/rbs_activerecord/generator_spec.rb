@@ -227,21 +227,21 @@ RSpec.describe RbsActiverecord::Generator do
           end
 
           class ActiveRecord_Relation < ::ActiveRecord::Relation
+            include ::Enumerable[Foo]
             include ::ActiveRecord::Relation::Methods[Foo, ::Integer]
             include GeneratedActiveStorageScopeMethods[ActiveRecord_Relation]
             include GeneratedDelegatedTypeScopeMethods[ActiveRecord_Relation]
             include GeneratedEnumScopeMethods[ActiveRecord_Relation]
             include GeneratedScopeMethods[ActiveRecord_Relation]
-            include ::Enumerable[Foo]
           end
 
           class ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+            include ::Enumerable[Foo]
             include ::ActiveRecord::Relation::Methods[Foo, ::Integer]
             include GeneratedActiveStorageScopeMethods[ActiveRecord_Relation]
             include GeneratedDelegatedTypeScopeMethods[ActiveRecord_Relation]
             include GeneratedEnumScopeMethods[ActiveRecord_Relation]
             include GeneratedScopeMethods[ActiveRecord_Relation]
-            include ::Enumerable[Foo]
           end
 
           extend ::ActiveRecord::Base::ClassMethods[Foo, Foo::ActiveRecord_Relation, ::Integer]
