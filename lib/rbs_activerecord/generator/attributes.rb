@@ -17,6 +17,7 @@ module RbsActiverecord
           module GeneratedAttributeMethods
             #{model.columns.map { |c| column(c) }.join("\n")}
             #{attributes.map { |name, type| attribute(name, type) }.join("\n")}
+            #{model.attribute_aliases.map { |from, to| alias_method(from, to) }.join("\n")}
           end
         RBS
       end
@@ -64,6 +65,29 @@ module RbsActiverecord
         <<~RBS
           def #{name}: () -> #{column_type}
           def #{name}=: (#{column_type}) -> #{column_type}
+        RBS
+      end
+
+      def alias_method(from, to) #: String
+        <<~RBS
+          alias #{from} #{to}
+          alias #{from}= #{to}=
+          alias #{from}? #{to}?
+          alias #{from}_changed? #{to}_changed?
+          alias #{from}_change #{to}_change
+          alias #{from}_will_change! #{to}_will_change!
+          alias #{from}_was #{to}_was
+          alias #{from}_previously_changed? #{to}_previously_changed?
+          alias #{from}_previous_change #{to}_previous_change
+          alias #{from}_previously_was #{to}_previously_was
+          alias #{from}_before_last_save #{to}_before_last_save
+          alias #{from}_change_to_be_saved #{to}_change_to_be_saved
+          alias #{from}_in_database #{to}_in_database
+          alias saved_change_to_#{from} saved_change_to_#{to}
+          alias saved_change_to_#{from}? saved_change_to_#{to}?
+          alias will_save_change_to_#{from}? will_save_change_to_#{to}?
+          alias restore_#{from}! restore_#{to}!
+          alias clear_#{from}_change clear_#{to}_change
         RBS
       end
     end

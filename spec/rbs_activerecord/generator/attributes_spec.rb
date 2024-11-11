@@ -209,5 +209,94 @@ RSpec.describe RbsActiverecord::Generator::Attributes do
         RBS
       end
     end
+
+    context "with a model having aliases" do
+      before do
+        ActiveRecord::Base.connection.create_table :foos do |t|
+        end
+
+        klass.instance_eval do
+          alias_attribute :new_id, :id
+        end
+      end
+
+      it "generates RBS" do
+        expect(subject).to eq(<<~RBS)
+          module GeneratedAttributeMethods
+            def id: () -> ::Integer
+
+            def id=: (::Integer) -> ::Integer
+
+            def id?: () -> bool
+
+            def id_changed?: () -> bool
+
+            def id_change: () -> [ ::Integer?, ::Integer? ]
+
+            def id_will_change!: () -> void
+
+            def id_was: () -> ::Integer?
+
+            def id_previously_changed?: () -> bool
+
+            def id_previous_change: () -> ::Array[::Integer?]?
+
+            def id_previously_was: () -> ::Integer?
+
+            def id_before_last_save: () -> ::Integer?
+
+            def id_change_to_be_saved: () -> ::Array[::Integer?]?
+
+            def id_in_database: () -> ::Integer?
+
+            def saved_change_to_id: () -> ::Array[::Integer?]?
+
+            def saved_change_to_id?: () -> bool
+
+            def will_save_change_to_id?: () -> bool
+
+            def restore_id!: () -> void
+
+            def clear_id_change: () -> void
+
+            alias new_id id
+
+            alias new_id= id=
+
+            alias new_id? id?
+
+            alias new_id_changed? id_changed?
+
+            alias new_id_change id_change
+
+            alias new_id_will_change! id_will_change!
+
+            alias new_id_was id_was
+
+            alias new_id_previously_changed? id_previously_changed?
+
+            alias new_id_previous_change id_previous_change
+
+            alias new_id_previously_was id_previously_was
+
+            alias new_id_before_last_save id_before_last_save
+
+            alias new_id_change_to_be_saved id_change_to_be_saved
+
+            alias new_id_in_database id_in_database
+
+            alias saved_change_to_new_id saved_change_to_id
+
+            alias saved_change_to_new_id? saved_change_to_id?
+
+            alias will_save_change_to_new_id? will_save_change_to_id?
+
+            alias restore_new_id! restore_id!
+
+            alias clear_new_id_change clear_id_change
+          end
+        RBS
+      end
+    end
   end
 end
