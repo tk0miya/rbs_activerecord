@@ -19,6 +19,8 @@ module RbsActiverecord
       def has_one: () -> String
 
       def belongs_to: () -> String
+
+      def has_and_belongs_to_many: () -> String
     end
   end
 end

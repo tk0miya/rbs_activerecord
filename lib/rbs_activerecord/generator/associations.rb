@@ -18,6 +18,7 @@ module RbsActiverecord
             #{has_many}
             #{has_one}
             #{belongs_to}
+            #{has_and_belongs_to_many}
           end
         RBS
       end
@@ -73,6 +74,22 @@ module RbsActiverecord
             methods << "def create_#{assoc.name}!: (untyped) -> #{type}"
           end
           methods.join("\n")
+        end.join("\n")
+      end
+
+      def has_and_belongs_to_many #: String  # rubocop:disable Naming/PredicateName
+        model.reflect_on_all_associations(:has_and_belongs_to_many).map do |assoc|
+          assoc_name = assoc.name.to_s
+          klass_name = assoc.klass.name
+          collection = "#{klass_name}::ActiveRecord_Associations_CollectionProxy"
+          primary_key_type = primary_key_type_for(assoc.klass)
+
+          <<~RBS
+            def #{assoc_name}: () -> #{collection}
+            def #{assoc_name}=: (#{collection} | Array[::#{klass_name}]) -> (#{collection} | Array[::#{klass_name}])
+            def #{assoc_name.singularize}_ids: () -> Array[#{primary_key_type}]
+            def #{assoc_name.singularize}_ids=: (Array[#{primary_key_type}]) -> Array[#{primary_key_type}]
+          RBS
         end.join("\n")
       end
     end

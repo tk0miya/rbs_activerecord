@@ -159,5 +159,33 @@ RSpec.describe RbsActiverecord::Generator::Associations do
         end
       end
     end
+
+    context "When the model has a has_and_belongs_to_many association" do
+      before do
+        stub_const "Bar", Class.new(::ActiveRecord::Base)
+        klass.instance_eval do
+          has_and_belongs_to_many :bars
+        end
+
+        ActiveRecord::Base.connection.create_table :foos
+        ActiveRecord::Base.connection.create_table :bars
+      end
+
+      let(:klass) { Class.new(::ActiveRecord::Base) }
+
+      it "generates RBS" do
+        expect(subject).to eq(<<~RBS)
+          module GeneratedAssociationMethods
+            def bars: () -> Bar::ActiveRecord_Associations_CollectionProxy
+
+            def bars=: (Bar::ActiveRecord_Associations_CollectionProxy | Array[::Bar]) -> (Bar::ActiveRecord_Associations_CollectionProxy | Array[::Bar])
+
+            def bar_ids: () -> Array[::Integer]
+
+            def bar_ids=: (Array[::Integer]) -> Array[::Integer]
+          end
+        RBS
+      end
+    end
   end
 end
