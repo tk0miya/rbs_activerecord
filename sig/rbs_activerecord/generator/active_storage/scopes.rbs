@@ -13,10 +13,10 @@ module RbsActiverecord
 
         private
 
-        def attachments: () -> Hash[Symbol, untyped]
+        def attachments: () -> Hash[String, untyped]
 
-        # @rbs name: Symbol
-        def attachment: (Symbol name) -> String
+        # @rbs name: String
+        def attachment: (String name) -> String
       end
     end
   end
