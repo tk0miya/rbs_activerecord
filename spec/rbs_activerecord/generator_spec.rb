@@ -132,6 +132,12 @@ RSpec.describe RbsActiverecord::Generator do
 
               def reload_avatar_attachment: () -> ActiveStorage::Attachment?
 
+              def reset_avatar_attachment: () -> void
+
+              def avatar_attachment_changed?: () -> bool
+
+              def avatar_attachment_previously_changed?: () -> bool
+
               def avatar_blob: () -> ActiveStorage::Blob?
 
               def avatar_blob=: (ActiveStorage::Blob?) -> ActiveStorage::Blob?
@@ -144,11 +150,19 @@ RSpec.describe RbsActiverecord::Generator do
 
               def reload_avatar_blob: () -> ActiveStorage::Blob?
 
+              def reset_avatar_blob: () -> void
+
+              def avatar_blob_changed?: () -> bool
+
+              def avatar_blob_previously_changed?: () -> bool
+
               def entryable: () -> untyped
 
               def entryable=: (untyped?) -> untyped?
 
               def reload_entryable: () -> untyped?
+
+              def reset_entryable: () -> void
             end
 
             module GeneratedActiveStorageInstanceMethods
