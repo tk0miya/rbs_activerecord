@@ -68,7 +68,7 @@ module RbsActiverecord
           methods << "def #{assoc.name}: () -> #{is_optional ? optional : type}"
           methods << "def #{assoc.name}=: (#{optional}) -> #{optional}"
           methods << "def reload_#{assoc.name}: () -> #{optional}"
-          if assoc.polymorphic?
+          unless assoc.polymorphic?
             methods << "def build_#{assoc.name}: (untyped) -> #{type}"
             methods << "def create_#{assoc.name}: (untyped) -> #{type}"
             methods << "def create_#{assoc.name}!: (untyped) -> #{type}"

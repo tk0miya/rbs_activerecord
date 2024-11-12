@@ -149,12 +149,6 @@ RSpec.describe RbsActiverecord::Generator do
               def entryable=: (untyped?) -> untyped?
 
               def reload_entryable: () -> untyped?
-
-              def build_entryable: (untyped) -> untyped
-
-              def create_entryable: (untyped) -> untyped
-
-              def create_entryable!: (untyped) -> untyped
             end
 
             module GeneratedActiveStorageInstanceMethods
