@@ -108,6 +108,12 @@ RSpec.describe RbsActiverecord::Generator::Associations do
               def bar=: (Bar?) -> Bar?
 
               def reload_bar: () -> Bar?
+
+              def build_bar: (untyped) -> Bar
+
+              def create_bar: (untyped) -> Bar
+
+              def create_bar!: (untyped) -> Bar
             end
           RBS
         end
@@ -128,6 +134,12 @@ RSpec.describe RbsActiverecord::Generator::Associations do
               def bar=: (Bar?) -> Bar?
 
               def reload_bar: () -> Bar?
+
+              def build_bar: (untyped) -> Bar
+
+              def create_bar: (untyped) -> Bar
+
+              def create_bar!: (untyped) -> Bar
             end
           RBS
         end
@@ -148,12 +160,6 @@ RSpec.describe RbsActiverecord::Generator::Associations do
               def bar=: (untyped?) -> untyped?
 
               def reload_bar: () -> untyped?
-
-              def build_bar: (untyped) -> untyped
-
-              def create_bar: (untyped) -> untyped
-
-              def create_bar!: (untyped) -> untyped
             end
           RBS
         end
