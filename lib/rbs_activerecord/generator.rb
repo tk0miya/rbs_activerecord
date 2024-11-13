@@ -25,6 +25,7 @@ module RbsActiverecord
 
           #{ActiveStorage::InstanceMethods.new(model).generate}
           #{ActiveStorage::Scopes.new(model).generate}
+          #{PluckOverloads.new(model).generate}
           #{SecurePassword.new(model).generate}
 
           #{DelegatedType::InstanceMethods.new(model, declarations).generate}
@@ -37,16 +38,19 @@ module RbsActiverecord
             include ::Enumerable[#{klass_name}]
             include ::ActiveRecord::Relation::Methods[#{klass_name}, #{primary_key_type}]
             #{relation_methods}
+            include GeneratedPluckOverloads
           end
 
           class ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
             include ::Enumerable[#{klass_name}]
             include ::ActiveRecord::Relation::Methods[#{klass_name}, #{primary_key_type}]
             #{relation_methods}
+            include GeneratedPluckOverloads
           end
 
           extend ::ActiveRecord::Base::ClassMethods[#{klass_name}, #{klass_name}::ActiveRecord_Relation, #{primary_key_type}]
           #{scope_class_methods}
+          extend GeneratedPluckOverloads
 
           include GeneratedActiveStorageInstanceMethods
           include GeneratedAttributeMethods
@@ -108,7 +112,7 @@ module RbsActiverecord
         include GeneratedScopeMethods[ActiveRecord_Relation]
       RBS
       model.parents.each do |cls|
-        methods += <<~RBS
+        methods += <<~RBS.strip
           include ::#{cls.name}::GeneratedActiveStorageScopeMethods[ActiveRecord_Relation]
           include ::#{cls.name}::GeneratedDelegatedTypeScopeMethods[ActiveRecord_Relation]
           include ::#{cls.name}::GeneratedEnumScopeMethods[ActiveRecord_Relation]
@@ -126,7 +130,7 @@ module RbsActiverecord
         extend GeneratedScopeMethods[ActiveRecord_Relation]
       RBS
       model.parents.each do |cls|
-        methods += <<~RBS
+        methods += <<~RBS.strip
           extend ::#{cls.name}::GeneratedActiveStorageScopeMethods[ActiveRecord_Relation]
           extend ::#{cls.name}::GeneratedDelegatedTypeScopeMethods[ActiveRecord_Relation]
           extend ::#{cls.name}::GeneratedEnumScopeMethods[ActiveRecord_Relation]
