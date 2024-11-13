@@ -19,10 +19,11 @@ RSpec.describe RbsActiverecord::Generator do
         stub_const "Bar", Class.new(::ActiveRecord::Base)
         allow(Rails).to receive(:root).and_return(Pathname.new("spec/fixtures/"))
 
-        ActiveRecord::Base.connection.create_table :foos do |t|
+        ActiveRecord::Base.connection.create_table :foos
+        ActiveRecord::Base.connection.create_table :bars, id: :string
+        ActiveRecord::Base.connection.create_table :parents do |t|
           t.string :name
         end
-        ActiveRecord::Base.connection.create_table :bars, id: :string
 
         # Load the model after the database initialization
         require_relative "../fixtures/app/models/foo"
@@ -32,7 +33,7 @@ RSpec.describe RbsActiverecord::Generator do
 
       it "generates RBS" do
         expect(subject).to eq <<~RBS
-          class Foo < ::ActiveRecord::Base
+          class Foo < ::Parent
             module GeneratedAttributeMethods
               def id: () -> ::Integer
 
@@ -245,6 +246,10 @@ RSpec.describe RbsActiverecord::Generator do
               include GeneratedDelegatedTypeScopeMethods[ActiveRecord_Relation]
               include GeneratedEnumScopeMethods[ActiveRecord_Relation]
               include GeneratedScopeMethods[ActiveRecord_Relation]
+              include ::Parent::GeneratedActiveStorageScopeMethods[ActiveRecord_Relation]
+              include ::Parent::GeneratedDelegatedTypeScopeMethods[ActiveRecord_Relation]
+              include ::Parent::GeneratedEnumScopeMethods[ActiveRecord_Relation]
+              include ::Parent::GeneratedScopeMethods[ActiveRecord_Relation]
             end
 
             class ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
@@ -254,6 +259,10 @@ RSpec.describe RbsActiverecord::Generator do
               include GeneratedDelegatedTypeScopeMethods[ActiveRecord_Relation]
               include GeneratedEnumScopeMethods[ActiveRecord_Relation]
               include GeneratedScopeMethods[ActiveRecord_Relation]
+              include ::Parent::GeneratedActiveStorageScopeMethods[ActiveRecord_Relation]
+              include ::Parent::GeneratedDelegatedTypeScopeMethods[ActiveRecord_Relation]
+              include ::Parent::GeneratedEnumScopeMethods[ActiveRecord_Relation]
+              include ::Parent::GeneratedScopeMethods[ActiveRecord_Relation]
             end
 
             extend ::ActiveRecord::Base::ClassMethods[Foo, Foo::ActiveRecord_Relation, ::Integer]
@@ -261,6 +270,10 @@ RSpec.describe RbsActiverecord::Generator do
             extend GeneratedDelegatedTypeScopeMethods[ActiveRecord_Relation]
             extend GeneratedEnumScopeMethods[ActiveRecord_Relation]
             extend GeneratedScopeMethods[ActiveRecord_Relation]
+            extend ::Parent::GeneratedActiveStorageScopeMethods[ActiveRecord_Relation]
+            extend ::Parent::GeneratedDelegatedTypeScopeMethods[ActiveRecord_Relation]
+            extend ::Parent::GeneratedEnumScopeMethods[ActiveRecord_Relation]
+            extend ::Parent::GeneratedScopeMethods[ActiveRecord_Relation]
 
             include GeneratedActiveStorageInstanceMethods
             include GeneratedAttributeMethods

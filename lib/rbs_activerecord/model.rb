@@ -23,5 +23,10 @@ module RbsActiverecord
     def filename #: String
       "app/models/#{klass.name.to_s.underscore}.rb"
     end
+
+    def parents #: Array[singleton(ActiveRecord::Base)]
+      ancestors = klass.ancestors #: Array[singleton(ActiveRecord::Base)]
+      ancestors.select { |cls| cls < ActiveRecord::Base && cls != klass && !cls.abstract_class? }
+    end
   end
 end
