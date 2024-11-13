@@ -156,24 +156,98 @@ RSpec.describe RbsActiverecord::Generator::Associations do
       end
 
       context "When the association is polymorphic" do
-        let(:klass) do
-          Class.new(::ActiveRecord::Base) do
-            belongs_to :bar, polymorphic: true
+        before do
+          stub_const "Foo", klass
+        end
+
+        context "When the polymorphic owners not found" do
+          let(:klass) do
+            Class.new(::ActiveRecord::Base) do
+              belongs_to :bar, polymorphic: true
+            end
+          end
+
+          it "generates RBS" do
+            expect(subject).to eq(<<~RBS)
+              module GeneratedAssociationMethods
+                def bar: () -> untyped
+
+                def bar=: (untyped?) -> untyped?
+
+                def reload_bar: () -> untyped?
+
+                def reset_bar: () -> void
+              end
+            RBS
           end
         end
 
-        it "generates RBS" do
-          expect(subject).to eq(<<~RBS)
-            module GeneratedAssociationMethods
-              def bar: () -> untyped
+        context "When the polymorphic owners found (single)" do
+          before do
+            stub_const "Owner", owner
+          end
 
-              def bar=: (untyped?) -> untyped?
-
-              def reload_bar: () -> untyped?
-
-              def reset_bar: () -> void
+          let(:klass) do
+            Class.new(::ActiveRecord::Base) do
+              belongs_to :baz, polymorphic: true
             end
-          RBS
+          end
+          let(:owner) do
+            Class.new(::ActiveRecord::Base) do
+              has_many :foos, as: :baz
+            end
+          end
+
+          it "generates RBS" do
+            expect(subject).to eq(<<~RBS)
+              module GeneratedAssociationMethods
+                def baz: () -> Owner
+
+                def baz=: (Owner?) -> Owner?
+
+                def reload_baz: () -> Owner?
+
+                def reset_baz: () -> void
+              end
+            RBS
+          end
+        end
+
+        context "When the polymorphic owners found (multiple)" do
+          before do
+            stub_const "Owner1", owner1
+            stub_const "Owner2", owner2
+          end
+
+          let(:klass) do
+            Class.new(::ActiveRecord::Base) do
+              belongs_to :qux, polymorphic: true
+            end
+          end
+          let(:owner1) do
+            Class.new(::ActiveRecord::Base) do
+              has_many :foos, as: :qux
+            end
+          end
+          let(:owner2) do
+            Class.new(::ActiveRecord::Base) do
+              has_many :foos, as: :qux
+            end
+          end
+
+          it "generates RBS" do
+            expect(subject).to eq(<<~RBS)
+              module GeneratedAssociationMethods
+                def qux: () -> (Owner1 | Owner2)
+
+                def qux=: ((Owner1 | Owner2)?) -> (Owner1 | Owner2)?
+
+                def reload_qux: () -> (Owner1 | Owner2)?
+
+                def reset_qux: () -> void
+              end
+            RBS
+          end
         end
       end
     end

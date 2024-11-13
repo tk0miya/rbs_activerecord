@@ -20,6 +20,9 @@ module RbsActiverecord
 
       def belongs_to: () -> String
 
+      # @rbs assoc: untyped
+      def polymorphic_owner_types: (untyped assoc) -> String
+
       def has_and_belongs_to_many: () -> String
     end
   end
