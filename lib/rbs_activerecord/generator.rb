@@ -36,26 +36,17 @@ module RbsActiverecord
           class ActiveRecord_Relation < ::ActiveRecord::Relation
             include ::Enumerable[#{klass_name}]
             include ::ActiveRecord::Relation::Methods[#{klass_name}, #{primary_key_type}]
-            include GeneratedActiveStorageScopeMethods[ActiveRecord_Relation]
-            include GeneratedDelegatedTypeScopeMethods[ActiveRecord_Relation]
-            include GeneratedEnumScopeMethods[ActiveRecord_Relation]
-            include GeneratedScopeMethods[ActiveRecord_Relation]
+            #{relation_methods}
           end
 
           class ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
             include ::Enumerable[#{klass_name}]
             include ::ActiveRecord::Relation::Methods[#{klass_name}, #{primary_key_type}]
-            include GeneratedActiveStorageScopeMethods[ActiveRecord_Relation]
-            include GeneratedDelegatedTypeScopeMethods[ActiveRecord_Relation]
-            include GeneratedEnumScopeMethods[ActiveRecord_Relation]
-            include GeneratedScopeMethods[ActiveRecord_Relation]
+            #{relation_methods}
           end
 
           extend ::ActiveRecord::Base::ClassMethods[#{klass_name}, #{klass_name}::ActiveRecord_Relation, #{primary_key_type}]
-          extend GeneratedActiveStorageScopeMethods[ActiveRecord_Relation]
-          extend GeneratedDelegatedTypeScopeMethods[ActiveRecord_Relation]
-          extend GeneratedEnumScopeMethods[ActiveRecord_Relation]
-          extend GeneratedScopeMethods[ActiveRecord_Relation]
+          #{scope_class_methods}
 
           include GeneratedActiveStorageInstanceMethods
           include GeneratedAttributeMethods
@@ -107,6 +98,42 @@ module RbsActiverecord
 
     def footer #: String
       "end\n" * klass.module_parents.size
+    end
+
+    def relation_methods #: String
+      methods = <<~RBS
+        include GeneratedActiveStorageScopeMethods[ActiveRecord_Relation]
+        include GeneratedDelegatedTypeScopeMethods[ActiveRecord_Relation]
+        include GeneratedEnumScopeMethods[ActiveRecord_Relation]
+        include GeneratedScopeMethods[ActiveRecord_Relation]
+      RBS
+      model.parents.each do |cls|
+        methods += <<~RBS
+          include ::#{cls.name}::GeneratedActiveStorageScopeMethods[ActiveRecord_Relation]
+          include ::#{cls.name}::GeneratedDelegatedTypeScopeMethods[ActiveRecord_Relation]
+          include ::#{cls.name}::GeneratedEnumScopeMethods[ActiveRecord_Relation]
+          include ::#{cls.name}::GeneratedScopeMethods[ActiveRecord_Relation]
+        RBS
+      end
+      methods
+    end
+
+    def scope_class_methods #: String
+      methods = <<~RBS
+        extend GeneratedActiveStorageScopeMethods[ActiveRecord_Relation]
+        extend GeneratedDelegatedTypeScopeMethods[ActiveRecord_Relation]
+        extend GeneratedEnumScopeMethods[ActiveRecord_Relation]
+        extend GeneratedScopeMethods[ActiveRecord_Relation]
+      RBS
+      model.parents.each do |cls|
+        methods += <<~RBS
+          extend ::#{cls.name}::GeneratedActiveStorageScopeMethods[ActiveRecord_Relation]
+          extend ::#{cls.name}::GeneratedDelegatedTypeScopeMethods[ActiveRecord_Relation]
+          extend ::#{cls.name}::GeneratedEnumScopeMethods[ActiveRecord_Relation]
+          extend ::#{cls.name}::GeneratedScopeMethods[ActiveRecord_Relation]
+        RBS
+      end
+      methods
     end
   end
 end

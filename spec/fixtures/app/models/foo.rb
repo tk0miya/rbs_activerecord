@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
-class Foo < ActiveRecord::Base
+require_relative "parent"
+
+class Foo < Parent
   attribute :status, :integer
 
   delegated_type :entryable, types: %w[Message Comment]

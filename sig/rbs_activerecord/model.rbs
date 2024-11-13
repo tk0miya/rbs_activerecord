@@ -18,5 +18,7 @@ module RbsActiverecord
     def initialize: (singleton(ActiveRecord::Base) klass) -> void
 
     def filename: () -> String
+
+    def parents: () -> Array[singleton(ActiveRecord::Base)]
   end
 end

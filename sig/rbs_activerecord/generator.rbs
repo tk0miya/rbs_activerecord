@@ -26,5 +26,9 @@ module RbsActiverecord
     def header: () -> String
 
     def footer: () -> String
+
+    def relation_methods: () -> String
+
+    def scope_class_methods: () -> String
   end
 end
