@@ -1,0 +1,32 @@
+# Generated from lib/rbs_activerecord/parser/include_expander.rb with RBS::Inline
+
+module RbsActiverecord
+  module Parser
+    class IncludeExpander
+      # @rbs model: RbsActiverecord::Model
+      # @rbs declarations: Hash[String, Array[Prism::CallNode]]
+      def self.expand: (RbsActiverecord::Model model, Hash[String, Array[Prism::CallNode]] declarations) -> void
+
+      attr_reader model: RbsActiverecord::Model
+
+      attr_reader declarations: Hash[String, Array[Prism::CallNode]]
+
+      # @rbs model: RbsActiverecord::Model
+      # @rbs declarations: Hash[String, Array[Prism::CallNode]]
+      def initialize: (RbsActiverecord::Model model, Hash[String, Array[Prism::CallNode]] declarations) -> void
+
+      def expand: () -> void
+
+      private
+
+      # @rbs node: Prism::CallNode
+      def included_blocks_for: (Prism::CallNode node) -> Array[Prism::CallNode]
+
+      # @rbs name: String
+      def const_get: (String name) -> ::Module?
+
+      # @rbs node: Prism::CallNode
+      def block_body_of: (Prism::CallNode node) -> Array[Prism::CallNode]
+    end
+  end
+end

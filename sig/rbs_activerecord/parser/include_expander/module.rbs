@@ -1,0 +1,29 @@
+# Generated from lib/rbs_activerecord/parser/include_expander/module.rb with RBS::Inline
+
+module RbsActiverecord
+  module Parser
+    class IncludeExpander
+      class Module
+        attr_reader mod: ::Module
+
+        attr_reader name: String
+
+        # @rbs mod: ::Module
+        # @rbs name: String
+        def initialize: (::Module mod, String name) -> void
+
+        def concern?: () -> bool
+
+        def included_blocks: () -> Array[Prism::CallNode]
+
+        private
+
+        @declarations: Array[Prism::CallNode]
+
+        def declarations: () -> Array[Prism::CallNode]
+
+        def source_location: () -> String?
+      end
+    end
+  end
+end
