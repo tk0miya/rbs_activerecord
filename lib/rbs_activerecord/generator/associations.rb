@@ -63,7 +63,7 @@ module RbsActiverecord
       def belongs_to #: String  # rubocop:disable Metrics/AbcSize
         model.reflect_on_all_associations(:belongs_to).map do |assoc|
           is_optional = assoc.options[:optional]
-          type = assoc.polymorphic? ? "untyped" : assoc.klass.name
+          type = assoc.polymorphic? ? polymorphic_owner_types(assoc) : assoc.klass.name
           optional = "#{type}?"
 
           # @type var methods: Array[String]
@@ -79,6 +79,23 @@ module RbsActiverecord
           methods << "def reset_#{assoc.name}: () -> void"
           methods.join("\n")
         end.join("\n")
+      end
+
+      # @rbs assoc: untyped
+      def polymorphic_owner_types(assoc) #: String  # rubocop:disable Metrics/AbcSize
+        table_name = model.klass.name.to_s.tableize.to_sym
+        owners = ActiveRecord::Base.descendants.select do |klass|
+          klass.reflect_on_all_associations.any? { |a| a.name == table_name && a.options[:as] == assoc.name }
+        end
+
+        if owners.empty?
+          "untyped"
+        elsif owners.size == 1
+          owners.first.name
+        else
+          names = owners.map(&:name).sort.join(" | ")
+          "(#{names})"
+        end
       end
 
       def has_and_belongs_to_many #: String  # rubocop:disable Naming/PredicateName
