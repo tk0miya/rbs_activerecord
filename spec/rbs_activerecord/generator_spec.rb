@@ -182,7 +182,8 @@ RSpec.describe RbsActiverecord::Generator do
             module GeneratedPluckOverloads
               def pluck: (:id | "id") -> ::Array[::Integer]
                        | (:name | "name") -> ::Array[::String?]
-                       | ...
+                       | (::Symbol | ::String | ::Arel::Nodes::t column) -> ::Array[untyped]
+                       | (*::Symbol | ::String | ::Arel::Nodes::t columns) -> ::Array[::Array[untyped]]
             end
             module GeneratedSecurePasswordMethods
               attr_reader password: String?

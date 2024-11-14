@@ -16,7 +16,8 @@ module RbsActiverecord
         <<~RBS.strip
           module GeneratedPluckOverloads
             def pluck: #{overloads.join(" | ")}
-                     | ...
+                     | (::Symbol | ::String | ::Arel::Nodes::t column) -> ::Array[untyped]
+                     | (*::Symbol | ::String | ::Arel::Nodes::t columns) -> ::Array[::Array[untyped]]
           end
         RBS
       end
