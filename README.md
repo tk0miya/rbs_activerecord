@@ -6,19 +6,19 @@ rbs_activerecord is a RBSGenerator for models built with ActiveRecord.
 
 Add a new entry to your Gemfile and run `bundle install`:
 
-  group :development do
-    gem 'rbs_activerecord', require: false
-  end
+    group :development do
+      gem 'rbs_activerecord', require: false
+    end
 
 After the installation, please run rake task generator:
 
-  bundle exec rails g rbs_activerecord:install
+    bundle exec rails g rbs_activerecord:install
 
 ## Usage
 
 Run `rbs:activerecord:setup` task:
 
-  bundle exec rake rbs:activerecord:setup
+    bundle exec rake rbs:activerecord:setup
 
 Then rbs_activerecord will scan your code and generate RBS files into
 `sig/activerecord` directory.
