@@ -33,7 +33,8 @@ RSpec.describe RbsActiverecord::Generator::PluckOverloads do
             def pluck: (:id | "id") -> ::Array[::Integer]
                      | (:age | "age") -> ::Array[::Integer?]
                      | (:name | "name") -> ::Array[::String]
-                     | ...
+                     | (::Symbol | ::String | ::Arel::Nodes::t column) -> ::Array[untyped]
+                     | (*::Symbol | ::String | ::Arel::Nodes::t columns) -> ::Array[::Array[untyped]]
           end
         RBS
       end
@@ -57,7 +58,8 @@ RSpec.describe RbsActiverecord::Generator::PluckOverloads do
           module GeneratedPluckOverloads
             def pluck: (:id | "id") -> ::Array[::Integer]
                      | (:role | "role") -> ::Array[::String]
-                     | ...
+                     | (::Symbol | ::String | ::Arel::Nodes::t column) -> ::Array[untyped]
+                     | (*::Symbol | ::String | ::Arel::Nodes::t columns) -> ::Array[::Array[untyped]]
           end
         RBS
       end
