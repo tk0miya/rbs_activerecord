@@ -31,6 +31,11 @@ module RbsActiverecord
               [key, value]
             end
           end.to_h
+        when Prism::ConstantReadNode
+          node.name.to_s
+        when Prism::ConstantPathNode
+          parent = node.parent ? eval_node(node.parent) : nil
+          "#{parent}::#{node.name}"
         when Prism::KeywordHashNode
           node.elements.filter_map do |assoc|
             case assoc
