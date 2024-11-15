@@ -109,6 +109,26 @@ RSpec.describe RbsActiverecord::Parser do
       it { is_expected.to eq({ foo: 1, bar: 2 }) }
     end
 
+    context "When node is Prism::ConstantReadNode" do
+      let(:code) { "Const" }
+
+      it { is_expected.to eq "Const" }
+    end
+
+    context "When node is Prism::ConstantPathNode" do
+      context "When the constant is relative" do
+        let(:code) { "Mod::SubMod::Const" }
+
+        it { is_expected.to eq "Mod::SubMod::Const" }
+      end
+
+      context "When the constant is absolute" do
+        let(:code) { "::Mod::SubMod::Const" }
+
+        it { is_expected.to eq "::Mod::SubMod::Const" }
+      end
+    end
+
     context "When node is Prism::KeywordHashNode" do
       let(:code) { "foo(kw1: true, kw2: false)" }
       let(:node) { body.first.arguments.arguments.first }

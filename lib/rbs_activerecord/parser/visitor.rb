@@ -14,22 +14,7 @@ module RbsActiverecord
       end
 
       def current_namespace #: String
-        context.flat_map do |node|
-          namespace = [] #: Array[Symbol?]
-          path = node.constant_path #: Prism::Node?
-          loop do
-            case path
-            when Prism::ConstantPathNode
-              namespace << path.name
-              path = path.parent
-            when Prism::ConstantReadNode
-              namespace << path.name
-              break
-            end
-          end
-
-          namespace.compact.reverse
-        end.join("::")
+        context.map { |node| Parser.eval_node(node.constant_path) }.join("::")
       end
 
       # @rbs override
