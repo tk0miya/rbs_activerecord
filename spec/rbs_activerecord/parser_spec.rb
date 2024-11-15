@@ -5,15 +5,37 @@ require "tempfile"
 
 RSpec.describe RbsActiverecord::Parser do
   describe ".parse" do
-    subject { described_class.parse(filename) }
+    subject { described_class.parse(code) }
+
+    let(:code) do
+      <<~RUBY
+        class User < ActiveRecord::Base
+          scope :active, -> { where(active: true) }
+          enum :status, [ :active, :archived ]
+        end
+      RUBY
+    end
+
+    it "returns declarations" do
+      expect(subject).to include "User"
+
+      decls = subject["User"]
+      expect(decls.size).to eq 2
+      expect(decls[0].name).to eq :scope
+      expect(decls[1].name).to eq :enum
+    end
+  end
+
+  describe ".parse_file" do
+    subject { described_class.parse_file(filename) }
 
     let(:filename) do
       Tempfile.open do |f|
-        f.write(content)
+        f.write(code)
         f.path
       end
     end
-    let(:content) do
+    let(:code) do
       <<~RUBY
         class User < ActiveRecord::Base
           scope :active, -> { where(active: true) }

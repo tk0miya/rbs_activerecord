@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require "active_record"
-require "tempfile"
 require "rbs_activerecord"
 
 RSpec.describe RbsActiverecord::Generator::DelegatedType::Scopes do
@@ -16,17 +15,10 @@ RSpec.describe RbsActiverecord::Generator::DelegatedType::Scopes do
 
     let(:model) { RbsActiverecord::Model.new(klass) }
     let(:klass) { Class.new(ActiveRecord::Base) }
-    let(:declarations) { RbsActiverecord::Parser.parse(filename) }
-
-    let(:filename) do
-      Tempfile.open do |f|
-        f.write(content)
-        f.path
-      end
-    end
+    let(:declarations) { RbsActiverecord::Parser.parse(code) }
 
     context "When the model has no delegated_types" do
-      let(:content) do
+      let(:code) do
         <<~RUBY
           class User < ActiveRecord::Base
           end
@@ -42,7 +34,7 @@ RSpec.describe RbsActiverecord::Generator::DelegatedType::Scopes do
     end
 
     context "When the model has an delegated_type" do
-      let(:content) do
+      let(:code) do
         <<~RUBY
           class User < ActiveRecord::Base
             delegated_type :entryable, types: %w[Message Comment]

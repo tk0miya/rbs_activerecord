@@ -74,7 +74,7 @@ module RbsActiverecord
       @declarations ||= begin
         filename = Rails.root.join(model.filename)
         if filename.exist?
-          Parser.parse(filename.to_s)
+          Parser.parse_file(filename.to_s)
         else
           {}
         end
