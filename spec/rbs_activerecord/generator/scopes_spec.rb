@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require "active_record"
-require "tempfile"
 require "rbs_activerecord"
 
 RSpec.describe RbsActiverecord::Generator::Scopes do
@@ -16,15 +15,9 @@ RSpec.describe RbsActiverecord::Generator::Scopes do
 
     let(:model) { RbsActiverecord::Model.new(klass) }
     let(:klass) { Class.new(ActiveRecord::Base) }
-    let(:declarations) { RbsActiverecord::Parser.parse(filename) }
+    let(:declarations) { RbsActiverecord::Parser.parse(code) }
 
-    let(:filename) do
-      Tempfile.open do |f|
-        f.write(content)
-        f.path
-      end
-    end
-    let(:content) do
+    let(:code) do
       <<~RUBY
         class User < ActiveRecord::Base
           scope :labeled, :method

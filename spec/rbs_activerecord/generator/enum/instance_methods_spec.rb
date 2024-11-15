@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require "active_record"
-require "tempfile"
 require "rbs_activerecord"
 
 RSpec.describe RbsActiverecord::Generator::Enum::InstanceMethods do
@@ -16,17 +15,10 @@ RSpec.describe RbsActiverecord::Generator::Enum::InstanceMethods do
 
     let(:model) { RbsActiverecord::Model.new(klass) }
     let(:klass) { Class.new(ActiveRecord::Base) }
-    let(:declarations) { RbsActiverecord::Parser.parse(filename) }
-
-    let(:filename) do
-      Tempfile.open do |f|
-        f.write(content)
-        f.path
-      end
-    end
+    let(:declarations) { RbsActiverecord::Parser.parse(code) }
 
     context "When the model has no enum" do
-      let(:content) do
+      let(:code) do
         <<~RUBY
           class User < ActiveRecord::Base
           end
@@ -43,7 +35,7 @@ RSpec.describe RbsActiverecord::Generator::Enum::InstanceMethods do
 
     context "When the model has an enum" do
       context "When the enum has no options" do
-        let(:content) do
+        let(:code) do
           <<~RUBY
             class User < ActiveRecord::Base
               enum :status, [:active, :archived]
@@ -68,7 +60,7 @@ RSpec.describe RbsActiverecord::Generator::Enum::InstanceMethods do
 
       context "When the enum has instance_methods option" do
         context "When the value of instance_methods option is false" do
-          let(:content) do
+          let(:code) do
             <<~RUBY
               class User < ActiveRecord::Base
                 enum :status, [:active, :archived], instance_methods: false
@@ -85,7 +77,7 @@ RSpec.describe RbsActiverecord::Generator::Enum::InstanceMethods do
         end
 
         context "When the value of instance_methods option is true" do
-          let(:content) do
+          let(:code) do
             <<~RUBY
               class User < ActiveRecord::Base
                 enum :status, [:active, :archived], instance_methods: true
@@ -111,7 +103,7 @@ RSpec.describe RbsActiverecord::Generator::Enum::InstanceMethods do
 
       context "When the enum has prefix option" do
         context "When the value of prefix option is true" do
-          let(:content) do
+          let(:code) do
             <<~RUBY
               class User < ActiveRecord::Base
                 enum :status, [:active, :archived], prefix: true
@@ -135,7 +127,7 @@ RSpec.describe RbsActiverecord::Generator::Enum::InstanceMethods do
         end
 
         context "When the value of prefix option is a String" do
-          let(:content) do
+          let(:code) do
             <<~RUBY
               class User < ActiveRecord::Base
                 enum :status, [:active, :archived], prefix: "prefix"
@@ -159,7 +151,7 @@ RSpec.describe RbsActiverecord::Generator::Enum::InstanceMethods do
         end
 
         context "When the value of prefix option is a Symbol" do
-          let(:content) do
+          let(:code) do
             <<~RUBY
               class User < ActiveRecord::Base
                 enum :status, [:active, :archived], prefix: :prefix
@@ -185,7 +177,7 @@ RSpec.describe RbsActiverecord::Generator::Enum::InstanceMethods do
 
       context "When the enum has suffix option" do
         context "When the value of suffix option is true" do
-          let(:content) do
+          let(:code) do
             <<~RUBY
               class User < ActiveRecord::Base
                 enum :status, [:active, :archived], suffix: true
@@ -209,7 +201,7 @@ RSpec.describe RbsActiverecord::Generator::Enum::InstanceMethods do
         end
 
         context "When the value of suffix option is a String" do
-          let(:content) do
+          let(:code) do
             <<~RUBY
               class User < ActiveRecord::Base
                 enum :status, [:active, :archived], suffix: "suffix"
@@ -233,7 +225,7 @@ RSpec.describe RbsActiverecord::Generator::Enum::InstanceMethods do
         end
 
         context "When the value of suffix option is a Symbol" do
-          let(:content) do
+          let(:code) do
             <<~RUBY
               class User < ActiveRecord::Base
                 enum :status, [:active, :archived], suffix: :suffix
@@ -258,7 +250,7 @@ RSpec.describe RbsActiverecord::Generator::Enum::InstanceMethods do
       end
 
       context "When the enum is defined via keyword args" do
-        let(:content) do
+        let(:code) do
           <<~RUBY
             class User < ActiveRecord::Base
               enum :status, active: 0, archived: 1
@@ -282,7 +274,7 @@ RSpec.describe RbsActiverecord::Generator::Enum::InstanceMethods do
       end
 
       context "When the enum contains special characters" do
-        let(:content) do
+        let(:code) do
           <<~RUBY
             class User < ActiveRecord::Base
               enum :timezone, ["America/Los_Angels", "America/Denver", "America/Chicago", "America/New_York"]
