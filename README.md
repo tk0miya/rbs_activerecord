@@ -23,6 +23,34 @@ Run `rbs:activerecord:setup` task:
 Then rbs_activerecord will scan your code and generate RBS files into
 `sig/activerecord` directory.
 
+## The goal of rbs_activerecord
+
+rbs_activerecord is an experimental project to enhance the type generation for ActiveRecord models.
+It is strongly inspired by [rbs_rails](https://github.com/pocke/rbs_rails).
+
+The goal of this gem is to give feedbacks to the rbs_rails project, and improving rbs_rails.
+One of the large goals is merging this gem into rbs_rails.
+
+Main differences between rbs_activerecord and rbs_rails are:
+
+* New features
+    * Support Rails7 style enum definitions ([#268](https://github.com/pocke/rbs_rails/pull/268))
+    * Support STI (Single Table Inheritance) models ([#287](https://github.com/pocke/rbs_rails/pull/287))
+        * Inherits scope, enum and other definitions in the parent class to the child class
+    * Support has_and_belongs_to_many association ([#272](https://github.com/pocke/rbs_rails/pull/272))
+    * Support `alias_attribute` ([#263](https://github.com/pocke/rbs_rails/pull/263))
+    * Support generating model definitions within the concern module ([#209](https://github.com/pocke/rbs_rails/pull/209))
+    * Support extension ActiveRecord from 3rd party gems ([#254](https://github.com/pocke/rbs_rails/pull/254))
+        * ex. kaminari
+    * Support composite primary keys ([#275](https://github.com/pocke/rbs_rails/pull/275))
+    * Extend return types of #pluck ([#273](https://github.com/pocke/rbs_rails/pull/273))
+* Bug fixes
+    * [#286](https://github.com/pocke/rbs_rails/pull/286)
+    * [#285](https://github.com/pocke/rbs_rails/pull/285)
+    * [#278](https://github.com/pocke/rbs_rails/pull/278)
+    * [#277](https://github.com/pocke/rbs_rails/pull/277)
+    * [#233](https://github.com/pocke/rbs_rails/pull/233)
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. You can also
