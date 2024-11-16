@@ -44,6 +44,7 @@ Main differences between rbs_activerecord and rbs_rails are:
         * ex. kaminari
     * Support composite primary keys ([#275](https://github.com/pocke/rbs_rails/pull/275))
     * Extend return types of #pluck ([#273](https://github.com/pocke/rbs_rails/pull/273))
+    * Override types of CollectionProxy ([#289](https://github.com/pocke/rbs_rails/pull/289))
 * Bug fixes
     * [#286](https://github.com/pocke/rbs_rails/pull/286)
     * [#285](https://github.com/pocke/rbs_rails/pull/285)

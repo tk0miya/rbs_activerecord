@@ -245,6 +245,29 @@ RSpec.describe RbsActiverecord::Generator do
               def active: () -> Relation
             end
 
+            module GeneratedCollectionProxyInstanceMethods[Model, PrimaryKey]
+              def build: (?ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> Model
+                       | (Array[ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> Array[Model]
+
+              def create: (?ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> Model
+                        | (Array[ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> Array[Model]
+
+              def create!: (?ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> Model
+                         | (Array[ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> Array[Model]
+
+              def reload: () -> Array[Model]
+
+              def replace: (Array[Model]) -> void
+
+              def delete: (*Model | PrimaryKey) -> Array[Model]
+
+              def destroy: (*Model | PrimaryKey) -> Array[Model]
+
+              def <<: (*Model | Array[Model]) -> self
+
+              def prepend: (*Model | Array[Model]) -> self
+            end
+
             class ActiveRecord_Relation < ::ActiveRecord::Relation
               include ::Enumerable[Foo]
               include ::ActiveRecord::Relation::Methods[Foo, ::Integer]
@@ -271,6 +294,7 @@ RSpec.describe RbsActiverecord::Generator do
               include ::Parent::GeneratedEnumScopeMethods[ActiveRecord_Relation]
               include ::Parent::GeneratedScopeMethods[ActiveRecord_Relation]
               include GeneratedPluckOverloads
+              include GeneratedCollectionProxyInstanceMethods[Foo, ::Integer]
             end
 
             extend ::ActiveRecord::Base::ClassMethods[Foo, Foo::ActiveRecord_Relation, ::Integer]
