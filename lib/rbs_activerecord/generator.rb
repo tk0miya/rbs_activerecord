@@ -17,7 +17,7 @@ module RbsActiverecord
       @model = Model.new(klass)
     end
 
-    def generate #: String  # rubocop:disable Metrics/AbcSize
+    def generate #: String  # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
       format <<~RBS
         #{header}
           #{Attributes.new(model).generate}
@@ -34,6 +34,21 @@ module RbsActiverecord
           #{Enum::Scopes.new(model, declarations).generate}
           #{Scopes.new(model, declarations).generate}
 
+          module GeneratedCollectionProxyInstanceMethods[Model, PrimaryKey]
+            def build: (?ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> Model
+                     | (Array[ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> Array[Model]
+            def create: (?ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> Model
+                      | (Array[ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> Array[Model]
+            def create!: (?ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> Model
+                       | (Array[ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> Array[Model]
+            def reload: () -> Array[Model]
+            def replace: (Array[Model]) -> void
+            def delete: (*Model | PrimaryKey) -> Array[Model]
+            def destroy: (*Model | PrimaryKey) -> Array[Model]
+            def <<: (*Model | Array[Model]) -> self
+            def prepend: (*Model | Array[Model]) -> self
+          end
+
           class ActiveRecord_Relation < ::ActiveRecord::Relation
             include ::Enumerable[#{klass_name}]
             include ::ActiveRecord::Relation::Methods[#{klass_name}, #{primary_key_type}]
@@ -46,6 +61,7 @@ module RbsActiverecord
             include ::ActiveRecord::Relation::Methods[#{klass_name}, #{primary_key_type}]
             #{relation_methods}
             include GeneratedPluckOverloads
+            include GeneratedCollectionProxyInstanceMethods[#{klass_name}, #{primary_key_type}]
           end
 
           extend ::ActiveRecord::Base::ClassMethods[#{klass_name}, #{klass_name}::ActiveRecord_Relation, #{primary_key_type}]
