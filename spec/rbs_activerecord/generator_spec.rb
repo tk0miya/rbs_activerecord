@@ -319,5 +319,23 @@ RSpec.describe RbsActiverecord::Generator do
         )
       end
     end
+
+    context "When the target model includes a concern module having 'included' block" do
+      before do
+        allow(Rails).to receive(:root).and_return(Pathname.new("spec/fixtures/"))
+
+        ActiveRecord::Base.connection.create_table :bars do |t|
+          t.integer :status
+        end
+        require_relative "../fixtures/app/models/bar"
+      end
+
+      let(:klass) { Bar } # see ../fixtures/app/models/bar.rb
+
+      it "generates RBS" do
+        expect(subject).to include "def active: () -> Relation"
+        expect(subject).to include "def archived: () -> Relation"
+      end
+    end
   end
 end

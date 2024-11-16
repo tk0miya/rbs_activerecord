@@ -3,7 +3,7 @@
 require "rails"
 
 module RbsActiverecord
-  class Generator
+  class Generator # rubocop:disable Metrics/ClassLength
     include Utils
 
     attr_reader :klass #: singleton(ActiveRecord::Base)
@@ -74,7 +74,9 @@ module RbsActiverecord
       @declarations ||= begin
         filename = Rails.root.join(model.filename)
         if filename.exist?
-          Parser.parse_file(filename.to_s)
+          Parser.parse_file(filename.to_s).tap do |decls|
+            Parser::IncludeExpander.expand(model, decls)
+          end
         else
           {}
         end
