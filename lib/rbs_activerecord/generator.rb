@@ -31,6 +31,7 @@ module RbsActiverecord
           #{DelegatedType::InstanceMethods.new(model, declarations).generate}
           #{DelegatedType::Scopes.new(model, declarations).generate}
           #{Enum::InstanceMethods.new(model, declarations).generate}
+          #{Enum::Mappings.new(model, declarations).generate}
           #{Enum::Scopes.new(model, declarations).generate}
           #{Scopes.new(model, declarations).generate}
 
@@ -66,6 +67,7 @@ module RbsActiverecord
 
           extend ::ActiveRecord::Base::ClassMethods[#{klass_name}, #{klass_name}::ActiveRecord_Relation, #{primary_key_type}]
           #{scope_class_methods}
+          extend GeneratedEnumMappingMethods
           extend GeneratedPluckOverloads
 
           include GeneratedActiveStorageInstanceMethods

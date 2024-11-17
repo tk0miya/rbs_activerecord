@@ -46,6 +46,7 @@ Main differences between rbs_activerecord and rbs_rails are:
     * Extend return types of #pluck ([#273](https://github.com/pocke/rbs_rails/pull/273))
     * Override types of CollectionProxy ([#289](https://github.com/pocke/rbs_rails/pull/289))
 * Bug fixes
+    * [#290](https://github.com/pocke/rbs_rails/pull/290)
     * [#286](https://github.com/pocke/rbs_rails/pull/286)
     * [#285](https://github.com/pocke/rbs_rails/pull/285)
     * [#278](https://github.com/pocke/rbs_rails/pull/278)
