@@ -3,8 +3,6 @@
 module RbsActiverecord
   module Parser
     module Evaluator
-      # @rbs! def self.eval_node: (Prism::Node node) -> untyped
-
       # @rbs node: Prism::Node
       def eval_node(node) #: untyped # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/MethodLength, Metrics/PerceivedComplexity
         case node
