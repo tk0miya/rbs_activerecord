@@ -41,7 +41,7 @@ Main differences between rbs_activerecord and rbs_rails are:
     * Support `alias_attribute` ([#263](https://github.com/pocke/rbs_rails/pull/263))
     * Support generating model definitions within the concern module ([#209](https://github.com/pocke/rbs_rails/pull/209))
     * Support extension ActiveRecord from 3rd party gems ([#254](https://github.com/pocke/rbs_rails/pull/254))
-        * ex. kaminari
+        * ex. [kaminari-activerecord](https://github.com/ruby/gem_rbs_collection/pull/725)
     * Support composite primary keys ([#275](https://github.com/pocke/rbs_rails/pull/275))
     * Extend return types of #pluck ([#273](https://github.com/pocke/rbs_rails/pull/273))
     * Override types of CollectionProxy ([#289](https://github.com/pocke/rbs_rails/pull/289))
