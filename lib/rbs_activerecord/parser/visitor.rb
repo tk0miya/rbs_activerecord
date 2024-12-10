@@ -40,7 +40,7 @@ module RbsActiverecord
       # @rbs override
       def visit_call_node(node)
         decls[current_namespace] ||= []
-        decls[current_namespace] << node
+        decls.fetch(current_namespace) << node
       end
 
       # @rbs override
