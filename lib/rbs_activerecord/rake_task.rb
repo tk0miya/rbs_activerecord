@@ -49,7 +49,6 @@ module RbsActiverecord
           next unless klass.connection.table_exists?(klass.table_name)
 
           rbs = Generator.new(klass).generate
-          next unless rbs
 
           path = signature_root_dir / "app/models/#{klass.name.underscore}.rbs"
           path.dirname.mkpath

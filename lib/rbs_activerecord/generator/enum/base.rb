@@ -22,8 +22,8 @@ module RbsActiverecord
             values = args[1].keys
             options = args[2] || {}
           else
-            values = []
-            options = {}
+            values = [] #: Array[String | Symbol]
+            options = {} #: Hash[Symbol, untyped]
           end
 
           [name, values, options]

@@ -25,7 +25,7 @@ module RbsActiverecord
             index = decls.index { |node| node.name == :include }
             break unless index
 
-            included_module = decls.delete_at(index)
+            included_module = decls.delete_at(index) || raise
             included_blocks = included_blocks_for(included_module)
             included_blocks.reverse_each do |included|
               decls.insert(index, *block_body_of(included))

@@ -8,6 +8,11 @@
         "activerecord",
         "codebases",
         "Cyclomatic",
-        "kaminari"
+        "kaminari",
+        "mkpath",
+        "modname",
+        "requireds",
+        "rmtree",
+        "tasklib"
     ]
 }

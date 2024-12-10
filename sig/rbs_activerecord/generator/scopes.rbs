@@ -8,8 +8,8 @@ module RbsActiverecord
       attr_reader declarations: Array[Prism::CallNode]
 
       # @rbs model: RbsActiverecord::Model
-      # @rbs delarations: Hash[String, Array[Prism::CallNode]]
-      def initialize: (RbsActiverecord::Model model, untyped declarations) -> void
+      # @rbs declarations: Hash[String, Array[Prism::CallNode]]
+      def initialize: (RbsActiverecord::Model model, Hash[String, Array[Prism::CallNode]] declarations) -> void
 
       def generate: () -> String
 
