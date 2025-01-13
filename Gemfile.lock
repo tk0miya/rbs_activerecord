@@ -139,7 +139,7 @@ GEM
       rbs (>= 3.5.0)
     rdoc (6.7.0)
       psych (>= 4.0.0)
-    regexp_parser (2.9.3)
+    regexp_parser (2.10.0)
     reline (0.5.11)
       io-console (~> 0.5)
     rspec (3.13.0)
@@ -155,7 +155,7 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.13.0)
     rspec-support (3.13.1)
-    rubocop (1.69.2)
+    rubocop (1.70.0)
       json (~> 2.3)
       language_server-protocol (>= 3.17.0)
       parallel (~> 1.10)
@@ -223,7 +223,7 @@ DEPENDENCIES
   rbs_activerecord!
   rspec
   rspec-mocks
-  rubocop (~> 1.69)
+  rubocop (~> 1.70)
   ruby-lsp-rspec
   sqlite3
   steep
