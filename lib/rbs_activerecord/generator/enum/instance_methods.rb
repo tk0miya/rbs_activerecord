@@ -37,13 +37,19 @@ module RbsActiverecord
           return "" unless name
           return "" unless options.fetch(:instance_methods, true)
 
-          values.map do |value|
+          name_methods = <<~RBS
+            def #{name}: () -> String
+            def #{name}=: (String) -> String
+          RBS
+          value_methods = values.map do |value|
             method_name = enum_method_name(name, value, options)
             <<~RBS
               def #{method_name}!: () -> void
               def #{method_name}?: () -> bool
             RBS
           end.join("\n")
+
+          name_methods + value_methods
         end
       end
     end
