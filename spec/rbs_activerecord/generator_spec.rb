@@ -224,6 +224,10 @@ RSpec.describe RbsActiverecord::Generator do
               def comments: () -> Relation
             end
             module GeneratedEnumInstanceMethods
+              def status: () -> String
+
+              def status=: (String) -> String
+
               def active!: () -> void
 
               def active?: () -> bool
