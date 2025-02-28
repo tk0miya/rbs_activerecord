@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    rbs_activerecord (1.1.1)
+    rbs_activerecord (1.1.2)
       activerecord
       prism
       railties
