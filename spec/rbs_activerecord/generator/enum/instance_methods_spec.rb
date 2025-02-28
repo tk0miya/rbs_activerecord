@@ -49,6 +49,7 @@ RSpec.describe RbsActiverecord::Generator::Enum::InstanceMethods do
               def status: () -> String
 
               def status=: (String) -> String
+                         | (Integer) -> Integer
 
               def active!: () -> void
 
@@ -95,6 +96,7 @@ RSpec.describe RbsActiverecord::Generator::Enum::InstanceMethods do
                 def status: () -> String
 
                 def status=: (String) -> String
+                           | (Integer) -> Integer
 
                 def active!: () -> void
 
@@ -125,6 +127,7 @@ RSpec.describe RbsActiverecord::Generator::Enum::InstanceMethods do
                 def status: () -> String
 
                 def status=: (String) -> String
+                           | (Integer) -> Integer
 
                 def status_active!: () -> void
 
@@ -153,6 +156,7 @@ RSpec.describe RbsActiverecord::Generator::Enum::InstanceMethods do
                 def status: () -> String
 
                 def status=: (String) -> String
+                           | (Integer) -> Integer
 
                 def prefix_active!: () -> void
 
@@ -181,6 +185,7 @@ RSpec.describe RbsActiverecord::Generator::Enum::InstanceMethods do
                 def status: () -> String
 
                 def status=: (String) -> String
+                           | (Integer) -> Integer
 
                 def prefix_active!: () -> void
 
@@ -211,6 +216,7 @@ RSpec.describe RbsActiverecord::Generator::Enum::InstanceMethods do
                 def status: () -> String
 
                 def status=: (String) -> String
+                           | (Integer) -> Integer
 
                 def active_status!: () -> void
 
@@ -239,6 +245,7 @@ RSpec.describe RbsActiverecord::Generator::Enum::InstanceMethods do
                 def status: () -> String
 
                 def status=: (String) -> String
+                           | (Integer) -> Integer
 
                 def active_suffix!: () -> void
 
@@ -267,6 +274,7 @@ RSpec.describe RbsActiverecord::Generator::Enum::InstanceMethods do
                 def status: () -> String
 
                 def status=: (String) -> String
+                           | (Integer) -> Integer
 
                 def active_suffix!: () -> void
 
@@ -296,6 +304,7 @@ RSpec.describe RbsActiverecord::Generator::Enum::InstanceMethods do
               def status: () -> String
 
               def status=: (String) -> String
+                         | (Integer) -> Integer
 
               def active!: () -> void
 
@@ -324,6 +333,7 @@ RSpec.describe RbsActiverecord::Generator::Enum::InstanceMethods do
               def timezone: () -> String
 
               def timezone=: (String) -> String
+                           | (Integer) -> Integer
 
               def America_Los_Angels!: () -> void
 
