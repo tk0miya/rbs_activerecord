@@ -40,6 +40,7 @@ module RbsActiverecord
           name_methods = <<~RBS
             def #{name}: () -> String
             def #{name}=: (String) -> String
+                        | (Integer) -> Integer
           RBS
           value_methods = values.map do |value|
             method_name = enum_method_name(name, value, options)

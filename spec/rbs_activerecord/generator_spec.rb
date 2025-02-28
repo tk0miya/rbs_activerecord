@@ -227,6 +227,7 @@ RSpec.describe RbsActiverecord::Generator do
               def status: () -> String
 
               def status=: (String) -> String
+                         | (Integer) -> Integer
 
               def active!: () -> void
 
