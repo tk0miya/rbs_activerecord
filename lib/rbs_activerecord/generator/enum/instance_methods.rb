@@ -4,6 +4,8 @@ module RbsActiverecord
   class Generator
     module Enum
       class InstanceMethods < Base
+        include Utils
+
         attr_reader :model #: RbsActiverecord::Model
         attr_reader :declarations #: Array[Prism::CallNode]
 
@@ -37,10 +39,11 @@ module RbsActiverecord
           return "" unless name
           return "" unless options.fetch(:instance_methods, true)
 
+          type = column_type(name)
           name_methods = <<~RBS
             def #{name}: () -> String
             def #{name}=: (String) -> String
-                        | (Integer) -> Integer
+                        | (#{type}) -> #{type}
           RBS
           value_methods = values.map do |value|
             method_name = enum_method_name(name, value, options)
@@ -51,6 +54,16 @@ module RbsActiverecord
           end.join("\n")
 
           name_methods + value_methods
+        end
+
+        # @rbs name: String
+        def column_type(name) #: String
+          col = model.columns.find { |c| c.name == name.to_s }
+          if col
+            sql_type_to_class(col.type)
+          else
+            "::Integer"
+          end
         end
       end
     end
