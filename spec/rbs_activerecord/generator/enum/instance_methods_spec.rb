@@ -11,6 +11,12 @@ RSpec.describe RbsActiverecord::Generator::Enum::InstanceMethods do
 
     before do
       stub_const("User", klass)
+
+      ActiveRecord::Base.establish_connection(adapter: "sqlite3", database: ":memory:")
+      ActiveRecord::Base.connection.create_table :users, id: false do |t|
+        t.integer :status
+        t.string :timezone
+      end
     end
 
     let(:model) { RbsActiverecord::Model.new(klass) }
@@ -49,7 +55,7 @@ RSpec.describe RbsActiverecord::Generator::Enum::InstanceMethods do
               def status: () -> String
 
               def status=: (String) -> String
-                         | (Integer) -> Integer
+                         | (::Integer) -> ::Integer
 
               def active!: () -> void
 
@@ -96,7 +102,7 @@ RSpec.describe RbsActiverecord::Generator::Enum::InstanceMethods do
                 def status: () -> String
 
                 def status=: (String) -> String
-                           | (Integer) -> Integer
+                           | (::Integer) -> ::Integer
 
                 def active!: () -> void
 
@@ -127,7 +133,7 @@ RSpec.describe RbsActiverecord::Generator::Enum::InstanceMethods do
                 def status: () -> String
 
                 def status=: (String) -> String
-                           | (Integer) -> Integer
+                           | (::Integer) -> ::Integer
 
                 def status_active!: () -> void
 
@@ -156,7 +162,7 @@ RSpec.describe RbsActiverecord::Generator::Enum::InstanceMethods do
                 def status: () -> String
 
                 def status=: (String) -> String
-                           | (Integer) -> Integer
+                           | (::Integer) -> ::Integer
 
                 def prefix_active!: () -> void
 
@@ -185,7 +191,7 @@ RSpec.describe RbsActiverecord::Generator::Enum::InstanceMethods do
                 def status: () -> String
 
                 def status=: (String) -> String
-                           | (Integer) -> Integer
+                           | (::Integer) -> ::Integer
 
                 def prefix_active!: () -> void
 
@@ -216,7 +222,7 @@ RSpec.describe RbsActiverecord::Generator::Enum::InstanceMethods do
                 def status: () -> String
 
                 def status=: (String) -> String
-                           | (Integer) -> Integer
+                           | (::Integer) -> ::Integer
 
                 def active_status!: () -> void
 
@@ -245,7 +251,7 @@ RSpec.describe RbsActiverecord::Generator::Enum::InstanceMethods do
                 def status: () -> String
 
                 def status=: (String) -> String
-                           | (Integer) -> Integer
+                           | (::Integer) -> ::Integer
 
                 def active_suffix!: () -> void
 
@@ -274,7 +280,7 @@ RSpec.describe RbsActiverecord::Generator::Enum::InstanceMethods do
                 def status: () -> String
 
                 def status=: (String) -> String
-                           | (Integer) -> Integer
+                           | (::Integer) -> ::Integer
 
                 def active_suffix!: () -> void
 
@@ -304,7 +310,7 @@ RSpec.describe RbsActiverecord::Generator::Enum::InstanceMethods do
               def status: () -> String
 
               def status=: (String) -> String
-                         | (Integer) -> Integer
+                         | (::Integer) -> ::Integer
 
               def active!: () -> void
 
@@ -333,7 +339,7 @@ RSpec.describe RbsActiverecord::Generator::Enum::InstanceMethods do
               def timezone: () -> String
 
               def timezone=: (String) -> String
-                           | (Integer) -> Integer
+                           | (::String) -> ::String
 
               def America_Los_Angels!: () -> void
 
