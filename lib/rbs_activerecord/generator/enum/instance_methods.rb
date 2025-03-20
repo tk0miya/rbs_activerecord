@@ -41,8 +41,8 @@ module RbsActiverecord
 
           type = column_type(name)
           name_methods = <<~RBS
-            def #{name}: () -> String
-            def #{name}=: (String) -> String
+            def #{name}: () -> ::String
+            def #{name}=: (::String) -> ::String
                         | (#{type}) -> #{type}
           RBS
           value_methods = values.map do |value|
