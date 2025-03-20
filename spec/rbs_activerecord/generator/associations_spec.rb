@@ -40,13 +40,13 @@ RSpec.describe RbsActiverecord::Generator::Associations do
       it "generates RBS" do
         expect(subject).to eq(<<~RBS)
           module GeneratedAssociationMethods
-            def bars: () -> Bar::ActiveRecord_Associations_CollectionProxy
+            def bars: () -> ::Bar::ActiveRecord_Associations_CollectionProxy
 
-            def bars=: (Bar::ActiveRecord_Associations_CollectionProxy | Array[::Bar]) -> (Bar::ActiveRecord_Associations_CollectionProxy | Array[::Bar])
+            def bars=: (::Bar::ActiveRecord_Associations_CollectionProxy | ::Array[::Bar]) -> (::Bar::ActiveRecord_Associations_CollectionProxy | ::Array[::Bar])
 
-            def bar_ids: () -> Array[::String]
+            def bar_ids: () -> ::Array[::String]
 
-            def bar_ids=: (Array[::String]) -> Array[::String]
+            def bar_ids=: (::Array[::String]) -> ::Array[::String]
           end
         RBS
       end
@@ -69,17 +69,17 @@ RSpec.describe RbsActiverecord::Generator::Associations do
       it "generates RBS" do
         expect(subject).to eq(<<~RBS)
           module GeneratedAssociationMethods
-            def bar: () -> Bar?
+            def bar: () -> ::Bar?
 
-            def bar=: (Bar?) -> Bar?
+            def bar=: (::Bar?) -> ::Bar?
 
-            def build_bar: (?untyped) -> Bar
+            def build_bar: (?untyped) -> ::Bar
 
-            def create_bar: (untyped) -> Bar
+            def create_bar: (untyped) -> ::Bar
 
-            def create_bar!: (untyped) -> Bar
+            def create_bar!: (untyped) -> ::Bar
 
-            def reload_bar: () -> Bar?
+            def reload_bar: () -> ::Bar?
 
             def reset_bar: () -> void
 
@@ -109,17 +109,17 @@ RSpec.describe RbsActiverecord::Generator::Associations do
         it "generates RBS" do
           expect(subject).to eq(<<~RBS)
             module GeneratedAssociationMethods
-              def bar: () -> Bar
+              def bar: () -> ::Bar
 
-              def bar=: (Bar?) -> Bar?
+              def bar=: (::Bar?) -> ::Bar?
 
-              def build_bar: (untyped) -> Bar
+              def build_bar: (untyped) -> ::Bar
 
-              def create_bar: (untyped) -> Bar
+              def create_bar: (untyped) -> ::Bar
 
-              def create_bar!: (untyped) -> Bar
+              def create_bar!: (untyped) -> ::Bar
 
-              def reload_bar: () -> Bar?
+              def reload_bar: () -> ::Bar?
 
               def reset_bar: () -> void
             end
@@ -137,17 +137,17 @@ RSpec.describe RbsActiverecord::Generator::Associations do
         it "generates RBS" do
           expect(subject).to eq(<<~RBS)
             module GeneratedAssociationMethods
-              def bar: () -> Bar?
+              def bar: () -> ::Bar?
 
-              def bar=: (Bar?) -> Bar?
+              def bar=: (::Bar?) -> ::Bar?
 
-              def build_bar: (untyped) -> Bar
+              def build_bar: (untyped) -> ::Bar
 
-              def create_bar: (untyped) -> Bar
+              def create_bar: (untyped) -> ::Bar
 
-              def create_bar!: (untyped) -> Bar
+              def create_bar!: (untyped) -> ::Bar
 
-              def reload_bar: () -> Bar?
+              def reload_bar: () -> ::Bar?
 
               def reset_bar: () -> void
             end

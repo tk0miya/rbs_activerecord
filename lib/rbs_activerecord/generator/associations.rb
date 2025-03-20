@@ -28,22 +28,22 @@ module RbsActiverecord
       def has_many #: String  # rubocop:disable Naming/PredicateName
         model.reflect_on_all_associations(:has_many).map do |assoc|
           assoc_name = assoc.name.to_s
-          klass_name = assoc.klass.name
+          klass_name = "::#{assoc.klass.name}"
           collection = "#{klass_name}::ActiveRecord_Associations_CollectionProxy"
           primary_key_type = primary_key_type_for(assoc.klass)
 
           <<~RBS
             def #{assoc_name}: () -> #{collection}
-            def #{assoc_name}=: (#{collection} | Array[::#{klass_name}]) -> (#{collection} | Array[::#{klass_name}])
-            def #{assoc_name.singularize}_ids: () -> Array[#{primary_key_type}]
-            def #{assoc_name.singularize}_ids=: (Array[#{primary_key_type}]) -> Array[#{primary_key_type}]
+            def #{assoc_name}=: (#{collection} | ::Array[#{klass_name}]) -> (#{collection} | ::Array[#{klass_name}])
+            def #{assoc_name.singularize}_ids: () -> ::Array[#{primary_key_type}]
+            def #{assoc_name.singularize}_ids=: (::Array[#{primary_key_type}]) -> ::Array[#{primary_key_type}]
           RBS
         end.join("\n")
       end
 
       def has_one #: String  # rubocop:disable Naming/PredicateName
         model.reflect_on_all_associations(:has_one).map do |assoc|
-          type = assoc.klass.name
+          type = "::#{assoc.klass.name}"
           optional = "#{type}?"
 
           <<~RBS
@@ -63,7 +63,7 @@ module RbsActiverecord
       def belongs_to #: String  # rubocop:disable Metrics/AbcSize
         model.reflect_on_all_associations(:belongs_to).map do |assoc|
           is_optional = assoc.options[:optional]
-          type = assoc.polymorphic? ? polymorphic_owner_types(assoc) : assoc.klass.name
+          type = assoc.polymorphic? ? polymorphic_owner_types(assoc) : "::#{assoc.klass.name}"
           optional = "#{type}?"
 
           # @type var methods: Array[String]

@@ -113,25 +113,25 @@ RSpec.describe RbsActiverecord::Generator do
             end
 
             module GeneratedAssociationMethods
-              def bars: () -> Bar::ActiveRecord_Associations_CollectionProxy
+              def bars: () -> ::Bar::ActiveRecord_Associations_CollectionProxy
 
-              def bars=: (Bar::ActiveRecord_Associations_CollectionProxy | Array[::Bar]) -> (Bar::ActiveRecord_Associations_CollectionProxy | Array[::Bar])
+              def bars=: (::Bar::ActiveRecord_Associations_CollectionProxy | ::Array[::Bar]) -> (::Bar::ActiveRecord_Associations_CollectionProxy | ::Array[::Bar])
 
-              def bar_ids: () -> Array[::String]
+              def bar_ids: () -> ::Array[::String]
 
-              def bar_ids=: (Array[::String]) -> Array[::String]
+              def bar_ids=: (::Array[::String]) -> ::Array[::String]
 
-              def avatar_attachment: () -> ActiveStorage::Attachment?
+              def avatar_attachment: () -> ::ActiveStorage::Attachment?
 
-              def avatar_attachment=: (ActiveStorage::Attachment?) -> ActiveStorage::Attachment?
+              def avatar_attachment=: (::ActiveStorage::Attachment?) -> ::ActiveStorage::Attachment?
 
-              def build_avatar_attachment: (?untyped) -> ActiveStorage::Attachment
+              def build_avatar_attachment: (?untyped) -> ::ActiveStorage::Attachment
 
-              def create_avatar_attachment: (untyped) -> ActiveStorage::Attachment
+              def create_avatar_attachment: (untyped) -> ::ActiveStorage::Attachment
 
-              def create_avatar_attachment!: (untyped) -> ActiveStorage::Attachment
+              def create_avatar_attachment!: (untyped) -> ::ActiveStorage::Attachment
 
-              def reload_avatar_attachment: () -> ActiveStorage::Attachment?
+              def reload_avatar_attachment: () -> ::ActiveStorage::Attachment?
 
               def reset_avatar_attachment: () -> void
 
@@ -139,17 +139,17 @@ RSpec.describe RbsActiverecord::Generator do
 
               def avatar_attachment_previously_changed?: () -> bool
 
-              def avatar_blob: () -> ActiveStorage::Blob?
+              def avatar_blob: () -> ::ActiveStorage::Blob?
 
-              def avatar_blob=: (ActiveStorage::Blob?) -> ActiveStorage::Blob?
+              def avatar_blob=: (::ActiveStorage::Blob?) -> ::ActiveStorage::Blob?
 
-              def build_avatar_blob: (?untyped) -> ActiveStorage::Blob
+              def build_avatar_blob: (?untyped) -> ::ActiveStorage::Blob
 
-              def create_avatar_blob: (untyped) -> ActiveStorage::Blob
+              def create_avatar_blob: (untyped) -> ::ActiveStorage::Blob
 
-              def create_avatar_blob!: (untyped) -> ActiveStorage::Blob
+              def create_avatar_blob!: (untyped) -> ::ActiveStorage::Blob
 
-              def reload_avatar_blob: () -> ActiveStorage::Blob?
+              def reload_avatar_blob: () -> ::ActiveStorage::Blob?
 
               def reset_avatar_blob: () -> void
 
