@@ -31,21 +31,21 @@ module RbsActiverecord
         end
 
         # @rbs node: Prism::CallNode
-        def delegated_type(node) #: String
+        def delegated_type(node) #: String  # rubocop:disable Metrics/AbcSize
           arguments = node.arguments&.arguments || []
           name, options = arguments.map { |arg| Parser.eval_node(arg) } #: [String?, Hash[Symbol, untyped]]
           return "" unless name
 
           types = options[:types]
           role_methods = <<~RBS
-            def #{name}_class: () -> (#{types.join(" | ")})
-            def #{name}_name: () -> String
+            def #{name}_class: () -> (#{types.map { |type| "::#{type}" }.join(" | ")})
+            def #{name}_name: () -> ::String
           RBS
 
           type_methods = types.map do |type|
             <<~RBS
               def #{type.underscore}?: () -> bool
-              def #{type.underscore}: () -> #{type}?
+              def #{type.underscore}: () -> ::#{type}?
               def #{type.underscore}_id: () -> #{primary_key_type_for(type)}?
             RBS
           end.join("\n")

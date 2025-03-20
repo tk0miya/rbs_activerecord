@@ -52,9 +52,9 @@ RSpec.describe RbsActiverecord::Generator::Enum::InstanceMethods do
         it "generates RBS" do
           expect(subject).to eq <<~RBS
             module GeneratedEnumInstanceMethods
-              def status: () -> String
+              def status: () -> ::String
 
-              def status=: (String) -> String
+              def status=: (::String) -> ::String
                          | (::Integer) -> ::Integer
 
               def active!: () -> void
@@ -99,9 +99,9 @@ RSpec.describe RbsActiverecord::Generator::Enum::InstanceMethods do
           it "generates RBS" do
             expect(subject).to eq <<~RBS
               module GeneratedEnumInstanceMethods
-                def status: () -> String
+                def status: () -> ::String
 
-                def status=: (String) -> String
+                def status=: (::String) -> ::String
                            | (::Integer) -> ::Integer
 
                 def active!: () -> void
@@ -130,9 +130,9 @@ RSpec.describe RbsActiverecord::Generator::Enum::InstanceMethods do
           it "generates RBS" do
             expect(subject).to eq <<~RBS
               module GeneratedEnumInstanceMethods
-                def status: () -> String
+                def status: () -> ::String
 
-                def status=: (String) -> String
+                def status=: (::String) -> ::String
                            | (::Integer) -> ::Integer
 
                 def status_active!: () -> void
@@ -159,9 +159,9 @@ RSpec.describe RbsActiverecord::Generator::Enum::InstanceMethods do
           it "generates RBS" do
             expect(subject).to eq <<~RBS
               module GeneratedEnumInstanceMethods
-                def status: () -> String
+                def status: () -> ::String
 
-                def status=: (String) -> String
+                def status=: (::String) -> ::String
                            | (::Integer) -> ::Integer
 
                 def prefix_active!: () -> void
@@ -188,9 +188,9 @@ RSpec.describe RbsActiverecord::Generator::Enum::InstanceMethods do
           it "generates RBS" do
             expect(subject).to eq <<~RBS
               module GeneratedEnumInstanceMethods
-                def status: () -> String
+                def status: () -> ::String
 
-                def status=: (String) -> String
+                def status=: (::String) -> ::String
                            | (::Integer) -> ::Integer
 
                 def prefix_active!: () -> void
@@ -219,9 +219,9 @@ RSpec.describe RbsActiverecord::Generator::Enum::InstanceMethods do
           it "generates RBS" do
             expect(subject).to eq <<~RBS
               module GeneratedEnumInstanceMethods
-                def status: () -> String
+                def status: () -> ::String
 
-                def status=: (String) -> String
+                def status=: (::String) -> ::String
                            | (::Integer) -> ::Integer
 
                 def active_status!: () -> void
@@ -248,9 +248,9 @@ RSpec.describe RbsActiverecord::Generator::Enum::InstanceMethods do
           it "generates RBS" do
             expect(subject).to eq <<~RBS
               module GeneratedEnumInstanceMethods
-                def status: () -> String
+                def status: () -> ::String
 
-                def status=: (String) -> String
+                def status=: (::String) -> ::String
                            | (::Integer) -> ::Integer
 
                 def active_suffix!: () -> void
@@ -277,9 +277,9 @@ RSpec.describe RbsActiverecord::Generator::Enum::InstanceMethods do
           it "generates RBS" do
             expect(subject).to eq <<~RBS
               module GeneratedEnumInstanceMethods
-                def status: () -> String
+                def status: () -> ::String
 
-                def status=: (String) -> String
+                def status=: (::String) -> ::String
                            | (::Integer) -> ::Integer
 
                 def active_suffix!: () -> void
@@ -307,9 +307,9 @@ RSpec.describe RbsActiverecord::Generator::Enum::InstanceMethods do
         it "generates RBS" do
           expect(subject).to eq <<~RBS
             module GeneratedEnumInstanceMethods
-              def status: () -> String
+              def status: () -> ::String
 
-              def status=: (String) -> String
+              def status=: (::String) -> ::String
                          | (::Integer) -> ::Integer
 
               def active!: () -> void
@@ -336,9 +336,9 @@ RSpec.describe RbsActiverecord::Generator::Enum::InstanceMethods do
         it "generates RBS" do
           expect(subject).to eq <<~RBS
             module GeneratedEnumInstanceMethods
-              def timezone: () -> String
+              def timezone: () -> ::String
 
-              def timezone=: (String) -> String
+              def timezone=: (::String) -> ::String
                            | (::String) -> ::String
 
               def America_Los_Angels!: () -> void

@@ -36,7 +36,7 @@ module RbsActiverecord
 
           return "" unless name
 
-          "def #{name.to_s.pluralize}: () -> ActiveSupport::HashWithIndifferentAccess[Symbol, untyped]"
+          "def #{name.to_s.pluralize}: () -> ::ActiveSupport::HashWithIndifferentAccess[Symbol, untyped]"
         end
       end
     end

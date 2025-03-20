@@ -23,13 +23,13 @@ module RbsActiverecord
       def methods #: String
         secure_password_attributes.map do |name|
           <<~RBS
-            attr_reader #{name}: String?
-            attr_accessor #{name}_confirmation: String
-            attr_accessor #{name}_challenge: String
+            attr_reader #{name}: ::String?
+            attr_accessor #{name}_confirmation: ::String
+            attr_accessor #{name}_challenge: ::String
 
-            def #{name}=: (String) -> String
-            def #{name}_salt: () -> String
-            def authenticate_#{name}: (String) -> (instance | false)
+            def #{name}=: (::String) -> ::String
+            def #{name}_salt: () -> ::String
+            def authenticate_#{name}: (::String) -> (instance | false)
 
             #{"alias authenticate authenticate_password" if name == "password"}
           RBS
