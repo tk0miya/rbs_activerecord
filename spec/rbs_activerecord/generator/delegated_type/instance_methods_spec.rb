@@ -57,19 +57,19 @@ RSpec.describe RbsActiverecord::Generator::DelegatedType::InstanceMethods do
       it "generates RBS" do
         expect(subject).to eq <<~RBS
           module GeneratedDelegatedTypeInstanceMethods
-            def entryable_class: () -> (Message | Comment)
+            def entryable_class: () -> (::Message | ::Comment)
 
-            def entryable_name: () -> String
+            def entryable_name: () -> ::String
 
             def message?: () -> bool
 
-            def message: () -> Message?
+            def message: () -> ::Message?
 
             def message_id: () -> ::Integer?
 
             def comment?: () -> bool
 
-            def comment: () -> Comment?
+            def comment: () -> ::Comment?
 
             def comment_id: () -> ::String?
           end

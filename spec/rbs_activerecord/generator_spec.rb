@@ -202,19 +202,19 @@ RSpec.describe RbsActiverecord::Generator do
             end
 
             module GeneratedDelegatedTypeInstanceMethods
-              def entryable_class: () -> (Message | Comment)
+              def entryable_class: () -> (::Message | ::Comment)
 
-              def entryable_name: () -> String
+              def entryable_name: () -> ::String
 
               def message?: () -> bool
 
-              def message: () -> Message?
+              def message: () -> ::Message?
 
               def message_id: () -> ::Integer?
 
               def comment?: () -> bool
 
-              def comment: () -> Comment?
+              def comment: () -> ::Comment?
 
               def comment_id: () -> ::Integer?
             end
