@@ -186,17 +186,17 @@ RSpec.describe RbsActiverecord::Generator do
                        | (*::Symbol | ::String | ::Arel::Nodes::t columns) -> ::Array[::Array[untyped]]
             end
             module GeneratedSecurePasswordMethods
-              attr_reader password: String?
+              attr_reader password: ::String?
 
-              attr_accessor password_confirmation: String
+              attr_accessor password_confirmation: ::String
 
-              attr_accessor password_challenge: String
+              attr_accessor password_challenge: ::String
 
-              def password=: (String) -> String
+              def password=: (::String) -> ::String
 
-              def password_salt: () -> String
+              def password_salt: () -> ::String
 
-              def authenticate_password: (String) -> (instance | false)
+              def authenticate_password: (::String) -> (instance | false)
 
               alias authenticate authenticate_password
             end

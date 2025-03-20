@@ -28,17 +28,17 @@ RSpec.describe RbsActiverecord::Generator::SecurePassword do
         it "generates RBS" do
           expect(subject).to eq(<<~RBS)
             module GeneratedSecurePasswordMethods
-              attr_reader password: String?
+              attr_reader password: ::String?
 
-              attr_accessor password_confirmation: String
+              attr_accessor password_confirmation: ::String
 
-              attr_accessor password_challenge: String
+              attr_accessor password_challenge: ::String
 
-              def password=: (String) -> String
+              def password=: (::String) -> ::String
 
-              def password_salt: () -> String
+              def password_salt: () -> ::String
 
-              def authenticate_password: (String) -> (instance | false)
+              def authenticate_password: (::String) -> (instance | false)
 
               alias authenticate authenticate_password
             end
@@ -56,17 +56,17 @@ RSpec.describe RbsActiverecord::Generator::SecurePassword do
         it "generates RBS" do
           expect(subject).to eq(<<~RBS)
             module GeneratedSecurePasswordMethods
-              attr_reader recovery_password: String?
+              attr_reader recovery_password: ::String?
 
-              attr_accessor recovery_password_confirmation: String
+              attr_accessor recovery_password_confirmation: ::String
 
-              attr_accessor recovery_password_challenge: String
+              attr_accessor recovery_password_challenge: ::String
 
-              def recovery_password=: (String) -> String
+              def recovery_password=: (::String) -> ::String
 
-              def recovery_password_salt: () -> String
+              def recovery_password_salt: () -> ::String
 
-              def authenticate_recovery_password: (String) -> (instance | false)
+              def authenticate_recovery_password: (::String) -> (instance | false)
             end
           RBS
         end
@@ -83,29 +83,29 @@ RSpec.describe RbsActiverecord::Generator::SecurePassword do
         it "generates RBS" do
           expect(subject).to eq(<<~RBS)
             module GeneratedSecurePasswordMethods
-              attr_reader recovery_password: String?
+              attr_reader recovery_password: ::String?
 
-              attr_accessor recovery_password_confirmation: String
+              attr_accessor recovery_password_confirmation: ::String
 
-              attr_accessor recovery_password_challenge: String
+              attr_accessor recovery_password_challenge: ::String
 
-              def recovery_password=: (String) -> String
+              def recovery_password=: (::String) -> ::String
 
-              def recovery_password_salt: () -> String
+              def recovery_password_salt: () -> ::String
 
-              def authenticate_recovery_password: (String) -> (instance | false)
+              def authenticate_recovery_password: (::String) -> (instance | false)
 
-              attr_reader password: String?
+              attr_reader password: ::String?
 
-              attr_accessor password_confirmation: String
+              attr_accessor password_confirmation: ::String
 
-              attr_accessor password_challenge: String
+              attr_accessor password_challenge: ::String
 
-              def password=: (String) -> String
+              def password=: (::String) -> ::String
 
-              def password_salt: () -> String
+              def password_salt: () -> ::String
 
-              def authenticate_password: (String) -> (instance | false)
+              def authenticate_password: (::String) -> (instance | false)
 
               alias authenticate authenticate_password
             end
