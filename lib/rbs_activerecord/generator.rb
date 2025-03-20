@@ -19,6 +19,8 @@ module RbsActiverecord
 
     def generate #: String  # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
       format <<~RBS
+        # resolve-type-names: false
+
         #{header}
           #{Attributes.new(model).generate}
           #{Associations.new(model).generate}
