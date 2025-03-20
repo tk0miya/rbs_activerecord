@@ -238,7 +238,7 @@ RSpec.describe RbsActiverecord::Generator do
               def archived?: () -> bool
             end
             module GeneratedEnumMappingMethods
-              def statuses: () -> ActiveSupport::HashWithIndifferentAccess[Symbol, untyped]
+              def statuses: () -> ::ActiveSupport::HashWithIndifferentAccess[Symbol, untyped]
             end
             module GeneratedEnumScopeMethods[Relation]
               def active: () -> Relation

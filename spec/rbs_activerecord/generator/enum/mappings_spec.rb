@@ -46,7 +46,7 @@ RSpec.describe RbsActiverecord::Generator::Enum::Mappings do
         it "generates RBS" do
           expect(subject).to eq <<~RBS
             module GeneratedEnumMappingMethods
-              def statuses: () -> ActiveSupport::HashWithIndifferentAccess[Symbol, untyped]
+              def statuses: () -> ::ActiveSupport::HashWithIndifferentAccess[Symbol, untyped]
             end
           RBS
         end
