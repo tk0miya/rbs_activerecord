@@ -36,46 +36,46 @@ module RbsActiverecord
           #{Scopes.new(model, declarations).generate}
 
           module GeneratedCollectionProxyInstanceMethods[Model, PrimaryKey]
-            def build: (?ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> Model
-                     | (Array[ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> Array[Model]
-            def create: (?ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> Model
-                      | (Array[ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> Array[Model]
-            def create!: (?ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> Model
-                       | (Array[ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> Array[Model]
-            def reload: () -> Array[Model]
-            def replace: (Array[Model]) -> void
-            def delete: (*Model | PrimaryKey) -> Array[Model]
-            def destroy: (*Model | PrimaryKey) -> Array[Model]
-            def <<: (*Model | Array[Model]) -> self
-            def prepend: (*Model | Array[Model]) -> self
+            def build: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> Model
+                     | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[Model]
+            def create: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> Model
+                      | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[Model]
+            def create!: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> Model
+                       | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[Model]
+            def reload: () -> ::Array[Model]
+            def replace: (::Array[Model]) -> void
+            def delete: (*Model | PrimaryKey) -> ::Array[Model]
+            def destroy: (*Model | PrimaryKey) -> ::Array[Model]
+            def <<: (*Model | ::Array[Model]) -> self
+            def prepend: (*Model | ::Array[Model]) -> self
           end
 
           class ActiveRecord_Relation < ::ActiveRecord::Relation
-            include ::Enumerable[#{klass_name}]
-            include ::ActiveRecord::Relation::Methods[#{klass_name}, #{primary_key_type}]
+            include ::Enumerable[::#{klass_name}]
+            include ::ActiveRecord::Relation::Methods[::#{klass_name}, #{primary_key_type}]
             #{relation_methods}
-            include GeneratedPluckOverloads
+            include ::#{klass_name}::GeneratedPluckOverloads
           end
 
           class ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
-            include ::Enumerable[#{klass_name}]
-            include ::ActiveRecord::Relation::Methods[#{klass_name}, #{primary_key_type}]
+            include ::Enumerable[::#{klass_name}]
+            include ::ActiveRecord::Relation::Methods[::#{klass_name}, #{primary_key_type}]
             #{relation_methods}
-            include GeneratedPluckOverloads
-            include GeneratedCollectionProxyInstanceMethods[#{klass_name}, #{primary_key_type}]
+            include ::#{klass_name}::GeneratedPluckOverloads
+            include ::#{klass_name}::GeneratedCollectionProxyInstanceMethods[::#{klass_name}, #{primary_key_type}]
           end
 
-          extend ::ActiveRecord::Base::ClassMethods[#{klass_name}, #{klass_name}::ActiveRecord_Relation, #{primary_key_type}]
+          extend ::ActiveRecord::Base::ClassMethods[::#{klass_name}, ::#{klass_name}::ActiveRecord_Relation, #{primary_key_type}]
           #{scope_class_methods}
-          extend GeneratedEnumMappingMethods
-          extend GeneratedPluckOverloads
+          extend ::#{klass_name}::GeneratedEnumMappingMethods
+          extend ::#{klass_name}::GeneratedPluckOverloads
 
-          include GeneratedActiveStorageInstanceMethods
-          include GeneratedAttributeMethods
-          include GeneratedAssociationMethods
-          include GeneratedDelegatedTypeInstanceMethods
-          include GeneratedEnumInstanceMethods
-          include GeneratedSecurePasswordMethods
+          include ::#{klass_name}::GeneratedActiveStorageInstanceMethods
+          include ::#{klass_name}::GeneratedAttributeMethods
+          include ::#{klass_name}::GeneratedAssociationMethods
+          include ::#{klass_name}::GeneratedDelegatedTypeInstanceMethods
+          include ::#{klass_name}::GeneratedEnumInstanceMethods
+          include ::#{klass_name}::GeneratedSecurePasswordMethods
         #{footer}
       RBS
     end
@@ -109,7 +109,7 @@ module RbsActiverecord
         case mod_object
         when Class
           superclass = mod_object.superclass
-          superclass_name = superclass&.name || "Object"
+          superclass_name = superclass&.name || "::Object"
 
           "class #{mod_name} < ::#{superclass_name}"
         when Module
@@ -124,37 +124,37 @@ module RbsActiverecord
       "end\n" * klass.module_parents.size
     end
 
-    def relation_methods #: String
+    def relation_methods #: String  # rubocop:disable Metrics/AbcSize
       methods = <<~RBS
-        include GeneratedActiveStorageScopeMethods[ActiveRecord_Relation]
-        include GeneratedDelegatedTypeScopeMethods[ActiveRecord_Relation]
-        include GeneratedEnumScopeMethods[ActiveRecord_Relation]
-        include GeneratedScopeMethods[ActiveRecord_Relation]
+        include ::#{klass_name}::GeneratedActiveStorageScopeMethods[::#{klass_name}::ActiveRecord_Relation]
+        include ::#{klass_name}::GeneratedDelegatedTypeScopeMethods[::#{klass_name}::ActiveRecord_Relation]
+        include ::#{klass_name}::GeneratedEnumScopeMethods[::#{klass_name}::ActiveRecord_Relation]
+        include ::#{klass_name}::GeneratedScopeMethods[::#{klass_name}::ActiveRecord_Relation]
       RBS
       model.parents.each do |cls|
         methods += <<~RBS.strip
-          include ::#{cls.name}::GeneratedActiveStorageScopeMethods[ActiveRecord_Relation]
-          include ::#{cls.name}::GeneratedDelegatedTypeScopeMethods[ActiveRecord_Relation]
-          include ::#{cls.name}::GeneratedEnumScopeMethods[ActiveRecord_Relation]
-          include ::#{cls.name}::GeneratedScopeMethods[ActiveRecord_Relation]
+          include ::#{cls.name}::GeneratedActiveStorageScopeMethods[::#{klass_name}::ActiveRecord_Relation]
+          include ::#{cls.name}::GeneratedDelegatedTypeScopeMethods[::#{klass_name}::ActiveRecord_Relation]
+          include ::#{cls.name}::GeneratedEnumScopeMethods[::#{klass_name}::ActiveRecord_Relation]
+          include ::#{cls.name}::GeneratedScopeMethods[::#{klass_name}::ActiveRecord_Relation]
         RBS
       end
       methods
     end
 
-    def scope_class_methods #: String
+    def scope_class_methods #: String  # rubocop:disable Metrics/AbcSize
       methods = <<~RBS
-        extend GeneratedActiveStorageScopeMethods[ActiveRecord_Relation]
-        extend GeneratedDelegatedTypeScopeMethods[ActiveRecord_Relation]
-        extend GeneratedEnumScopeMethods[ActiveRecord_Relation]
-        extend GeneratedScopeMethods[ActiveRecord_Relation]
+        extend ::#{klass_name}::GeneratedActiveStorageScopeMethods[::#{klass_name}::ActiveRecord_Relation]
+        extend ::#{klass_name}::GeneratedDelegatedTypeScopeMethods[::#{klass_name}::ActiveRecord_Relation]
+        extend ::#{klass_name}::GeneratedEnumScopeMethods[::#{klass_name}::ActiveRecord_Relation]
+        extend ::#{klass_name}::GeneratedScopeMethods[::#{klass_name}::ActiveRecord_Relation]
       RBS
       model.parents.each do |cls|
         methods += <<~RBS.strip
-          extend ::#{cls.name}::GeneratedActiveStorageScopeMethods[ActiveRecord_Relation]
-          extend ::#{cls.name}::GeneratedDelegatedTypeScopeMethods[ActiveRecord_Relation]
-          extend ::#{cls.name}::GeneratedEnumScopeMethods[ActiveRecord_Relation]
-          extend ::#{cls.name}::GeneratedScopeMethods[ActiveRecord_Relation]
+          extend ::#{cls.name}::GeneratedActiveStorageScopeMethods[::#{klass_name}::ActiveRecord_Relation]
+          extend ::#{cls.name}::GeneratedDelegatedTypeScopeMethods[::#{klass_name}::ActiveRecord_Relation]
+          extend ::#{cls.name}::GeneratedEnumScopeMethods[::#{klass_name}::ActiveRecord_Relation]
+          extend ::#{cls.name}::GeneratedScopeMethods[::#{klass_name}::ActiveRecord_Relation]
         RBS
       end
       methods

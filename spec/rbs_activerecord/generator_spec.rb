@@ -254,75 +254,75 @@ RSpec.describe RbsActiverecord::Generator do
             end
 
             module GeneratedCollectionProxyInstanceMethods[Model, PrimaryKey]
-              def build: (?ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> Model
-                       | (Array[ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> Array[Model]
+              def build: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> Model
+                       | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[Model]
 
-              def create: (?ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> Model
-                        | (Array[ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> Array[Model]
+              def create: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> Model
+                        | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[Model]
 
-              def create!: (?ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> Model
-                         | (Array[ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> Array[Model]
+              def create!: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> Model
+                         | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[Model]
 
-              def reload: () -> Array[Model]
+              def reload: () -> ::Array[Model]
 
-              def replace: (Array[Model]) -> void
+              def replace: (::Array[Model]) -> void
 
-              def delete: (*Model | PrimaryKey) -> Array[Model]
+              def delete: (*Model | PrimaryKey) -> ::Array[Model]
 
-              def destroy: (*Model | PrimaryKey) -> Array[Model]
+              def destroy: (*Model | PrimaryKey) -> ::Array[Model]
 
-              def <<: (*Model | Array[Model]) -> self
+              def <<: (*Model | ::Array[Model]) -> self
 
-              def prepend: (*Model | Array[Model]) -> self
+              def prepend: (*Model | ::Array[Model]) -> self
             end
 
             class ActiveRecord_Relation < ::ActiveRecord::Relation
-              include ::Enumerable[Foo]
-              include ::ActiveRecord::Relation::Methods[Foo, ::Integer]
-              include GeneratedActiveStorageScopeMethods[ActiveRecord_Relation]
-              include GeneratedDelegatedTypeScopeMethods[ActiveRecord_Relation]
-              include GeneratedEnumScopeMethods[ActiveRecord_Relation]
-              include GeneratedScopeMethods[ActiveRecord_Relation]
-              include ::Parent::GeneratedActiveStorageScopeMethods[ActiveRecord_Relation]
-              include ::Parent::GeneratedDelegatedTypeScopeMethods[ActiveRecord_Relation]
-              include ::Parent::GeneratedEnumScopeMethods[ActiveRecord_Relation]
-              include ::Parent::GeneratedScopeMethods[ActiveRecord_Relation]
-              include GeneratedPluckOverloads
+              include ::Enumerable[::Foo]
+              include ::ActiveRecord::Relation::Methods[::Foo, ::Integer]
+              include ::Foo::GeneratedActiveStorageScopeMethods[::Foo::ActiveRecord_Relation]
+              include ::Foo::GeneratedDelegatedTypeScopeMethods[::Foo::ActiveRecord_Relation]
+              include ::Foo::GeneratedEnumScopeMethods[::Foo::ActiveRecord_Relation]
+              include ::Foo::GeneratedScopeMethods[::Foo::ActiveRecord_Relation]
+              include ::Parent::GeneratedActiveStorageScopeMethods[::Foo::ActiveRecord_Relation]
+              include ::Parent::GeneratedDelegatedTypeScopeMethods[::Foo::ActiveRecord_Relation]
+              include ::Parent::GeneratedEnumScopeMethods[::Foo::ActiveRecord_Relation]
+              include ::Parent::GeneratedScopeMethods[::Foo::ActiveRecord_Relation]
+              include ::Foo::GeneratedPluckOverloads
             end
 
             class ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
-              include ::Enumerable[Foo]
-              include ::ActiveRecord::Relation::Methods[Foo, ::Integer]
-              include GeneratedActiveStorageScopeMethods[ActiveRecord_Relation]
-              include GeneratedDelegatedTypeScopeMethods[ActiveRecord_Relation]
-              include GeneratedEnumScopeMethods[ActiveRecord_Relation]
-              include GeneratedScopeMethods[ActiveRecord_Relation]
-              include ::Parent::GeneratedActiveStorageScopeMethods[ActiveRecord_Relation]
-              include ::Parent::GeneratedDelegatedTypeScopeMethods[ActiveRecord_Relation]
-              include ::Parent::GeneratedEnumScopeMethods[ActiveRecord_Relation]
-              include ::Parent::GeneratedScopeMethods[ActiveRecord_Relation]
-              include GeneratedPluckOverloads
-              include GeneratedCollectionProxyInstanceMethods[Foo, ::Integer]
+              include ::Enumerable[::Foo]
+              include ::ActiveRecord::Relation::Methods[::Foo, ::Integer]
+              include ::Foo::GeneratedActiveStorageScopeMethods[::Foo::ActiveRecord_Relation]
+              include ::Foo::GeneratedDelegatedTypeScopeMethods[::Foo::ActiveRecord_Relation]
+              include ::Foo::GeneratedEnumScopeMethods[::Foo::ActiveRecord_Relation]
+              include ::Foo::GeneratedScopeMethods[::Foo::ActiveRecord_Relation]
+              include ::Parent::GeneratedActiveStorageScopeMethods[::Foo::ActiveRecord_Relation]
+              include ::Parent::GeneratedDelegatedTypeScopeMethods[::Foo::ActiveRecord_Relation]
+              include ::Parent::GeneratedEnumScopeMethods[::Foo::ActiveRecord_Relation]
+              include ::Parent::GeneratedScopeMethods[::Foo::ActiveRecord_Relation]
+              include ::Foo::GeneratedPluckOverloads
+              include ::Foo::GeneratedCollectionProxyInstanceMethods[::Foo, ::Integer]
             end
 
-            extend ::ActiveRecord::Base::ClassMethods[Foo, Foo::ActiveRecord_Relation, ::Integer]
-            extend GeneratedActiveStorageScopeMethods[ActiveRecord_Relation]
-            extend GeneratedDelegatedTypeScopeMethods[ActiveRecord_Relation]
-            extend GeneratedEnumScopeMethods[ActiveRecord_Relation]
-            extend GeneratedScopeMethods[ActiveRecord_Relation]
-            extend ::Parent::GeneratedActiveStorageScopeMethods[ActiveRecord_Relation]
-            extend ::Parent::GeneratedDelegatedTypeScopeMethods[ActiveRecord_Relation]
-            extend ::Parent::GeneratedEnumScopeMethods[ActiveRecord_Relation]
-            extend ::Parent::GeneratedScopeMethods[ActiveRecord_Relation]
-            extend GeneratedEnumMappingMethods
-            extend GeneratedPluckOverloads
+            extend ::ActiveRecord::Base::ClassMethods[::Foo, ::Foo::ActiveRecord_Relation, ::Integer]
+            extend ::Foo::GeneratedActiveStorageScopeMethods[::Foo::ActiveRecord_Relation]
+            extend ::Foo::GeneratedDelegatedTypeScopeMethods[::Foo::ActiveRecord_Relation]
+            extend ::Foo::GeneratedEnumScopeMethods[::Foo::ActiveRecord_Relation]
+            extend ::Foo::GeneratedScopeMethods[::Foo::ActiveRecord_Relation]
+            extend ::Parent::GeneratedActiveStorageScopeMethods[::Foo::ActiveRecord_Relation]
+            extend ::Parent::GeneratedDelegatedTypeScopeMethods[::Foo::ActiveRecord_Relation]
+            extend ::Parent::GeneratedEnumScopeMethods[::Foo::ActiveRecord_Relation]
+            extend ::Parent::GeneratedScopeMethods[::Foo::ActiveRecord_Relation]
+            extend ::Foo::GeneratedEnumMappingMethods
+            extend ::Foo::GeneratedPluckOverloads
 
-            include GeneratedActiveStorageInstanceMethods
-            include GeneratedAttributeMethods
-            include GeneratedAssociationMethods
-            include GeneratedDelegatedTypeInstanceMethods
-            include GeneratedEnumInstanceMethods
-            include GeneratedSecurePasswordMethods
+            include ::Foo::GeneratedActiveStorageInstanceMethods
+            include ::Foo::GeneratedAttributeMethods
+            include ::Foo::GeneratedAssociationMethods
+            include ::Foo::GeneratedDelegatedTypeInstanceMethods
+            include ::Foo::GeneratedEnumInstanceMethods
+            include ::Foo::GeneratedSecurePasswordMethods
           end
         RBS
       end
@@ -346,9 +346,9 @@ RSpec.describe RbsActiverecord::Generator do
       end
 
       it "generates RBS" do
-        expect(subject).to include "include ::ActiveRecord::Relation::Methods[Foo, [ ::Integer | ::String ]]"
+        expect(subject).to include "include ::ActiveRecord::Relation::Methods[::Foo, [ ::Integer | ::String ]]"
         expect(subject).to include(
-          "extend ::ActiveRecord::Base::ClassMethods[Foo, Foo::ActiveRecord_Relation, [ ::Integer | ::String ]]"
+          "extend ::ActiveRecord::Base::ClassMethods[::Foo, ::Foo::ActiveRecord_Relation, [ ::Integer | ::String ]]"
         )
       end
     end
