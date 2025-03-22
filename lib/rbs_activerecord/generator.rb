@@ -104,18 +104,16 @@ module RbsActiverecord
     end
 
     def header #: String
-      namespace = +""
-      klass_name.split("::").map do |mod_name|
-        namespace += "::#{mod_name}"
-        mod_object = Object.const_get(namespace)
+      klass_to_names(klass).map do |name|
+        mod_object = Object.const_get(name.to_s)
         case mod_object
         when Class
           superclass = mod_object.superclass
           superclass_name = superclass&.name || "::Object"
 
-          "class #{mod_name} < ::#{superclass_name}"
+          "class #{name} < ::#{superclass_name}"
         when Module
-          "module #{mod_name}"
+          "module #{name}"
         else
           raise "unreachable"
         end
