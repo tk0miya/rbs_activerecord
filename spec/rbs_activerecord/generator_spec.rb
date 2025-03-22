@@ -35,7 +35,7 @@ RSpec.describe RbsActiverecord::Generator do
         expect(subject).to eq <<~RBS
           # resolve-type-names: false
 
-          class Foo < ::Parent
+          class ::Foo < ::Parent
             module GeneratedAttributeMethods
               def id: () -> ::Integer
 

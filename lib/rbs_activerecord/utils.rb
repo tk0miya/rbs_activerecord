@@ -12,6 +12,19 @@ module RbsActiverecord
       end.string
     end
 
+    # @rbs klass_name: singleton(Object)
+    def klass_to_names(klass) #: Array[RBS::TypeName]
+      type_name = RBS::TypeName.parse("::#{klass.name}")
+
+      names = [type_name] #: Array[RBS::TypeName]
+      namespace = type_name.namespace
+      until namespace.empty?
+        names << namespace.to_type_name
+        namespace = namespace.parent
+      end
+      names.reverse
+    end
+
     # @rbs klass: singleton(ActiveRecord::Base)
     def primary_key_type_for(klass) #: String  # rubocop:disable Metrics/AbcSize
       case klass.primary_key

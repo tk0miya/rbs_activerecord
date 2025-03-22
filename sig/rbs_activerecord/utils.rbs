@@ -5,6 +5,9 @@ module RbsActiverecord
     # @rbs str: String
     def format: (String str) -> String
 
+    # @rbs klass_name: singleton(Object)
+    def klass_to_names: (untyped klass) -> Array[RBS::TypeName]
+
     # @rbs klass: singleton(ActiveRecord::Base)
     def primary_key_type_for: (singleton(ActiveRecord::Base) klass) -> String
 
