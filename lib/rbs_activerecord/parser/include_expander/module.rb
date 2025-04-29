@@ -31,10 +31,12 @@ module RbsActiverecord
         def declarations #: Array[Prism::CallNode]
           @declarations ||= begin
             path = source_location
-            return [] unless path && File.exist?(path)
-
-            declarations = Parser.parse_file(path)
-            declarations.fetch(name, [])
+            if path && File.exist?(path)
+              declarations = Parser.parse_file(path)
+              declarations.fetch(name, [])
+            else
+              []
+            end
           end
         end
 
