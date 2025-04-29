@@ -9,12 +9,15 @@ module RbsActiverecord
     attr_reader :klass #: singleton(ActiveRecord::Base)
     attr_reader :klass_name #: String
     attr_reader :model #: RbsActiverecord::Model
+    attr_reader :pure_accessors #: bool
 
     # @rbs klass: singleton(ActiveRecord::Base)
-    def initialize(klass) #: void
+    # @rbs pure_accessors: bool
+    def initialize(klass, pure_accessors: false) #: void
       @klass = klass
       @klass_name = klass.name || ""
       @model = Model.new(klass)
+      @pure_accessors = pure_accessors
     end
 
     def generate #: String  # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
@@ -22,7 +25,7 @@ module RbsActiverecord
         # resolve-type-names: false
 
         #{header}
-          #{Attributes.new(model).generate}
+          #{Attributes.new(model, pure_accessors:).generate}
           #{Associations.new(model).generate}
 
           #{ActiveStorage::InstanceMethods.new(model).generate}

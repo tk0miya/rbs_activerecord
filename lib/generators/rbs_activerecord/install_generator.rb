@@ -11,7 +11,10 @@ module RbsActiverecord
         begin
           require "rbs_activerecord/rake_task"
 
-          RbsActiverecord::RakeTask.new
+          RbsActiverecord::RakeTask.new do |task|
+            # Make accessor methods for columns pure.
+            # task.pure_accessors = true
+          end
         rescue LoadError
           # failed to load rbs_activerecord. Skip to load rbs_activerecord tasks.
         end

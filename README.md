@@ -23,6 +23,12 @@ Run `rbs:activerecord:setup` task:
 Then rbs_activerecord will scan your code and generate RBS files into
 `sig/activerecord` directory.
 
+## Configurations
+
+You can change the behavior of the generator via rbs_activerecord.rake:
+
+* pure_accessors: Make accessor methods for columns pure.  It helps [Type narrowing](https://github.com/soutaro/steep/wiki/Release-Note-1.1#type-narrowing-on-method-calls-590).
+
 ## The goal of rbs_activerecord
 
 rbs_activerecord is an experimental project to enhance the type generation for ActiveRecord models.
@@ -43,6 +49,7 @@ Main differences between rbs_activerecord and rbs_rails are:
     * Support extension ActiveRecord from 3rd party gems ([#254](https://github.com/pocke/rbs_rails/pull/254))
         * ex. [kaminari-activerecord](https://github.com/ruby/gem_rbs_collection/pull/725)
     * Support composite primary keys ([#275](https://github.com/pocke/rbs_rails/pull/275))
+    * Support pure_accessors ([#302](https://github.com/pocke/rbs_rails/issues/302))
     * Extend return types of #pluck ([#273](https://github.com/pocke/rbs_rails/pull/273))
     * Override types of CollectionProxy ([#289](https://github.com/pocke/rbs_rails/pull/289))
 * Bug fixes

@@ -10,8 +10,11 @@ module RbsActiverecord
 
     attr_reader model: RbsActiverecord::Model
 
+    attr_reader pure_accessors: bool
+
     # @rbs klass: singleton(ActiveRecord::Base)
-    def initialize: (singleton(ActiveRecord::Base) klass) -> void
+    # @rbs pure_accessors: bool
+    def initialize: (singleton(ActiveRecord::Base) klass, ?pure_accessors: bool) -> void
 
     def generate: () -> String
 
