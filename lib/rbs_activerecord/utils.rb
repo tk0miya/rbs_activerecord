@@ -41,7 +41,7 @@ module RbsActiverecord
     end
 
     # @rbs type: Symbol
-    def sql_type_to_class(type) #: String  # rubocop:disable Metris/CyclomaticComplexity
+    def sql_type_to_class(type) #: String  # rubocop:disable Metrics/CyclomaticComplexity
       case type
       when :integer
         "::Integer"
