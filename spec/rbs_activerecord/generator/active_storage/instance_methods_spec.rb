@@ -59,7 +59,7 @@ RSpec.describe RbsActiverecord::Generator::ActiveStorage::InstanceMethods do
       it "generates RBS" do
         expect(subject).to eq <<~RBS
           module GeneratedActiveStorageInstanceMethods
-            def avatars: () -> ::ActiveStroage::Attached::Many
+            def avatars: () -> ::ActiveStorage::Attached::Many
 
             def avatars=: (untyped) -> untyped
           end

@@ -44,7 +44,7 @@ module RbsActiverecord
             RBS
           when :has_many_attached
             <<~RBS
-              def #{name}: () -> ::ActiveStroage::Attached::Many
+              def #{name}: () -> ::ActiveStorage::Attached::Many
               def #{name}=: (untyped) -> untyped
             RBS
           else
