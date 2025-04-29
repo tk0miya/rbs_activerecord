@@ -16,7 +16,7 @@ RSpec.describe RbsActiverecord::Generator do
       attr_reader :tempdir
 
       before do
-        stub_const "Bar", Class.new(::ActiveRecord::Base)
+        stub_const "Bar", Class.new(ActiveRecord::Base)
         allow(Rails).to receive(:root).and_return(Pathname.new("spec/fixtures/"))
 
         ActiveRecord::Base.connection.create_table :foos

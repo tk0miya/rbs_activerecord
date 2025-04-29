@@ -18,21 +18,21 @@ RSpec.describe RbsActiverecord::Generator::Associations do
     let(:model) { RbsActiverecord::Model.new(klass) }
 
     context "When the model has no associations" do
-      let(:klass) { Class.new(::ActiveRecord::Base) }
+      let(:klass) { Class.new(ActiveRecord::Base) }
 
       it { is_expected.to eq "module GeneratedAssociationMethods\nend\n" }
     end
 
     context "When the model has a has_many association" do
       before do
-        stub_const "Bar", Class.new(::ActiveRecord::Base)
+        stub_const "Bar", Class.new(ActiveRecord::Base)
 
         ActiveRecord::Base.connection.create_table :foos
         ActiveRecord::Base.connection.create_table :bars, id: :string
       end
 
       let(:klass) do
-        Class.new(::ActiveRecord::Base) do
+        Class.new(ActiveRecord::Base) do
           has_many :bars
         end
       end
@@ -54,14 +54,14 @@ RSpec.describe RbsActiverecord::Generator::Associations do
 
     context "When the model has a has_one association" do
       before do
-        stub_const "Bar", Class.new(::ActiveRecord::Base)
+        stub_const "Bar", Class.new(ActiveRecord::Base)
 
         ActiveRecord::Base.connection.create_table :foos
         ActiveRecord::Base.connection.create_table :bars
       end
 
       let(:klass) do
-        Class.new(::ActiveRecord::Base) do
+        Class.new(ActiveRecord::Base) do
           has_one :bar
         end
       end
@@ -93,7 +93,7 @@ RSpec.describe RbsActiverecord::Generator::Associations do
 
     context "When the model has a belongs_to association" do
       before do
-        stub_const "Bar", Class.new(::ActiveRecord::Base)
+        stub_const "Bar", Class.new(ActiveRecord::Base)
 
         ActiveRecord::Base.connection.create_table :foos
         ActiveRecord::Base.connection.create_table :bars
@@ -101,7 +101,7 @@ RSpec.describe RbsActiverecord::Generator::Associations do
 
       context "When the association is default" do
         let(:klass) do
-          Class.new(::ActiveRecord::Base) do
+          Class.new(ActiveRecord::Base) do
             belongs_to :bar
           end
         end
@@ -129,7 +129,7 @@ RSpec.describe RbsActiverecord::Generator::Associations do
 
       context "When the association is optional" do
         let(:klass) do
-          Class.new(::ActiveRecord::Base) do
+          Class.new(ActiveRecord::Base) do
             belongs_to :bar, optional: true
           end
         end
@@ -162,7 +162,7 @@ RSpec.describe RbsActiverecord::Generator::Associations do
 
         context "When the polymorphic owners not found" do
           let(:klass) do
-            Class.new(::ActiveRecord::Base) do
+            Class.new(ActiveRecord::Base) do
               belongs_to :bar, polymorphic: true
             end
           end
@@ -188,12 +188,12 @@ RSpec.describe RbsActiverecord::Generator::Associations do
           end
 
           let(:klass) do
-            Class.new(::ActiveRecord::Base) do
+            Class.new(ActiveRecord::Base) do
               belongs_to :baz, polymorphic: true
             end
           end
           let(:owner) do
-            Class.new(::ActiveRecord::Base) do
+            Class.new(ActiveRecord::Base) do
               has_many :foos, as: :baz
             end
           end
@@ -220,17 +220,17 @@ RSpec.describe RbsActiverecord::Generator::Associations do
           end
 
           let(:klass) do
-            Class.new(::ActiveRecord::Base) do
+            Class.new(ActiveRecord::Base) do
               belongs_to :qux, polymorphic: true
             end
           end
           let(:owner1) do
-            Class.new(::ActiveRecord::Base) do
+            Class.new(ActiveRecord::Base) do
               has_many :foos, as: :qux
             end
           end
           let(:owner2) do
-            Class.new(::ActiveRecord::Base) do
+            Class.new(ActiveRecord::Base) do
               has_many :foos, as: :qux
             end
           end
@@ -254,7 +254,7 @@ RSpec.describe RbsActiverecord::Generator::Associations do
 
     context "When the model has a has_and_belongs_to_many association" do
       before do
-        stub_const "Bar", Class.new(::ActiveRecord::Base)
+        stub_const "Bar", Class.new(ActiveRecord::Base)
         klass.instance_eval do
           has_and_belongs_to_many :bars
         end
@@ -263,7 +263,7 @@ RSpec.describe RbsActiverecord::Generator::Associations do
         ActiveRecord::Base.connection.create_table :bars
       end
 
-      let(:klass) { Class.new(::ActiveRecord::Base) }
+      let(:klass) { Class.new(ActiveRecord::Base) }
 
       it "generates RBS" do
         expect(subject).to eq(<<~RBS)
