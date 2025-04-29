@@ -63,7 +63,7 @@ module RbsActiverecord
         "untyped"
       when :inet
         "::IPAddr"
-      else
+      else # rubocop:disable Lint/DuplicateBranch
         "untyped"
       end
     end

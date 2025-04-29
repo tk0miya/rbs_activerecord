@@ -5,6 +5,9 @@ Layout/LeadingCommentSpace:
   AllowRBSInlineAnnotation: true
   AllowSteepAnnotation: true
 
+Lint/DuplicateBranch:
+  Enabled: true
+
 Metrics/BlockLength:
   Exclude:
     - "spec/**/*.rb"
