@@ -1,4 +1,5 @@
 AllCops:
+  NewCops: enable
   TargetRubyVersion: 3.2
 
 plugins:
@@ -7,9 +8,6 @@ plugins:
 Layout/LeadingCommentSpace:
   AllowRBSInlineAnnotation: true
   AllowSteepAnnotation: true
-
-Lint/DuplicateBranch:
-  Enabled: true
 
 Metrics/BlockLength:
   Exclude:
@@ -34,6 +32,9 @@ RSpec/MultipleMemoizedHelpers:
   Max: 10
 
 Style/Documentation:
+  Enabled: false
+
+Style/RedundantFormat:
   Enabled: false
 
 Style/StringLiterals:

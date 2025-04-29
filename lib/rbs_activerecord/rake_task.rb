@@ -10,7 +10,7 @@ module RbsActiverecord
 
     # @rbs name: Symbol
     # @rbs &block: (RakeTask) -> void
-    def initialize(name = :'rbs:activerecord', &block) #: void
+    def initialize(name = :"rbs:activerecord", &block) #: void
       super()
 
       @name = name
