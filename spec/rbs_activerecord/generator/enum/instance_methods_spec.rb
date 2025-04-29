@@ -23,7 +23,7 @@ RSpec.describe RbsActiverecord::Generator::Enum::InstanceMethods do
     let(:klass) { Class.new(ActiveRecord::Base) }
     let(:declarations) { RbsActiverecord::Parser.parse(code) }
 
-    context "When the model has no enum" do
+    context "when the model has no enum" do
       let(:code) do
         <<~RUBY
           class User < ActiveRecord::Base
@@ -39,8 +39,8 @@ RSpec.describe RbsActiverecord::Generator::Enum::InstanceMethods do
       end
     end
 
-    context "When the model has an enum" do
-      context "When the enum has no options" do
+    context "when the model has an enum" do
+      context "when the enum has no options" do
         let(:code) do
           <<~RUBY
             class User < ActiveRecord::Base
@@ -69,8 +69,8 @@ RSpec.describe RbsActiverecord::Generator::Enum::InstanceMethods do
         end
       end
 
-      context "When the enum has instance_methods option" do
-        context "When the value of instance_methods option is false" do
+      context "when the enum has instance_methods option" do
+        context "when the value of instance_methods option is false" do
           let(:code) do
             <<~RUBY
               class User < ActiveRecord::Base
@@ -87,7 +87,7 @@ RSpec.describe RbsActiverecord::Generator::Enum::InstanceMethods do
           end
         end
 
-        context "When the value of instance_methods option is true" do
+        context "when the value of instance_methods option is true" do
           let(:code) do
             <<~RUBY
               class User < ActiveRecord::Base
@@ -117,8 +117,8 @@ RSpec.describe RbsActiverecord::Generator::Enum::InstanceMethods do
         end
       end
 
-      context "When the enum has prefix option" do
-        context "When the value of prefix option is true" do
+      context "when the enum has prefix option" do
+        context "when the value of prefix option is true" do
           let(:code) do
             <<~RUBY
               class User < ActiveRecord::Base
@@ -147,7 +147,7 @@ RSpec.describe RbsActiverecord::Generator::Enum::InstanceMethods do
           end
         end
 
-        context "When the value of prefix option is a String" do
+        context "when the value of prefix option is a String" do
           let(:code) do
             <<~RUBY
               class User < ActiveRecord::Base
@@ -176,7 +176,7 @@ RSpec.describe RbsActiverecord::Generator::Enum::InstanceMethods do
           end
         end
 
-        context "When the value of prefix option is a Symbol" do
+        context "when the value of prefix option is a Symbol" do
           let(:code) do
             <<~RUBY
               class User < ActiveRecord::Base
@@ -206,8 +206,8 @@ RSpec.describe RbsActiverecord::Generator::Enum::InstanceMethods do
         end
       end
 
-      context "When the enum has suffix option" do
-        context "When the value of suffix option is true" do
+      context "when the enum has suffix option" do
+        context "when the value of suffix option is true" do
           let(:code) do
             <<~RUBY
               class User < ActiveRecord::Base
@@ -236,7 +236,7 @@ RSpec.describe RbsActiverecord::Generator::Enum::InstanceMethods do
           end
         end
 
-        context "When the value of suffix option is a String" do
+        context "when the value of suffix option is a String" do
           let(:code) do
             <<~RUBY
               class User < ActiveRecord::Base
@@ -265,7 +265,7 @@ RSpec.describe RbsActiverecord::Generator::Enum::InstanceMethods do
           end
         end
 
-        context "When the value of suffix option is a Symbol" do
+        context "when the value of suffix option is a Symbol" do
           let(:code) do
             <<~RUBY
               class User < ActiveRecord::Base
@@ -295,7 +295,7 @@ RSpec.describe RbsActiverecord::Generator::Enum::InstanceMethods do
         end
       end
 
-      context "When the enum is defined via keyword args" do
+      context "when the enum is defined via keyword args" do
         let(:code) do
           <<~RUBY
             class User < ActiveRecord::Base
@@ -324,7 +324,7 @@ RSpec.describe RbsActiverecord::Generator::Enum::InstanceMethods do
         end
       end
 
-      context "When the enum contains special characters" do
+      context "when the enum contains special characters" do
         let(:code) do
           <<~RUBY
             class User < ActiveRecord::Base

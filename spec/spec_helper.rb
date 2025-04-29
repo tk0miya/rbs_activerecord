@@ -14,7 +14,7 @@ RSpec.configure do |config|
     end
   end
 
-  config.before(:each) do
+  config.before do
     stub_const("ActiveStorage::Blob", Class.new(ActiveRecord::Base) do
       def self.validate_service_configuration(*)
         # dummy method for testing

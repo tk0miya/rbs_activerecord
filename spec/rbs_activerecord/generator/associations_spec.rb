@@ -17,13 +17,13 @@ RSpec.describe RbsActiverecord::Generator::Associations do
 
     let(:model) { RbsActiverecord::Model.new(klass) }
 
-    context "When the model has no associations" do
+    context "when the model has no associations" do
       let(:klass) { Class.new(ActiveRecord::Base) }
 
       it { is_expected.to eq "module GeneratedAssociationMethods\nend\n" }
     end
 
-    context "When the model has a has_many association" do
+    context "when the model has a has_many association" do
       before do
         stub_const "Bar", Class.new(ActiveRecord::Base)
 
@@ -52,7 +52,7 @@ RSpec.describe RbsActiverecord::Generator::Associations do
       end
     end
 
-    context "When the model has a has_one association" do
+    context "when the model has a has_one association" do
       before do
         stub_const "Bar", Class.new(ActiveRecord::Base)
 
@@ -91,7 +91,7 @@ RSpec.describe RbsActiverecord::Generator::Associations do
       end
     end
 
-    context "When the model has a belongs_to association" do
+    context "when the model has a belongs_to association" do
       before do
         stub_const "Bar", Class.new(ActiveRecord::Base)
 
@@ -99,7 +99,7 @@ RSpec.describe RbsActiverecord::Generator::Associations do
         ActiveRecord::Base.connection.create_table :bars
       end
 
-      context "When the association is default" do
+      context "when the association is default" do
         let(:klass) do
           Class.new(ActiveRecord::Base) do
             belongs_to :bar
@@ -127,7 +127,7 @@ RSpec.describe RbsActiverecord::Generator::Associations do
         end
       end
 
-      context "When the association is optional" do
+      context "when the association is optional" do
         let(:klass) do
           Class.new(ActiveRecord::Base) do
             belongs_to :bar, optional: true
@@ -155,12 +155,12 @@ RSpec.describe RbsActiverecord::Generator::Associations do
         end
       end
 
-      context "When the association is polymorphic" do
+      context "when the association is polymorphic" do
         before do
           stub_const "Foo", klass
         end
 
-        context "When the polymorphic owners not found" do
+        context "when the polymorphic owners not found" do
           let(:klass) do
             Class.new(ActiveRecord::Base) do
               belongs_to :bar, polymorphic: true
@@ -182,7 +182,7 @@ RSpec.describe RbsActiverecord::Generator::Associations do
           end
         end
 
-        context "When the polymorphic owners found (single)" do
+        context "when the polymorphic owners found (single)" do
           before do
             stub_const "Owner", owner
           end
@@ -213,7 +213,7 @@ RSpec.describe RbsActiverecord::Generator::Associations do
           end
         end
 
-        context "When the polymorphic owners found (multiple)" do
+        context "when the polymorphic owners found (multiple)" do
           before do
             stub_const "Owner1", owner1
             stub_const "Owner2", owner2
@@ -224,12 +224,12 @@ RSpec.describe RbsActiverecord::Generator::Associations do
               belongs_to :qux, polymorphic: true
             end
           end
-          let(:owner1) do
+          let(:owner1) do # rubocop:disable RSpec/IndexedLet
             Class.new(ActiveRecord::Base) do
               has_many :foos, as: :qux
             end
           end
-          let(:owner2) do
+          let(:owner2) do # rubocop:disable RSpec/IndexedLet
             Class.new(ActiveRecord::Base) do
               has_many :foos, as: :qux
             end
@@ -252,7 +252,7 @@ RSpec.describe RbsActiverecord::Generator::Associations do
       end
     end
 
-    context "When the model has a has_and_belongs_to_many association" do
+    context "when the model has a has_and_belongs_to_many association" do
       before do
         stub_const "Bar", Class.new(ActiveRecord::Base)
         klass.instance_eval do

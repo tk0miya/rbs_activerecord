@@ -9,11 +9,11 @@ RSpec.describe RbsActiverecord::Parser::IncludeExpander::Module do
     let(:mod) { Module.new }
     let(:name) { "Mod" }
 
-    context "When the module is not a concern" do
+    context "when the module is not a concern" do
       it { is_expected.to be false }
     end
 
-    context "When the module is a concern" do
+    context "when the module is a concern" do
       before do
         mod.extend ActiveSupport::Concern
       end
@@ -28,14 +28,14 @@ RSpec.describe RbsActiverecord::Parser::IncludeExpander::Module do
     let(:mod) { Module.new }
     let(:name) { "Mod" }
 
-    context "When the module is not a concern" do
+    context "when the module is not a concern" do
       it { is_expected.to eq [] }
     end
 
-    context "When the module is a concern" do
+    context "when the module is a concern" do
       before do
         mod.extend ActiveSupport::Concern
-        expect(Object).to receive(:const_source_location).with(name).and_return([filename, 0])
+        allow(Object).to receive(:const_source_location).with(name).and_return([filename, 0])
       end
 
       let(:filename) do
@@ -45,7 +45,7 @@ RSpec.describe RbsActiverecord::Parser::IncludeExpander::Module do
         end
       end
 
-      context "When the module has no included blocks" do
+      context "when the module has no included blocks" do
         let(:content) do
           <<~RUBY
             module Mod
@@ -56,7 +56,7 @@ RSpec.describe RbsActiverecord::Parser::IncludeExpander::Module do
         it { is_expected.to eq [] }
       end
 
-      context "When the module has included blocks" do
+      context "when the module has included blocks" do
         let(:content) do
           <<~RUBY
             module Mod

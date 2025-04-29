@@ -8,6 +8,7 @@ gemspec
 gem "rake", "~> 13.0"
 
 gem "rubocop", "~> 1.74"
+gem "rubocop-rspec"
 
 group :development do
   gem "rbs-inline", require: false

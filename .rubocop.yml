@@ -1,6 +1,9 @@
 AllCops:
   TargetRubyVersion: 3.2
 
+plugins:
+  - rubocop-rspec
+
 Layout/LeadingCommentSpace:
   AllowRBSInlineAnnotation: true
   AllowSteepAnnotation: true
@@ -14,6 +17,21 @@ Metrics/BlockLength:
 
 Metrics/MethodLength:
   Max: 30
+
+RSpec/ExampleLength:
+  Max: 20
+
+RSpec/NamedSubject:
+  Enabled: false
+
+RSpec/NestedGroups:
+  Max: 5
+
+RSpec/MultipleExpectations:
+  Enabled: false
+
+RSpec/MultipleMemoizedHelpers:
+  Max: 10
 
 Style/Documentation:
   Enabled: false

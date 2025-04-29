@@ -17,7 +17,7 @@ RSpec.describe RbsActiverecord::Generator::DelegatedType::InstanceMethods do
     let(:klass) { Class.new(ActiveRecord::Base) }
     let(:declarations) { RbsActiverecord::Parser.parse(code) }
 
-    context "When the model has no delegated_types" do
+    context "when the model has no delegated_types" do
       let(:code) do
         <<~RUBY
           class User < ActiveRecord::Base
@@ -33,7 +33,7 @@ RSpec.describe RbsActiverecord::Generator::DelegatedType::InstanceMethods do
       end
     end
 
-    context "When the model has an delegated_type" do
+    context "when the model has an delegated_type" do
       before do
         stub_const "Message", message
         stub_const "Comment", comment

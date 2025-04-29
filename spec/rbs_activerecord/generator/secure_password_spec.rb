@@ -11,14 +11,14 @@ RSpec.describe RbsActiverecord::Generator::SecurePassword do
 
     let(:model) { RbsActiverecord::Model.new(klass) }
 
-    context "When the model does not have secure password" do
+    context "when the model does not have secure password" do
       let(:klass) { Class.new(ActiveRecord::Base) }
 
       it { is_expected.to eq "module GeneratedSecurePasswordMethods\nend\n" }
     end
 
-    context "When the model has secure password" do
-      context "When the column of secure password is password_digest" do
+    context "when the model has secure password" do
+      context "when the column of secure password is password_digest" do
         let(:klass) do
           Class.new(ActiveRecord::Base) do
             has_secure_password
@@ -46,7 +46,7 @@ RSpec.describe RbsActiverecord::Generator::SecurePassword do
         end
       end
 
-      context "When the column of secure password is not password_digest" do
+      context "when the column of secure password is not password_digest" do
         let(:klass) do
           Class.new(ActiveRecord::Base) do
             has_secure_password :recovery_password
@@ -72,7 +72,7 @@ RSpec.describe RbsActiverecord::Generator::SecurePassword do
         end
       end
 
-      context "When the model has multiple secure passwords" do
+      context "when the model has multiple secure passwords" do
         let(:klass) do
           Class.new(ActiveRecord::Base) do
             has_secure_password

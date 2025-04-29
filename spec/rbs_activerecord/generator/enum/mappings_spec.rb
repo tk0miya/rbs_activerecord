@@ -17,7 +17,7 @@ RSpec.describe RbsActiverecord::Generator::Enum::Mappings do
     let(:klass) { Class.new(ActiveRecord::Base) }
     let(:declarations) { RbsActiverecord::Parser.parse(code) }
 
-    context "When the model has no enum" do
+    context "when the model has no enum" do
       let(:code) do
         <<~RUBY
           class User < ActiveRecord::Base
@@ -33,8 +33,8 @@ RSpec.describe RbsActiverecord::Generator::Enum::Mappings do
       end
     end
 
-    context "When the model has an enum" do
-      context "When the enum has no options" do
+    context "when the model has an enum" do
+      context "when the enum has no options" do
         let(:code) do
           <<~RUBY
             class User < ActiveRecord::Base
