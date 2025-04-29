@@ -11,7 +11,7 @@ RSpec.describe RbsActiverecord::Parser::IncludeExpander do
     let(:klass) { Class.new(ActiveRecord::Base) }
     let(:declarations) { RbsActiverecord::Parser.parse(code) }
 
-    context "When the class not including modules" do
+    context "when the class not including modules" do
       let(:code) do
         <<~RUBY
           class User < ActiveRecord::Base
@@ -28,7 +28,7 @@ RSpec.describe RbsActiverecord::Parser::IncludeExpander do
       end
     end
 
-    context "When the class including modules" do
+    context "when the class including modules" do
       let(:code) do
         <<~RUBY
           class User < ActiveRecord::Base
@@ -39,7 +39,7 @@ RSpec.describe RbsActiverecord::Parser::IncludeExpander do
         RUBY
       end
 
-      context "When the included module is not found" do
+      context "when the included module is not found" do
         it "removes the include call from the declarations" do
           subject
           expect(subject).to include("User")
@@ -47,10 +47,10 @@ RSpec.describe RbsActiverecord::Parser::IncludeExpander do
         end
       end
 
-      context "When the included module is found" do
+      context "when the included module is found" do
         before do
           stub_const("Included", included)
-          expect(Object).to receive(:const_source_location).with("Included").and_return([filename, -1])
+          allow(Object).to receive(:const_source_location).with("Included").and_return([filename, -1])
         end
 
         let(:included) do
@@ -65,7 +65,7 @@ RSpec.describe RbsActiverecord::Parser::IncludeExpander do
           end
         end
 
-        context "When the included module does not have included block" do
+        context "when the included module does not have included block" do
           let(:included_code) do
             <<~RUBY
               module Included
@@ -81,7 +81,7 @@ RSpec.describe RbsActiverecord::Parser::IncludeExpander do
           end
         end
 
-        context "When the included module has included block" do
+        context "when the included module has included block" do
           let(:included_code) do
             <<~RUBY
               module Included

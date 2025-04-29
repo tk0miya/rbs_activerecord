@@ -61,75 +61,75 @@ RSpec.describe RbsActiverecord::Parser do
     let(:body) { parsed_result.value.statements.body }
     let(:parsed_result) { Prism.parse(code) }
 
-    context "When node is Prism::NilNode" do
+    context "when node is Prism::NilNode" do
       let(:code) { "nil" }
 
-      it { is_expected.to eq nil }
+      it { is_expected.to be_nil }
     end
 
-    context "When node is Prism::TrueNode" do
+    context "when node is Prism::TrueNode" do
       let(:code) { "true" }
 
-      it { is_expected.to eq true }
+      it { is_expected.to be true }
     end
 
-    context "When node is Prism::FalseNode" do
+    context "when node is Prism::FalseNode" do
       let(:code) { "false" }
 
-      it { is_expected.to eq false }
+      it { is_expected.to be false }
     end
 
-    context "When node is Prism::SymbolNode" do
+    context "when node is Prism::SymbolNode" do
       let(:code) { ":symbol" }
 
       it { is_expected.to eq :symbol }
     end
 
-    context "When node is Prism::IntegerNode" do
+    context "when node is Prism::IntegerNode" do
       let(:code) { "12345" }
 
       it { is_expected.to eq 12_345 }
     end
 
-    context "When node is Prism::StringNode" do
+    context "when node is Prism::StringNode" do
       let(:code) { "'String'" }
 
       it { is_expected.to eq "String" }
     end
 
-    context "When node is Prism::ArrayNode" do
+    context "when node is Prism::ArrayNode" do
       let(:code) { "[1, 2, 3]" }
 
       it { is_expected.to eq [1, 2, 3] }
     end
 
-    context "When node is Prism::HashNode" do
+    context "when node is Prism::HashNode" do
       let(:code) { "{ foo: 1, bar: 2}" }
 
       it { is_expected.to eq({ foo: 1, bar: 2 }) }
     end
 
-    context "When node is Prism::ConstantReadNode" do
+    context "when node is Prism::ConstantReadNode" do
       let(:code) { "Const" }
 
       it { is_expected.to eq "Const" }
     end
 
-    context "When node is Prism::ConstantPathNode" do
-      context "When the constant is relative" do
+    context "when node is Prism::ConstantPathNode" do
+      context "when the constant is relative" do
         let(:code) { "Mod::SubMod::Const" }
 
         it { is_expected.to eq "Mod::SubMod::Const" }
       end
 
-      context "When the constant is absolute" do
+      context "when the constant is absolute" do
         let(:code) { "::Mod::SubMod::Const" }
 
         it { is_expected.to eq "::Mod::SubMod::Const" }
       end
     end
 
-    context "When node is Prism::KeywordHashNode" do
+    context "when node is Prism::KeywordHashNode" do
       let(:code) { "foo(kw1: true, kw2: false)" }
       let(:node) { body.first.arguments.arguments.first }
 

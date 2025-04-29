@@ -18,7 +18,7 @@ RSpec.describe RbsActiverecord::Generator::Attributes do
     let(:model) { RbsActiverecord::Model.new(klass) }
     let(:klass) { Class.new(ActiveRecord::Base) }
 
-    context "When pure_accessors is false" do
+    context "when pure_accessors is false" do
       let(:pure_accessors) { false }
 
       context "with a standard model" do
@@ -28,7 +28,7 @@ RSpec.describe RbsActiverecord::Generator::Attributes do
           end
         end
 
-        it "generates RBS" do
+        it "generates RBS" do # rubocop:disable RSpec/ExampleLength
           expect(subject).to eq(<<~RBS)
             module GeneratedAttributeMethods
               def name: () -> ::String?
@@ -78,7 +78,7 @@ RSpec.describe RbsActiverecord::Generator::Attributes do
           end
         end
 
-        it "generates RBS" do
+        it "generates RBS" do # rubocop:disable RSpec/ExampleLength
           expect(subject).to eq(<<~RBS)
             module GeneratedAttributeMethods
               def name: () -> ::String
@@ -151,7 +151,7 @@ RSpec.describe RbsActiverecord::Generator::Attributes do
         end
       end
 
-      context "with a model having attributes via ActiveRecord::Attributes " do
+      context "with a model having attributes via ActiveRecord::Attributes" do
         before do
           ActiveRecord::Base.connection.create_table :foos
 
@@ -161,7 +161,7 @@ RSpec.describe RbsActiverecord::Generator::Attributes do
           end
         end
 
-        it "generates RBS" do
+        it "generates RBS" do # rubocop:disable RSpec/ExampleLength
           expect(subject).to eq(<<~RBS)
             module GeneratedAttributeMethods
               def id: () -> ::Integer
@@ -221,7 +221,7 @@ RSpec.describe RbsActiverecord::Generator::Attributes do
           end
         end
 
-        it "generates RBS" do
+        it "generates RBS" do # rubocop:disable RSpec/ExampleLength
           expect(subject).to eq(<<~RBS)
             module GeneratedAttributeMethods
               def id: () -> ::Integer
@@ -301,7 +301,7 @@ RSpec.describe RbsActiverecord::Generator::Attributes do
       end
     end
 
-    context "When pure_accessors is true" do
+    context "when pure_accessors is true" do
       let(:pure_accessors) { true }
 
       context "with a standard model" do
@@ -311,7 +311,7 @@ RSpec.describe RbsActiverecord::Generator::Attributes do
           end
         end
 
-        it "generates RBS" do
+        it "generates RBS" do # rubocop:disable RSpec/ExampleLength
           expect(subject).to eq(<<~RBS)
             module GeneratedAttributeMethods
               %a{pure}

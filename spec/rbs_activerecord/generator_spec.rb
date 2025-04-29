@@ -12,7 +12,7 @@ RSpec.describe RbsActiverecord::Generator do
       ActiveRecord::Base.establish_connection(adapter: "sqlite3", database: ":memory:")
     end
 
-    context "General case" do
+    context "when general case" do
       attr_reader :tempdir
 
       before do
@@ -32,7 +32,7 @@ RSpec.describe RbsActiverecord::Generator do
       let(:klass) { Foo } # see ../fixtures/app/models/foo.rb
       let(:pure_accessors) { false }
 
-      it "generates RBS" do
+      it "generates RBS" do # rubocop:disable RSpec/ExampleLength
         expect(subject).to eq <<~RBS
           # resolve-type-names: false
 
@@ -331,7 +331,7 @@ RSpec.describe RbsActiverecord::Generator do
       end
     end
 
-    context "When the target model has composite primary keys" do
+    context "when the target model has composite primary keys" do
       before do
         stub_const "Foo", klass
         allow(Rails).to receive(:root).and_return(Pathname.new("spec/fixtures/"))
@@ -357,7 +357,7 @@ RSpec.describe RbsActiverecord::Generator do
       end
     end
 
-    context "When the target model includes a concern module having 'included' block" do
+    context "when the target model includes a concern module having 'included' block" do
       before do
         allow(Rails).to receive(:root).and_return(Pathname.new("spec/fixtures/"))
 
@@ -376,7 +376,7 @@ RSpec.describe RbsActiverecord::Generator do
       end
     end
 
-    context "When pure_accessors is true" do
+    context "when pure_accessors is true" do
       before do
         allow(Rails).to receive(:root).and_return(Pathname.new("spec/fixtures/"))
       end
