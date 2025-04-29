@@ -6,7 +6,7 @@ require "rbs_activerecord"
 
 RSpec.describe RbsActiverecord::Generator do
   describe "#generate" do
-    subject { described_class.new(klass).generate }
+    subject { described_class.new(klass, pure_accessors:).generate }
 
     before do
       ActiveRecord::Base.establish_connection(adapter: "sqlite3", database: ":memory:")
@@ -30,6 +30,7 @@ RSpec.describe RbsActiverecord::Generator do
       end
 
       let(:klass) { Foo } # see ../fixtures/app/models/foo.rb
+      let(:pure_accessors) { false }
 
       it "generates RBS" do
         expect(subject).to eq <<~RBS
@@ -346,6 +347,7 @@ RSpec.describe RbsActiverecord::Generator do
           self.primary_key = %i[store_id sku]
         end
       end
+      let(:pure_accessors) { false }
 
       it "generates RBS" do
         expect(subject).to include "include ::ActiveRecord::Relation::Methods[::Foo, [ ::Integer | ::String ]]"
@@ -366,10 +368,25 @@ RSpec.describe RbsActiverecord::Generator do
       end
 
       let(:klass) { Bar } # see ../fixtures/app/models/bar.rb
+      let(:pure_accessors) { false }
 
       it "generates RBS" do
         expect(subject).to include "def active: () -> Relation"
         expect(subject).to include "def archived: () -> Relation"
+      end
+    end
+
+    context "When pure_accessors is true" do
+      before do
+        allow(Rails).to receive(:root).and_return(Pathname.new("spec/fixtures/"))
+      end
+
+      let(:klass) { Foo } # see ../fixtures/app/models/foo.rb
+      let(:pure_accessors) { true }
+
+      it "generates RBS" do
+        expect(subject).to include "%a{pure}\n    def id: () -> ::Integer"
+        expect(subject).to include "%a{pure}\n    def name: () -> ::String?"
       end
     end
   end

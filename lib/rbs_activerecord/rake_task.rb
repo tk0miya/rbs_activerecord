@@ -4,7 +4,9 @@ require "rake/tasklib"
 
 module RbsActiverecord
   class RakeTask < Rake::TaskLib
-    attr_accessor :name, :signature_root_dir
+    attr_accessor :name #: Symbol
+    attr_accessor :pure_accessors #: bool
+    attr_accessor :signature_root_dir #: Pathname
 
     # @rbs name: Symbol
     # @rbs &block: (RakeTask) -> void
@@ -12,6 +14,7 @@ module RbsActiverecord
       super()
 
       @name = name
+      @pure_accessors = false
       @signature_root_dir = Rails.root / "sig/activerecord"
 
       block&.call(self)
@@ -48,7 +51,7 @@ module RbsActiverecord
           next if klass.abstract_class?
           next unless klass.connection.table_exists?(klass.table_name)
 
-          rbs = Generator.new(klass).generate
+          rbs = Generator.new(klass, pure_accessors:).generate
 
           path = signature_root_dir / "app/models/#{klass.name.underscore}.rbs"
           path.dirname.mkpath

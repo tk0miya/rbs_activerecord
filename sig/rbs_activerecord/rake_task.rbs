@@ -2,9 +2,11 @@
 
 module RbsActiverecord
   class RakeTask < Rake::TaskLib
-    attr_accessor name: untyped
+    attr_accessor name: Symbol
 
-    attr_accessor signature_root_dir: untyped
+    attr_accessor pure_accessors: bool
+
+    attr_accessor signature_root_dir: Pathname
 
     # @rbs name: Symbol
     # @rbs &block: (RakeTask) -> void

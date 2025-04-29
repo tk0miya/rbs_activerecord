@@ -6,10 +6,13 @@ module RbsActiverecord
       include Utils
 
       attr_reader :model #: RbsActiverecord::Model
+      attr_reader :pure_accessors #: bool
 
       # @rbs model: RbsActiverecord::Model
-      def initialize(model) #: void
+      # @rbs pure_accessors: bool
+      def initialize(model, pure_accessors:) #: void
         @model = model
+        @pure_accessors = pure_accessors
       end
 
       def generate #: String
@@ -30,6 +33,7 @@ module RbsActiverecord
         column_type = col.null ? optional : type
 
         <<~RBS
+          #{"%a{pure}" if pure_accessors}
           def #{col.name}: () -> #{column_type}
           def #{col.name}=: (#{column_type}) -> #{column_type}
           def #{col.name}?: () -> bool

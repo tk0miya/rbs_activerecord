@@ -7,8 +7,11 @@ module RbsActiverecord
 
       attr_reader model: RbsActiverecord::Model
 
+      attr_reader pure_accessors: bool
+
       # @rbs model: RbsActiverecord::Model
-      def initialize: (RbsActiverecord::Model model) -> void
+      # @rbs pure_accessors: bool
+      def initialize: (RbsActiverecord::Model model, pure_accessors: bool) -> void
 
       def generate: () -> String
 
