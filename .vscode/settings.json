@@ -6,14 +6,26 @@
     "rbs-helper.rbs-inline-on-save": true,
     "cSpell.words": [
         "activerecord",
+        "activestorage",
+        "bindir",
         "codebases",
         "Cyclomatic",
+        "entryable",
+        "foos",
         "kaminari",
+        "KOMIYA",
+        "kwargs",
         "mkpath",
         "modname",
+        "noargs",
+        "popen",
+        "posargs",
         "raketask",
+        "readlines",
         "requireds",
         "rmtree",
+        "rubocop",
+        "Takeshi",
         "tasklib"
     ]
 }
