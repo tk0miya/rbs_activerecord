@@ -16,7 +16,7 @@ RSpec.describe RbsActiverecord::Generator::Attributes do
     end
 
     let(:model) { RbsActiverecord::Model.new(klass) }
-    let(:klass) { Class.new(::ActiveRecord::Base) }
+    let(:klass) { Class.new(ActiveRecord::Base) }
 
     context "When pure_accessors is false" do
       let(:pure_accessors) { false }

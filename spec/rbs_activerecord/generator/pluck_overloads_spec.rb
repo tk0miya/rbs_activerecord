@@ -25,7 +25,7 @@ RSpec.describe RbsActiverecord::Generator::PluckOverloads do
         end
       end
 
-      let(:klass) { Class.new(::ActiveRecord::Base) }
+      let(:klass) { Class.new(ActiveRecord::Base) }
 
       it "generates RBS" do
         expect(subject).to eq(<<~RBS)
@@ -48,7 +48,7 @@ RSpec.describe RbsActiverecord::Generator::PluckOverloads do
       end
 
       let(:klass) do
-        Class.new(::ActiveRecord::Base) do
+        Class.new(ActiveRecord::Base) do
           enum :role, %i[admin user]
         end
       end

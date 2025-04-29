@@ -12,7 +12,7 @@ RSpec.describe RbsActiverecord::Model do
     end
 
     let(:model) { described_class.new(klass) }
-    let(:klass) { Class.new(::ActiveRecord::Base) }
+    let(:klass) { Class.new(ActiveRecord::Base) }
 
     it { is_expected.to eq "app/models/user.rb" }
   end
@@ -25,7 +25,7 @@ RSpec.describe RbsActiverecord::Model do
 
     context "When the parent is an abstract model" do
       let(:parent) do
-        Class.new(::ActiveRecord::Base) do
+        Class.new(ActiveRecord::Base) do
           self.abstract_class = true
         end
       end
@@ -34,13 +34,13 @@ RSpec.describe RbsActiverecord::Model do
     end
 
     context "When the parent is a ActiveRecord::Base" do
-      let(:parent) { ::ActiveRecord::Base }
+      let(:parent) { ActiveRecord::Base }
 
       it { is_expected.to eq [] }
     end
 
     context "When the parent is a concrete model" do
-      let(:parent) { Class.new(::ActiveRecord::Base) }
+      let(:parent) { Class.new(ActiveRecord::Base) }
 
       it { is_expected.to eq [parent] }
     end
