@@ -153,8 +153,7 @@ RSpec.describe RbsActiverecord::Generator::Attributes do
 
       context "with a model having attributes via ActiveRecord::Attributes " do
         before do
-          ActiveRecord::Base.connection.create_table :foos do |t|
-          end
+          ActiveRecord::Base.connection.create_table :foos
 
           klass.instance_eval do
             attribute :name, :string
@@ -215,8 +214,7 @@ RSpec.describe RbsActiverecord::Generator::Attributes do
 
       context "with a model having aliases" do
         before do
-          ActiveRecord::Base.connection.create_table :foos do |t|
-          end
+          ActiveRecord::Base.connection.create_table :foos
 
           klass.instance_eval do
             alias_attribute :new_id, :id
