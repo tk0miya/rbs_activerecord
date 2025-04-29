@@ -4,7 +4,7 @@ module RbsActiverecord
   module Parser
     module Evaluator
       # @rbs node: Prism::Node
-      def eval_node(node) #: untyped # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/MethodLength, Metrics/PerceivedComplexity
+      def eval_node(node) #: untyped # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity
         case node
         when Prism::NilNode
           nil
@@ -20,7 +20,7 @@ module RbsActiverecord
           node.unescaped
         when Prism::ArrayNode
           node.elements.map { |e| eval_node(e) }
-        when Prism::HashNode
+        when Prism::HashNode, Prism::KeywordHashNode
           node.elements.filter_map do |assoc|
             case assoc
             when Prism::AssocNode
@@ -34,15 +34,6 @@ module RbsActiverecord
         when Prism::ConstantPathNode
           parent = node.parent ? eval_node(node.parent) : nil
           "#{parent}::#{node.name}"
-        when Prism::KeywordHashNode
-          node.elements.filter_map do |assoc|
-            case assoc
-            when Prism::AssocNode
-              key = eval_node(assoc.key)
-              value = eval_node(assoc.value)
-              [key, value]
-            end
-          end.to_h
         end
       end
       module_function :eval_node
