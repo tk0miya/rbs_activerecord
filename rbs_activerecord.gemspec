@@ -2,7 +2,7 @@
 
 require_relative "lib/rbs_activerecord/version"
 
-Gem::Specification.new do |spec| # rubocop:disable Metrics/BlockLength
+Gem::Specification.new do |spec|
   spec.name = "rbs_activerecord"
   spec.version = RbsActiverecord::VERSION
   spec.authors = ["Takeshi KOMIYA"]

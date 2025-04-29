@@ -8,6 +8,7 @@ RuboCop::RakeTask.new
 task default: :rubocop
 
 namespace :rbs do
+  desc "Generate RBS files"
   task :generate do
     sh "rbs-inline", "--opt-out", "--output=sig", "lib"
   end
