@@ -25,7 +25,7 @@ module RbsActiverecord
 
       private
 
-      def has_many #: String  # rubocop:disable Naming/PredicateName
+      def has_many #: String # rubocop:disable Naming/PredicatePrefix
         model.reflect_on_all_associations(:has_many).map do |assoc|
           assoc_name = assoc.name.to_s
           klass_name = "::#{assoc.klass.name}"
@@ -41,7 +41,7 @@ module RbsActiverecord
         end.join("\n")
       end
 
-      def has_one #: String  # rubocop:disable Naming/PredicateName
+      def has_one #: String # rubocop:disable Naming/PredicatePrefix
         model.reflect_on_all_associations(:has_one).map do |assoc|
           type = "::#{assoc.klass.name}"
           optional = "#{type}?"
@@ -98,7 +98,7 @@ module RbsActiverecord
         end
       end
 
-      def has_and_belongs_to_many #: String  # rubocop:disable Naming/PredicateName
+      def has_and_belongs_to_many #: String # rubocop:disable Naming/PredicatePrefix
         model.reflect_on_all_associations(:has_and_belongs_to_many).map do |assoc|
           assoc_name = assoc.name.to_s
           klass_name = assoc.klass.name
