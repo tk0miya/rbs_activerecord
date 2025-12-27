@@ -40,7 +40,7 @@ module RbsActiverecord
         return [] unless secure_password?
 
         model.klass.instance_methods.grep(/authenticate_/).filter_map do |method|
-          next if model.klass.instance_methods.include?(:"#{method}_confirmation")
+          next if model.klass.method_defined?(:"#{method}_confirmation")
 
           method.to_s.split("_", 2).last
         end
