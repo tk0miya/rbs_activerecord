@@ -40,7 +40,7 @@ module RbsActiverecord
       def included_blocks_for(node) #: Array[Prism::CallNode]
         modules = node.arguments&.arguments.to_a
                       .map { |arg| Parser.eval_node(arg) }
-                      .select { |mod| mod.is_a?(String) }
+                      .grep(String)
         modules.flat_map do |modname|
           mod = const_get(modname)
           next [] unless mod
@@ -69,7 +69,7 @@ module RbsActiverecord
           case node.block.body
           when Prism::StatementsNode
             body = node.block.body.body #: Array[Prism::CallNode]
-            body.select { |n| n.is_a?(Prism::CallNode) }
+            body.grep(Prism::CallNode)
           else
             []
           end
