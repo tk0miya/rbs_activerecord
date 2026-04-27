@@ -23,7 +23,7 @@ module RbsActiverecord
 
         def attachments #: Hash[String, untyped]
           if model.klass.respond_to?(:attachment_reflections)
-            model.klass.attachment_reflections # steep:ignore
+            model.klass.attachment_reflections
           else
             {}
           end
