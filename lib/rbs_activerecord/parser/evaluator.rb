@@ -19,7 +19,7 @@ module RbsActiverecord
         when Prism::StringNode
           node.unescaped
         when Prism::ArrayNode
-          node.elements.map { |e| eval_node(e) }
+          node.elements.map { eval_node(_1) }
         when Prism::HashNode, Prism::KeywordHashNode
           node.elements.filter_map do |assoc|
             case assoc

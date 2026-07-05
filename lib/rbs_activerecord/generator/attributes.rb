@@ -18,7 +18,7 @@ module RbsActiverecord
       def generate #: String
         <<~RBS
           module GeneratedAttributeMethods
-            #{model.columns.map { |c| column(c) }.join("\n")}
+            #{model.columns.map { column(_1) }.join("\n")}
             #{attributes.map { |name, type| attribute(name, type) }.join("\n")}
             #{model.attribute_aliases.map { |from, to| alias_method(from, to) }.join("\n")}
           end
@@ -58,7 +58,7 @@ module RbsActiverecord
 
       def attributes #: Hash[String, untyped]
         model.attribute_types.filter_map do |name, type|
-          [name, type] if model.columns.none? { |col| col.name == name }
+          [name, type] if model.columns.none? { _1.name == name }
         end.to_h
       end
 

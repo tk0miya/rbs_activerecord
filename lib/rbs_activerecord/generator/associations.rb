@@ -85,7 +85,7 @@ module RbsActiverecord
       def polymorphic_owner_types(assoc) #: String  # rubocop:disable Metrics/AbcSize
         table_name = model.klass.name.to_s.tableize.to_sym
         owners = ActiveRecord::Base.descendants.select do |klass|
-          klass.reflect_on_all_associations.any? { |a| a.name == table_name && a.options[:as] == assoc.name }
+          klass.reflect_on_all_associations.any? { _1.name == table_name && _1.options[:as] == assoc.name }
         end
 
         if owners.empty?

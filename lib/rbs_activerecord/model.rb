@@ -28,7 +28,7 @@ module RbsActiverecord
 
     def parents #: Array[singleton(ActiveRecord::Base)]
       ancestors = klass.ancestors #: Array[singleton(ActiveRecord::Base)]
-      ancestors.select { |cls| cls < ActiveRecord::Base && cls != klass && !cls.abstract_class? }
+      ancestors.select { _1 < ActiveRecord::Base && _1 != klass && !_1.abstract_class? }
     end
   end
 end

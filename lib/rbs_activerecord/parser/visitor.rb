@@ -14,7 +14,7 @@ module RbsActiverecord
       end
 
       def current_namespace #: String
-        context.map { |node| Parser.eval_node(node.constant_path) }.join("::")
+        context.map { Parser.eval_node(_1.constant_path) }.join("::")
       end
 
       # @rbs override

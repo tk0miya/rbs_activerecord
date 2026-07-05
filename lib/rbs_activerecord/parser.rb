@@ -16,7 +16,7 @@ module RbsActiverecord
 
     # @rbs filename: String
     def parse_file(filename) #: Hash[String, Array[Prism::CallNode]]
-      File.open(filename) { |f| parse(f.read) }
+      File.open(filename) { parse(_1.read) }
     end
     module_function :parse_file
 

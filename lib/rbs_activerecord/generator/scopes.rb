@@ -16,7 +16,7 @@ module RbsActiverecord
       def generate #: String
         <<~RBS.strip
           module GeneratedScopeMethods[Relation]
-            #{scopes.map { |node| scope(node) }.join("\n")}
+            #{scopes.map { scope(_1) }.join("\n")}
           end
         RBS
       end
@@ -24,7 +24,7 @@ module RbsActiverecord
       private
 
       def scopes #: Array[Prism::CallNode]
-        declarations.select { |node| node.name == :scope }
+        declarations.select { _1.name == :scope }
       end
 
       # @rbs node: Prism::CallNode

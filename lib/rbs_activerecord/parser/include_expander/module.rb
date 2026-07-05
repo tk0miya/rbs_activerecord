@@ -21,7 +21,7 @@ module RbsActiverecord
         def included_blocks #: Array[Prism::CallNode]
           return [] unless concern?
 
-          declarations.select { |node| node.name == :included }
+          declarations.select { _1.name == :included }
         end
 
         private

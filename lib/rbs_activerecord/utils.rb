@@ -31,11 +31,11 @@ module RbsActiverecord
       when Array
         primary_keys = klass.primary_key.map(&:to_s)
         types = klass.columns
-                     .select { |column| primary_keys.include?(column.name) }
-                     .map { |pk| sql_type_to_class(pk.type) }
+                     .select { primary_keys.include?(_1.name) }
+                     .map { sql_type_to_class(_1.type) }
         "[#{types.join(" | ")}]"
       else
-        primary_key = klass.columns.find { |column| column.name == klass.primary_key }
+        primary_key = klass.columns.find { _1.name == klass.primary_key }
         sql_type_to_class(primary_key.type)
       end
     end

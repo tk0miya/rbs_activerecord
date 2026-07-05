@@ -22,7 +22,7 @@ module RbsActiverecord
       def expand #: void
         declarations.each_value do |decls|
           loop do
-            index = decls.index { |node| node.name == :include }
+            index = decls.index { _1.name == :include }
             break unless index
 
             included_module = decls.delete_at(index) || raise
@@ -39,7 +39,7 @@ module RbsActiverecord
       # @rbs node: Prism::CallNode
       def included_blocks_for(node) #: Array[Prism::CallNode]
         modules = node.arguments&.arguments.to_a
-                      .map { |arg| Parser.eval_node(arg) }
+                      .map { Parser.eval_node(_1) }
                       .grep(String)
         modules.flat_map do |modname|
           mod = const_get(modname)
