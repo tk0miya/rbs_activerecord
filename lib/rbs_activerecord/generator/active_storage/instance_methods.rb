@@ -30,6 +30,7 @@ module RbsActiverecord
         end
 
         # @rbs name: String
+        # @rbs reflection: untyped
         def attachment(name, reflection) #: String
           case reflection.macro
           when :has_one_attached

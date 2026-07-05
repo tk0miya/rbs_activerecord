@@ -12,7 +12,7 @@ module RbsActiverecord
       end.string
     end
 
-    # @rbs klass_name: singleton(Object)
+    # @rbs klass: singleton(Object)
     def klass_to_names(klass) #: Array[RBS::TypeName]
       type_name = RBS::TypeName.parse("::#{klass.name}")
 
