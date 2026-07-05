@@ -7,9 +7,9 @@ module RbsActiverecord
         private
 
         # @rbs node: Prism::CallNode
-        def parse_arguments(node) #: [String?, Array[String | Symbol], Hash[Symbol, untyped]] # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity
+        def parse_arguments(node) #: [String?, Array[String | Symbol], Hash[Symbol, untyped]] # rubocop:disable Metrics/CyclomaticComplexity
           arguments = node.arguments&.arguments || []
-          args = arguments.map { |arg| Parser.eval_node(arg) }
+          args = arguments.map { Parser.eval_node(_1) }
           return nil, [], {} if args.empty?
 
           name = args[0] #: String?

@@ -19,7 +19,7 @@ module RbsActiverecord
         def generate #: String
           <<~RBS.strip
             module GeneratedEnumScopeMethods[Relation]
-              #{enums.map { |node| enum(node) }.join("\n")}
+              #{enums.map { enum(_1) }.join("\n")}
             end
           RBS
         end
@@ -27,7 +27,7 @@ module RbsActiverecord
         private
 
         def enums #: Array[Prism::CallNode]
-          declarations.select { |node| node.name == :enum }
+          declarations.select { _1.name == :enum }
         end
 
         # @rbs node: Prism::CallNode

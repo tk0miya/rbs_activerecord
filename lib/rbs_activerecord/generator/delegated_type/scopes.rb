@@ -17,7 +17,7 @@ module RbsActiverecord
         def generate #: String
           <<~RBS.strip
             module GeneratedDelegatedTypeScopeMethods[Relation]
-              #{delegated_types.map { |node| delegated_type(node) }.join("\n")}
+              #{delegated_types.map { delegated_type(_1) }.join("\n")}
             end
           RBS
         end
@@ -25,13 +25,13 @@ module RbsActiverecord
         private
 
         def delegated_types #: Array[Prism::CallNode]
-          declarations.select { |node| node.name == :delegated_type }
+          declarations.select { _1.name == :delegated_type }
         end
 
         # @rbs node: Prism::CallNode
         def delegated_type(node) #: String
           arguments = node.arguments&.arguments || []
-          name, options = arguments.map { |arg| Parser.eval_node(arg) } #: [String?, Hash[Symbol, untyped]]
+          name, options = arguments.map { Parser.eval_node(_1) } #: [String?, Hash[Symbol, untyped]]
           return "" unless name
 
           options[:types].map do |type|
