@@ -38,6 +38,8 @@ Style/Documentation:
 
 Style/RbsInline/MissingTypeAnnotation:
   EnforcedStyle: doc_style_and_return_annotation
+  Exclude:
+    - "spec/**/*"
 
 Style/RbsInline/RedundantTypeAnnotation:
   EnforcedStyle: doc_style_and_return_annotation

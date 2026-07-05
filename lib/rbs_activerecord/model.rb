@@ -14,6 +14,7 @@ module RbsActiverecord
     #   def columns: () -> Array[untyped]
     #   def defined_enums: () -> Hash[String, untyped]
     #   def reflect_on_all_associations: (Symbol) -> Array[untyped]
+
     def_delegators :klass, :attribute_aliases, :attribute_types, :columns, :defined_enums, :reflect_on_all_associations
 
     # @rbs klass: singleton(ActiveRecord::Base)

@@ -27,6 +27,7 @@ module RbsActiverecord
 
       private
 
+      # @rbs col: untyped
       def column(col) #: String  # rubocop:disable Metrics/AbcSize
         type = sql_type_to_class(col.type)
         optional = "#{type}?"
@@ -72,6 +73,8 @@ module RbsActiverecord
         RBS
       end
 
+      # @rbs from: untyped
+      # @rbs to: untyped
       def alias_method(from, to) #: String
         <<~RBS
           alias #{from} #{to}
