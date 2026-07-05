@@ -8,7 +8,7 @@ module RbsActiverecord
     def format(str) #: String
       parsed = RBS::Parser.parse_signature(str)
       StringIO.new.tap do |out|
-        RBS::Writer.new(out: out).write(parsed[1] + parsed[2])
+        RBS::Writer.new(out:).write(parsed[1] + parsed[2])
       end.string
     end
 
@@ -26,7 +26,7 @@ module RbsActiverecord
     end
 
     # @rbs klass: singleton(ActiveRecord::Base)
-    def primary_key_type_for(klass) #: String  # rubocop:disable Metrics/AbcSize
+    def primary_key_type_for(klass) #: String
       case klass.primary_key
       when Array
         primary_keys = klass.primary_key.map(&:to_s)

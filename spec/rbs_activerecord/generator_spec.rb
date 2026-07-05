@@ -32,7 +32,7 @@ RSpec.describe RbsActiverecord::Generator do
       let(:klass) { Foo } # see ../fixtures/app/models/foo.rb
       let(:pure_accessors) { false }
 
-      it "generates RBS" do # rubocop:disable RSpec/ExampleLength
+      it "generates RBS" do
         expect(subject).to eq <<~RBS
           # resolve-type-names: false
 
