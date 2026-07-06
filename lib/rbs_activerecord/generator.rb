@@ -3,7 +3,7 @@
 require "rails"
 
 module RbsActiverecord
-  class Generator # rubocop:disable Metrics/ClassLength
+  class Generator
     include Utils
 
     attr_reader :klass #: singleton(ActiveRecord::Base)

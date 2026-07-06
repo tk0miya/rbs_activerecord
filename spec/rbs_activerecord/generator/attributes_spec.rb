@@ -28,7 +28,7 @@ RSpec.describe RbsActiverecord::Generator::Attributes do
           end
         end
 
-        it "generates RBS" do # rubocop:disable RSpec/ExampleLength
+        it "generates RBS" do
           expect(subject).to eq(<<~RBS)
             module GeneratedAttributeMethods
               def name: () -> ::String?
@@ -78,7 +78,7 @@ RSpec.describe RbsActiverecord::Generator::Attributes do
           end
         end
 
-        it "generates RBS" do # rubocop:disable RSpec/ExampleLength
+        it "generates RBS" do
           expect(subject).to eq(<<~RBS)
             module GeneratedAttributeMethods
               def name: () -> ::String
@@ -161,7 +161,7 @@ RSpec.describe RbsActiverecord::Generator::Attributes do
           end
         end
 
-        it "generates RBS" do # rubocop:disable RSpec/ExampleLength
+        it "generates RBS" do
           expect(subject).to eq(<<~RBS)
             module GeneratedAttributeMethods
               def id: () -> ::Integer
@@ -221,7 +221,7 @@ RSpec.describe RbsActiverecord::Generator::Attributes do
           end
         end
 
-        it "generates RBS" do # rubocop:disable RSpec/ExampleLength
+        it "generates RBS" do
           expect(subject).to eq(<<~RBS)
             module GeneratedAttributeMethods
               def id: () -> ::Integer
@@ -311,7 +311,7 @@ RSpec.describe RbsActiverecord::Generator::Attributes do
           end
         end
 
-        it "generates RBS" do # rubocop:disable RSpec/ExampleLength
+        it "generates RBS" do
           expect(subject).to eq(<<~RBS)
             module GeneratedAttributeMethods
               %a{pure}

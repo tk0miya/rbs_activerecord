@@ -1,3 +1,5 @@
+# NOTE: Rules are sorted in ASCII order.
+
 AllCops:
   NewCops: enable
   TargetRubyVersion: 3.2
@@ -8,19 +10,37 @@ plugins:
   - rubocop-rbs_inline
   - rubocop-rspec
 
+# Layout
 Layout/LeadingCommentSpace:
   AllowRBSInlineAnnotation: true
   AllowSteepAnnotation: true
+
+Layout/LineLength:
+  Max: 120
+
+# Metrics
+Metrics/AbcSize:
+  Max: 20
 
 Metrics/BlockLength:
   Exclude:
     - "spec/**/*.rb"
 
+Metrics/ClassLength:
+  Max: 200
+
 Metrics/MethodLength:
   Max: 30
 
+# RSpec
 RSpec/ExampleLength:
-  Max: 20
+  Enabled: false
+
+RSpec/MultipleMemoizedHelpers:
+  Max: 10
+
+RSpec/MultipleExpectations:
+  Enabled: false
 
 RSpec/NamedSubject:
   Enabled: false
@@ -28,15 +48,7 @@ RSpec/NamedSubject:
 RSpec/NestedGroups:
   Max: 5
 
-RSpec/MultipleExpectations:
-  Enabled: false
-
-RSpec/MultipleMemoizedHelpers:
-  Max: 10
-
-Style/Documentation:
-  Enabled: false
-
+# RbsInline
 Style/RbsInline/MissingTypeAnnotation:
   EnforcedStyle: doc_style_and_return_annotation
   Exclude:
@@ -47,6 +59,19 @@ Style/RbsInline/RedundantTypeAnnotation:
 
 Style/RbsInline/RequireRbsInlineComment:
   EnforcedStyle: never
+
+# Style
+Style/AccessorGrouping:
+  Enabled: false
+
+Style/CommentedKeyword:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/HashSyntax:
+  EnforcedShorthandSyntax: always
 
 Style/RedundantFormat:
   Enabled: false
