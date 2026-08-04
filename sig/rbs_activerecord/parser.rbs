@@ -5,6 +5,7 @@ module RbsActiverecord
     # @rbs code: String
     def self?.parse: (String code) -> Hash[String, Array[Prism::CallNode]]
 
+    # @rbs filename: String
     def self?.parse_file: (String filename) -> Hash[String, Array[Prism::CallNode]]
 
     # @rbs node: Prism::Node

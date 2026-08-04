@@ -16,6 +16,7 @@ module RbsActiverecord
         def attachments: () -> Hash[String, untyped]
 
         # @rbs name: String
+        # @rbs reflection: untyped
         def attachment: (String name, untyped reflection) -> String
       end
     end
