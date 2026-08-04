@@ -17,6 +17,7 @@ module RbsActiverecord
 
       private
 
+      # @rbs col: untyped
       def column: (untyped col) -> String
 
       def attributes: () -> Hash[String, untyped]
@@ -25,6 +26,8 @@ module RbsActiverecord
       # @rbs type: untyped
       def attribute: (String name, untyped type) -> String
 
+      # @rbs from: untyped
+      # @rbs to: untyped
       def alias_method: (untyped from, untyped to) -> String
     end
   end
