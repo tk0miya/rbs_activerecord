@@ -304,55 +304,53 @@ RSpec.describe RbsActiverecord::Generator::Attributes do
     context "when pure_accessors is true" do
       let(:pure_accessors) { true }
 
-      context "with a standard model" do
-        before do
-          ActiveRecord::Base.connection.create_table :foos, id: false do |t|
-            t.string :name
+      before do
+        ActiveRecord::Base.connection.create_table :foos, id: false do |t|
+          t.string :name
+        end
+      end
+
+      it "generates RBS" do
+        expect(subject).to eq(<<~RBS)
+          module GeneratedAttributeMethods
+            %a{pure}
+            def name: () -> ::String?
+
+            def name=: (::String?) -> ::String?
+
+            def name?: () -> bool
+
+            def name_changed?: () -> bool
+
+            def name_change: () -> [ ::String?, ::String? ]
+
+            def name_will_change!: () -> void
+
+            def name_was: () -> ::String?
+
+            def name_previously_changed?: () -> bool
+
+            def name_previous_change: () -> ::Array[::String?]?
+
+            def name_previously_was: () -> ::String?
+
+            def name_before_last_save: () -> ::String?
+
+            def name_change_to_be_saved: () -> ::Array[::String?]?
+
+            def name_in_database: () -> ::String?
+
+            def saved_change_to_name: () -> ::Array[::String?]?
+
+            def saved_change_to_name?: () -> bool
+
+            def will_save_change_to_name?: () -> bool
+
+            def restore_name!: () -> void
+
+            def clear_name_change: () -> void
           end
-        end
-
-        it "generates RBS" do
-          expect(subject).to eq(<<~RBS)
-            module GeneratedAttributeMethods
-              %a{pure}
-              def name: () -> ::String?
-
-              def name=: (::String?) -> ::String?
-
-              def name?: () -> bool
-
-              def name_changed?: () -> bool
-
-              def name_change: () -> [ ::String?, ::String? ]
-
-              def name_will_change!: () -> void
-
-              def name_was: () -> ::String?
-
-              def name_previously_changed?: () -> bool
-
-              def name_previous_change: () -> ::Array[::String?]?
-
-              def name_previously_was: () -> ::String?
-
-              def name_before_last_save: () -> ::String?
-
-              def name_change_to_be_saved: () -> ::Array[::String?]?
-
-              def name_in_database: () -> ::String?
-
-              def saved_change_to_name: () -> ::Array[::String?]?
-
-              def saved_change_to_name?: () -> bool
-
-              def will_save_change_to_name?: () -> bool
-
-              def restore_name!: () -> void
-
-              def clear_name_change: () -> void
-            end
-          RBS
-        end
+        RBS
       end
     end
   end

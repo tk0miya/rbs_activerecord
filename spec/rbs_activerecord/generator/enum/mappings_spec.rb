@@ -51,6 +51,24 @@ RSpec.describe RbsActiverecord::Generator::Enum::Mappings do
           RBS
         end
       end
+
+      context "when the enum has prefix/suffix options" do
+        let(:code) do
+          <<~RUBY
+            class User < ActiveRecord::Base
+              enum :status, [:active, :archived], prefix: true, suffix: true
+            end
+          RUBY
+        end
+
+        it "generates RBS unaffected by prefix/suffix, unlike InstanceMethods/Scopes" do
+          expect(subject).to eq <<~RBS
+            module GeneratedEnumMappingMethods
+              def statuses: () -> ::ActiveSupport::HashWithIndifferentAccess[Symbol, untyped]
+            end
+          RBS
+        end
+      end
     end
   end
 end
