@@ -34,7 +34,7 @@ RSpec.describe RbsActiverecord::Generator::Enum::Scopes do
     end
 
     context "when the model has an enum" do
-      context "when the enum has no options" do
+      context "when the enum has no options (plain, non-special-character values)" do
         let(:code) do
           <<~RUBY
             class User < ActiveRecord::Base

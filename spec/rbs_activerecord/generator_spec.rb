@@ -12,7 +12,7 @@ RSpec.describe RbsActiverecord::Generator do
       ActiveRecord::Base.establish_connection(adapter: "sqlite3", database: ":memory:")
     end
 
-    context "when general case" do
+    context "when general case (single-column primary key, no included concern, pure_accessors disabled)" do
       attr_reader :tempdir
 
       before do
