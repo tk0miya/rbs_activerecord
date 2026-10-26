@@ -26,6 +26,13 @@ module RbsActiverecord
       # @rbs type: untyped
       def attribute: (String name, untyped type) -> String
 
+      # The type accepted by the attribute writer.
+      # It is wider than the reader type for the types ActiveRecord casts on assignment.
+      #
+      # @rbs type: Symbol
+      # @rbs nullable: bool
+      def writer_type_for: (Symbol type, nullable: bool) -> String
+
       # @rbs from: untyped
       # @rbs to: untyped
       def alias_method: (untyped from, untyped to) -> String

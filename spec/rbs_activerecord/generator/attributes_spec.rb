@@ -151,6 +151,24 @@ RSpec.describe RbsActiverecord::Generator::Attributes do
         end
       end
 
+      context "with a model having datetime columns" do
+        before do
+          ActiveRecord::Base.connection.create_table :foos, id: false do |t|
+            t.datetime :nullable_at
+            t.datetime :non_nullable_at, null: false
+          end
+        end
+
+        it "generates writers accepting ::Time as well" do
+          expect(subject).to include("def nullable_at: () -> ::ActiveSupport::TimeWithZone?")
+          expect(subject).to include("def nullable_at=: ((::ActiveSupport::TimeWithZone | ::Time)?) -> " \
+                                     "(::ActiveSupport::TimeWithZone | ::Time)?")
+          expect(subject).to include("def non_nullable_at: () -> ::ActiveSupport::TimeWithZone")
+          expect(subject).to include("def non_nullable_at=: (::ActiveSupport::TimeWithZone | ::Time) -> " \
+                                     "(::ActiveSupport::TimeWithZone | ::Time)")
+        end
+      end
+
       context "with a model having attributes via ActiveRecord::Attributes" do
         before do
           ActiveRecord::Base.connection.create_table :foos
@@ -158,6 +176,7 @@ RSpec.describe RbsActiverecord::Generator::Attributes do
           klass.instance_eval do
             attribute :name, :string
             attribute :age, :integer
+            attribute :born_at, :datetime
           end
         end
 
@@ -207,6 +226,10 @@ RSpec.describe RbsActiverecord::Generator::Attributes do
               def age: () -> ::Integer
 
               def age=: (::Integer) -> ::Integer
+
+              def born_at: () -> ::ActiveSupport::TimeWithZone
+
+              def born_at=: (::ActiveSupport::TimeWithZone | ::Time) -> (::ActiveSupport::TimeWithZone | ::Time)
             end
           RBS
         end
