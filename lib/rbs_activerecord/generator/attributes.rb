@@ -32,11 +32,12 @@ module RbsActiverecord
         type = sql_type_to_class(col.type)
         optional = "#{type}?"
         column_type = col.null ? optional : type
+        writer_type = writer_type_for(col.type, nullable: col.null)
 
         <<~RBS
           #{"%a{pure}" if pure_accessors}
           def #{col.name}: () -> #{column_type}
-          def #{col.name}=: (#{column_type}) -> #{column_type}
+          def #{col.name}=: (#{writer_type}) -> #{writer_type}
           def #{col.name}?: () -> bool
           def #{col.name}_changed?: () -> bool
           def #{col.name}_change: () -> [#{optional}, #{optional}]
@@ -66,11 +67,28 @@ module RbsActiverecord
       # @rbs type: untyped
       def attribute(name, type) #: String
         column_type = sql_type_to_class(type.type)
+        writer_type = writer_type_for(type.type, nullable: false)
 
         <<~RBS
           def #{name}: () -> #{column_type}
-          def #{name}=: (#{column_type}) -> #{column_type}
+          def #{name}=: (#{writer_type}) -> #{writer_type}
         RBS
+      end
+
+      # The type accepted by the attribute writer.
+      # It is wider than the reader type for the types ActiveRecord casts on assignment.
+      #
+      # @rbs type: Symbol
+      # @rbs nullable: bool
+      def writer_type_for(type, nullable:) #: String
+        writer_type = case type
+                      when :datetime
+                        # A datetime attribute also accepts ::Time and converts it to ::ActiveSupport::TimeWithZone
+                        "(::ActiveSupport::TimeWithZone | ::Time)"
+                      else
+                        sql_type_to_class(type)
+                      end
+        nullable ? "#{writer_type}?" : writer_type
       end
 
       # @rbs from: untyped
