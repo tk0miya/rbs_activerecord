@@ -17,7 +17,7 @@ RSpec.describe RbsActiverecord::Generator::PluckOverloads do
 
     let(:model) { RbsActiverecord::Model.new(klass) }
 
-    context "when model has nullable and non-nullable columns" do
+    context "when model has non-enum columns (nullable and non-nullable)" do
       before do
         ActiveRecord::Base.connection.create_table :foos do |t|
           t.integer :age
